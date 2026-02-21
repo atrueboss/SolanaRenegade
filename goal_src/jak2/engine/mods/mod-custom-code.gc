@@ -30,8 +30,11 @@
       )
     )
 
+    (defun wider-view () ;; Set camera fov to 94.0 (way better imo)
+      (set-setting-by-param *setting-control* 'fov #f (* 182.04445 94) 0) 
+    )
 
-    (defun runs-every-frame ()
+    (defun runs-every-frame () ;; Code here runs on every frame
      
       (better-hover-cam)
 
@@ -47,15 +50,13 @@
       (none)
       )
 
-    (defun runs-on-gem-pickup ()
-      ;; Code here runs on any scout fly pickup
+    (defun runs-on-gem-pickup () ;; Code here runs on any scout fly pickup
 
       (none)
       )
 
     (defun runs-on-task-close ()
     
-
       (none)
       )
 
@@ -64,27 +65,22 @@
         ;; Code here runs as soon as you pickup ANY eco
 
         (case eco-type
-          (((pickup-type eco-yellow))      
-            ;; Code here runs as soon as you pickup yellow eco
+          (((pickup-type eco-yellow)) ;; Code here runs as soon as you pickup yellow eco
 
             )
-          (((pickup-type eco-red))      
-            ;; Code here runs as soon as you pickup red eco
+          (((pickup-type eco-red)) ;; Code here runs as soon as you pickup red eco
 
             )
-          (((pickup-type eco-blue))      
-            ;; Code here runs as soon as you pickup blue eco
+          (((pickup-type eco-blue)) ;; Code here runs as soon as you pickup blue eco
 
             )
 
-          (((pickup-type eco-green))      
-            ;; Code here runs as soon as you pickup big green eco 
+          (((pickup-type eco-green)) ;; Code here runs as soon as you pickup big green eco 
 
             )
           )
         
-        (when from-vent?
-          ;; Code here runs only if the eco was picked up from a vent
+        (when from-vent? ;; Code here runs only if the eco was picked up from a vent
 
           )
         )
@@ -92,20 +88,21 @@
       (none)
       )
 
-    (defun runs-on-jak-spawn ()
-      ;; Code here runs every time jak spawns (loading a file new game or death)   
+    (defun runs-on-jak-spawn () ;; Code here runs every time jak spawns (loading a file new game or death)
+         
+      (wider-view)
 
       (none)
       )
 
     (defun runs-on-jak-death ((death-event symbol))
       (case death-event
-        (('dying)
-          ;; Code here runs immediately every time jak dies, before any death animation or death cutscene
+        (('dying) ;; Code here runs immediately every time jak dies, before any death animation or death cutscene
+          
           
           )
-        (('blackout)
-          ;; Code here runs after jak dies (and any death cutscene finishes), during the blackout before he spawns
+        (('blackout) ;; Code here runs after jak dies (and any death cutscene finishes), during the blackout before he spawns
+          
 
           )
         )
