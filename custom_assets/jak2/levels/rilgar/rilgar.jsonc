@@ -1,0 +1,420 @@
+{
+  // The "in-game" name of the level. Should be lower case, with dashes (GOAL symbol name)
+  // the name of this file, and the folder this file is in must have the same name.
+  "long_name": "rilgar",
+  // The file name, should be upper case and 8 characters or less.
+  "iso_name": "RILGAR",
+  // The nickname, should be exactly 3 characters
+  "nickname": "ril", // 3 char name, all lowercase
+  // Background mesh file.
+  // Must have vertex colors. Use the blender cycles renderer, bake, diffuse, uncheck color,
+  // and bake to vertex colors. For now, only the first vertex color group is used, so make sure you
+  // only have 1.
+  "gltf_file": "custom_assets/jak2/levels/rilgar/rilgar.glb",
+
+  // automatically set wall vs. ground based on angle. Useful if you don't want to assign this yourself
+  "automatic_wall_detection": false,
+  "automatic_wall_angle": 45.0,
+
+  // if your mesh has triangles with incorrect orientation, set this to make all collision mesh triangles double sided
+  // this makes collision 2x slower and bigger, so only use if really needed
+  "double_sided_collide": false,
+
+  // available res-lump tag data types:
+  // int32, float, meters, vector, vector4m (meters)
+  //
+  // examples:
+  //
+  // adds a float tag 'spring-height' with value of 200 meters (1 meter = 4096.0 units):
+  // "spring-height": ["meters", 200.0]
+  //
+  // adds a vector tag 'movie-pos':
+  // "movie-pos": ["vector", [4096000.0, -176128.0, 1353973.76, 1.0]]
+
+   // The base actor id for your custom level. If you have multiple levels, this should be unique!
+   "base_id": 1000,
+
+  // All art groups you want to use in your custom level. Will add their models and corresponding textures to the FR3 file.
+  // Removed so that the release builds don't have to double-decompile the game
+  //"art_groups": ["prsn-torture-ag"],
+  "art_groups": [
+                  "dig-jump-pad-ag", 
+                  "searchlight-ag",
+                  "forest-part-ag",
+                  "rift-ring-in-game-ag",
+                  "burning-bush-ag"
+                ],
+
+   // Any textures you want to include in your custom level.
+   // This is mainly useful for textures which are not in the common level files and have no art group associated with them.
+   // To get a list of all the textures, you can extract all of the game's textures
+   // by setting "save_texture_pngs" to true in the decompiler config.
+   "textures": [
+
+  "tpage-1264.go",
+  "tpage-1266.go",
+  "tpage-1265.go",
+  "tpage-1674.go",
+  "tpage-1118.go",
+  "tpage-1657.go"
+   ],
+
+  "actors" : [
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////// GAMEPLAY ///////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    {
+      "trans": [4.64, 12.52, -9.23], // translation
+      "etype": "warp-gate",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"rilgar-rift-warp-gate",
+        "distance": ["meters", 15.0]
+      }
+    },
+    {
+      "trans": [4.64, 16.52, -9.23], // translation
+      "etype": "rift-ring-in-game",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0.05, 0, 0, 1], // quaternion (format is diagonal, vertical, horizontal, idk)
+      "bsphere": [0,0,0, 10], // bounding sphere
+      "lump": {
+        "name":"rift-ring-rilgar"
+      }
+    },
+    {
+      "trans": [4.64, 16.52, -9.23], // translation
+      "etype": "forest-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0.05, 0, 0, 1], // quaternion
+      "bsphere": [6.32, 4.88, 10.11, 10], // bounding sphere
+      "lump": {
+        "name":"rift-ring-part",
+        "art-name": "group-nestb-rift-ring"
+      }
+    },
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////// LIGHTS //////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    {
+      "trans": [107.72,141.99,276.65], // translation
+      "etype": "searchlight",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0,0,0, 10], // bounding sphere
+      "lump": {
+        "name":"searchlight-1"
+      }
+    },
+    {
+      "trans": [70.84,141.99,273.89], // translation
+      "etype": "searchlight",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0,0,0, 10], // bounding sphere
+      "lump": {
+        "name":"searchlight-2"
+      }
+    },
+    {
+      "trans": [69.64,141.66,297.84], // translation
+      "etype": "searchlight",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0,0,0, 10], // bounding sphere
+      "lump": {
+        "name":"searchlight-3"
+      }
+    },
+    {
+      "trans": [104.71,141.66,300.81], // translation
+      "etype": "searchlight",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0,0,0, 10], // bounding sphere
+      "lump": {
+        "name":"searchlight-4"
+      }
+    },
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////// OTHER //////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    {
+      "trans": [257.65, -36.30, 335.58], // translation
+      "etype": "dig-jump-pad",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0.0, 0.0, 0.0, 1], // quaternion
+      "bsphere": [-2.70, 3.50, 64, 10], // bounding sphere
+      "lump": {
+        "name":"jump-pad",
+        "spring-height": ["meters", 140]
+        
+      }
+    },
+    {
+      "trans": [637.16, 19.14, 477.92], // translation
+      "etype": "rift-ring-ingame",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [4.33, 3.50, 65.49, 10], // bounding sphere
+      "lump": {
+        "name": "rift-ring-rilgar"
+      }
+    },
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////// ECO //////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    {
+      "trans": [552.68, 20.89, 399.66], // translation
+      "etype": "eco-blue",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0, 0, 0, 10], // bounding sphere
+      "lump": {
+        "name":"eco-blue-1"
+      }
+    },
+    {
+      "trans": [609.71,20.898,421.39], // translation
+      "etype": "eco-blue",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0, 0, 0, 10], // bounding sphere
+      "lump": {
+        "name":"eco-blue-2"
+      }
+    },
+    {
+      "trans": [642.37,20.898,450.34], // translation
+      "etype": "eco-blue",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0, 0, 0, 10], // bounding sphere
+      "lump": {
+        "name":"eco-blue-3"
+      }
+    },
+    {
+      "trans": [714.52,20.898,581.85], // translation
+      "etype": "eco-blue",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0, 0, 0, 10], // bounding sphere
+      "lump": {
+        "name":"eco-blue-4"
+      }
+    },
+    {
+      "trans": [658.78,20.898,717.66], // translation
+      "etype": "eco-blue",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0, 0, 0, 10], // bounding sphere
+      "lump": {
+        "name":"eco-blue-5"
+      }
+    },
+    {
+      "trans": [631.38,39.36,787.4], // translation
+      "etype": "eco-blue",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0, 0, 0, 10], // bounding sphere
+      "lump": {
+        "name":"eco-blue-6"
+      }
+    },
+    {
+      "trans": [652.65,39.364,671.38], // translation
+      "etype": "eco-blue",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0, 0, 0, 10], // bounding sphere
+      "lump": {
+        "name":"eco-blue-7"
+      }
+    },
+    {
+      "trans": [408.06,39.364,314.14], // translation
+      "etype": "eco-blue",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0, 0, 0, 10], // bounding sphere
+      "lump": {
+        "name":"eco-blue-8"
+      }
+    },
+    {
+      "trans": [315.24,39.364,383.4], // translation
+      "etype": "eco-blue",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0, 0, 0, 10], // bounding sphere
+      "lump": {
+        "name":"eco-blue-9"
+      }
+    },
+    {
+      "trans": [265.91,39.364,487.47], // translation
+      "etype": "eco-blue",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0, 0, 0, 10], // bounding sphere
+      "lump": {
+        "name":"eco-blue-10"
+      }
+    },
+    {
+      "trans": [79.912,36.607,714], // translation
+      "etype": "eco-blue",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0, 0, 0, 10], // bounding sphere
+      "lump": {
+        "name":"eco-blue-11"
+      }
+    },
+    {
+      "trans": [30.045,35.696,755.76], // translation
+      "etype": "eco-blue",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0, 0, 0, 10], // bounding sphere
+      "lump": {
+        "name":"eco-blue-12"
+      }
+    },
+    {
+      "trans": [160.99,9.2415,830.27], // translation
+      "etype": "eco-blue",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0, 0, 0, 10], // bounding sphere
+      "lump": {
+        "name":"eco-blue-13"
+      }
+    },
+    {
+      "trans": [288.56,18.203,826.48], // translation
+      "etype": "eco-blue",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0, 0, 0, 10], // bounding sphere
+      "lump": {
+        "name":"eco-blue-14"
+      }
+    },
+    {
+      "trans": [380.24,20.492,792.35], // translation
+      "etype": "eco-blue",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0, 0, 0, 10], // bounding sphere
+      "lump": {
+        "name":"eco-blue-15"
+      }
+    },
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////// WARP GATES /////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    {
+      "trans": [203.26, 95.09, 336.73], // translation
+      "etype": "warp-gate",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"rilgar-warp-gate-01",
+        "distance": ["meters", 4.0]
+      }
+    },
+    {
+      "trans": [203.26, 96.59, 336.73], // translation
+      "etype": "forest-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.5, 0, 1], // quaternion
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"warp-gate-part-1",
+        "art-name": "group-metalkor-shot-anticipate"
+      }
+    },
+    {
+      "trans": [262.47, 36.30, 406.97], // translation
+      "etype": "warp-gate",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"rilgar-warp-gate-02",
+        "distance": ["meters", 4.0]
+      }
+    },
+    {
+      "trans": [262.47, 37.80, 406.97], // translation
+      "etype": "forest-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.5, 0, 1], // quaternion
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"warp-gate-part-2",
+        "art-name": "group-metalkor-shot-anticipate"
+      }
+    },
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////// ORBS /////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    {
+      "trans": [351.23, -10.27, 454.75], // translation
+      "etype": "skill",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"skill-01"
+      }
+    },
+    {
+      "trans": [-5.27, 31.47, 530.94], // translation
+      "etype": "skill",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
+      "lump": {
+        "name":"skill-02"
+      }
+    },
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////// OTHER ///////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    {
+      "trans": [272.6510, 38.3053, 393.0393], // translation
+      "etype": "burning-bush",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0.0000, 0.2827, 0.0000, -0.9592], // quaternion
+      "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
+      "lump": {
+        "name":"rilgar-burning-bush-race",
+        "task-actor": ["int32", 69]
+      }
+    }
+    // {
+    //   "trans": [302.8708, 38.5562, 390.5250], // translation
+    //   "etype": "race-bike-a",  // actor type
+    //   "game_task": 0, // associated game task (for powercells, etc)
+    //   "quat" : [0, 0, 0, 1], // quaternion
+    //   "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
+    //   "lump": {
+    //     "name":"race-bike-test"
+    //   }
+    // }
+  ]
+}

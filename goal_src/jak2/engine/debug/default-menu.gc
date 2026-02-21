@@ -2819,6 +2819,27 @@
                     nest
                     default
                     test
+                    test-zone
+                    veldin1
+                    novalis
+                    aridia
+                    kerwan
+                    eudora
+                    blarg
+                    rilgar
+                    umbris
+                    batalia
+                    gaspar
+                    orxon
+                    pokitaru
+                    pokisewer
+                    hoven
+                    gemlik
+                    oltanis
+                    quartu
+                    kalebo
+                    drek
+                    veldin2
                     )
                  )
            (a0-3 (car s3-0))
@@ -3537,6 +3558,26 @@
                 nest
                 default
                 test
+                veldin1
+                novalis
+                aridia
+                kerwan
+                eudora
+                blarg
+                rilgar
+                umbris
+                batalia
+                gaspar
+                orxon
+                pokitaru
+                pokisewer
+                hoven
+                gemlik
+                oltanis
+                quartu
+                kalebo
+                drek
+                veldin2
                 )
              )
            (a1-7 (car s3-2))

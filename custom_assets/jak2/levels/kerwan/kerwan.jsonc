@@ -1,0 +1,215 @@
+{
+  // The "in-game" name of the level. Should be lower case, with dashes (GOAL symbol name)
+  // the name of this file, and the folder this file is in must have the same name.
+  "long_name": "kerwan",
+  // The file name, should be upper case and 8 characters or less.
+  "iso_name": "KERWAN",
+  // The nickname, should be exactly 3 characters
+  "nickname": "ker", // 3 char name, all lowercase
+  // Background mesh file.
+  // Must have vertex colors. Use the blender cycles renderer, bake, diffuse, uncheck color,
+  // and bake to vertex colors. For now, only the first vertex color group is used, so make sure you
+  // only have 1.
+  "gltf_file": "custom_assets/jak2/levels/kerwan/kerwan.glb",
+
+  // automatically set wall vs. ground based on angle. Useful if you don't want to assign this yourself
+  "automatic_wall_detection": true,
+  "automatic_wall_angle": 45.0,
+
+  // if your mesh has triangles with incorrect orientation, set this to make all collision mesh triangles double sided
+  // this makes collision 2x slower and bigger, so only use if really needed
+  "double_sided_collide": false,
+
+  // available res-lump tag data types:
+  // int32, float, meters, vector, vector4m (meters)
+  //
+  // examples:
+  //
+  // adds a float tag 'spring-height' with value of 200 meters (1 meter = 4096.0 units):
+  // "spring-height": ["meters", 200.0]
+  //
+  // adds a vector tag 'movie-pos':
+  // "movie-pos": ["vector", [4096000.0, -176128.0, 1353973.76, 1.0]]
+
+   // The base actor id for your custom level. If you have multiple levels, this should be unique!
+   "base_id": 600,
+
+  // All art groups you want to use in your custom level. Will add their models and corresponding textures to the FR3 file.
+  // Removed so that the release builds don't have to double-decompile the game
+  //"art_groups": ["prsn-torture-ag"],
+  "art_groups": [
+                 "forest-part-ag",
+                 "rift-ring-in-game-ag",
+                 "tomb-plat-wall-ag"
+                ],
+
+   // Any textures you want to include in your custom level.
+   // This is mainly useful for textures which are not in the common level files and have no art group associated with them.
+   // To get a list of all the textures, you can extract all of the game's textures
+   // by setting "save_texture_pngs" to true in the decompiler config.
+   "textures": [],
+
+  "actors" : [
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////// EXPERIMENTAL  ///////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    {
+      "trans": [283.99, 144.92, 150.87], // translation
+      "etype": "tomb-plat-wall",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.5, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"tomb-plat-wall-1"
+      }
+    },
+    {
+      "trans": [298.15, 148.93, 166.03], // translation
+      "etype": "tomb-plat-wall",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"tomb-plat-wall-2"
+      }
+    },
+    {
+      "trans": [298.02, 153.94, 171.89], // translation
+      "etype": "tomb-plat-wall",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"tomb-plat-wall-3"
+      }
+    },
+    {
+      "trans": [290.53, 158.95, 182.68], // translation
+      "etype": "tomb-plat-wall",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"tomb-plat-wall-4"
+      }
+    },
+    {
+      "trans": [280.14, 159.38, 182.65], // translation
+      "etype": "tomb-plat-wall",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"tomb-plat-wall-5"
+      }
+    },
+    {
+      "trans": [248.4, 179.97, 170.2], // translation
+      "etype": "tomb-plat-wall",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"tomb-plat-wall-6"
+      }
+    },
+    {
+      "trans": [248.36, 183.00, 164.22], // translation
+      "etype": "tomb-plat-wall",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"tomb-plat-wall-7"
+      }
+    },
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////ORBS////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    {
+      "trans": [5.8611, 107.06, 31.93], // translation
+      "etype": "skill",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [5.8611, 107.06, -31.93, 10], // bounding sphere
+      "lump": {
+        "name":"skill-01"
+      }
+    },
+    {
+      "trans": [176.5291, 139.6617, 238.6383], // translation
+      "etype": "skill",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [176.5291, 139.6617, 238.6383, 10], // bounding sphere
+      "lump": {
+        "name":"skill-02"
+      }
+    },
+    {
+      "trans": [-27.4681, 217.2131, 573.0549], // translation
+      "etype": "skill",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-27.4681, 217.2131, 573.0549, 10], // bounding sphere
+      "lump": {
+        "name":"skill-03"
+      }
+    },
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////PICKUPS/////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    {
+      "trans": [3.1094, 146.5209, 29.5805], // translation
+      "etype": "eco-blue",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [3.1094, 146.5209, 29.5805, 10], // bounding sphere
+      "lump": {
+        "name":"eco-blue-01"
+      }
+    },
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////// GAMEPLAY ///////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    {
+      "trans": [40.376, 158.39, -37.38], // translation
+      "etype": "warp-gate",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"kerwan-rift-warp-gate",
+        "distance": ["meters", 15.0]
+      }
+    },
+    {
+      "trans": [40.376, 162.39, -37.38], // translation
+      "etype": "rift-ring-in-game",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0.05, -0.25, 0, 1], // quaternion (format is diagonal, vertical, horizontal, idk)
+      "bsphere": [40.376, 159.39, -37.38, 10], // bounding sphere
+      "lump": {
+        "name":"rift-ring-kerwan"
+        // "vis-dist": 819200.0
+        // "visvol": [[677955.875, 234172.890625, -1817290.5, 1.0],[710723.875, 266940.875, -1784522.5, 1.0]]
+      }
+    },
+    {
+      "trans": [40.376, 162.39, -37.38], // translation
+      "etype": "forest-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0.05, -0.25, 0, 1], // quaternion
+      "bsphere": [40.376, 159.39, -37.38, 10], // bounding sphere
+      "lump": {
+        "name":"rift-ring-part",
+        "art-name": "group-nestb-rift-ring"
+      }
+    }
+  ]
+}

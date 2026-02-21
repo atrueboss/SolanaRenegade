@@ -1,0 +1,518 @@
+{
+  // The "in-game" name of the level. Should be lower case, with dashes (GOAL symbol name)
+  // the name of this file, and the folder this file is in must have the same name.
+  "long_name": "umbris",
+  // The file name, should be upper case and 8 characters or less.
+  "iso_name": "UMBRIS",
+  // The nickname, should be exactly 3 characters
+  "nickname": "umb", // 3 char name, all lowercase
+  // Background mesh file.
+  // Must have vertex colors. Use the blender cycles renderer, bake, diffuse, uncheck color,
+  // and bake to vertex colors. For now, only the first vertex color group is used, so make sure you
+  // only have 1.
+  "gltf_file": "custom_assets/jak2/levels/umbris/umbris.glb",
+
+  // automatically set wall vs. ground based on angle. Useful if you don't want to assign this yourself
+  "automatic_wall_detection": true,
+  "automatic_wall_angle": 45.0,
+
+  // if your mesh has triangles with incorrect orientation, set this to make all collision mesh triangles double sided
+  // this makes collision 2x slower and bigger, so only use if really needed
+  "double_sided_collide": false,
+
+  // available res-lump tag data types:
+  // int32, float, meters, vector, vector4m (meters)
+  //
+  // examples:
+  //
+  // adds a float tag 'spring-height' with value of 200 meters (1 meter = 4096.0 units):
+  // "spring-height": ["meters", 200.0]
+  //
+  // adds a vector tag 'movie-pos':
+  // "movie-pos": ["vector", [4096000.0, -176128.0, 1353973.76, 1.0]]
+
+   // The base actor id for your custom level. If you have multiple levels, this should be unique!
+   "base_id": 1100,
+
+  // All art groups you want to use in your custom level. Will add their models and corresponding textures to the FR3 file.
+  // Removed so that the release builds don't have to double-decompile the game
+  //"art_groups": ["prsn-torture-ag"],
+  "art_groups": [
+                  "searchlight-ag",
+                  "dig-jump-pad-ag", 
+                  "sew-gunturret-ag",
+                  "pal-gun-turret-ag",
+                  "sew-mine-a-ag",
+                  "sew-mine-b-ag",
+                  "palent-turret-ag",
+                  
+                  "port-turret-ag",
+                  "drill-turret-ext-ag",
+                  "drill-turret-int-ag",
+                  "drill-metalhead-eggs-c-ag",
+                  "drill-metalhead-eggs-b-ag",
+                  "drill-metalhead-eggs-a-ag",
+                  
+                  "fort-elec-switch-ag",
+                  "castle-part-ag",
+                  "rift-ring-in-game-ag",
+                  
+                  "cas-rot-blade-ag",
+                  "cas-switch-ag",
+                  "cas-conveyor-switch-ag",
+                  "cas-chain-plat-ag",
+                  "cas-elevator-ag",
+                  "cas-button-ag",
+                  "cas-electric-fence-ag",
+
+                  "strip-conveyor-ag",
+
+                  "water-anim-tomb-dark-eco-ag",
+                  "dark-eco-pool-ag",
+
+                  "prsn-cell-door-ag"
+                ],
+
+   // Any textures you want to include in your custom level.
+   // This is mainly useful for textures which are not in the common level files and have no art group associated with them.
+   // To get a list of all the textures, you can extract all of the game's textures
+   // by setting "save_texture_pngs" to true in the decompiler config.
+   "textures": [],
+
+  "actors" : [
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////// EXPERIMENTAL /////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    {
+      "trans": [-53.86, 26.89, -58.21], // translation
+      "etype": "dark-eco-pool",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.5, 0, 1], // quaternion
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"dark-eco-pool-test"
+      }
+    },
+    {
+      "trans": [-4.49, 34.3171, -15.921], // translation
+      "etype": "fort-elec-switch",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.5, 0, 1], // quaternion
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"elec-switch-test",
+        "on-death": "(draw-pink *target*)"
+      }
+    },
+    {
+      "trans": [-4.49, 34.3171, -15.921], // translation
+      "etype": "cas-electric-fence",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.5, 0, 1], // quaternion
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"castle-elec-gate-test"
+      }
+    },
+    // {
+    //   "trans": [-4.49, 34.3171, -15.921], // translation
+    //   "etype": "strip-conveyor",  // actor type
+    //   "game_task": 0, // associated game task (for powercells, etc)
+    //   "quat" : [0, 0.5, 0, 1], // quaternion
+    //   "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+    //   "lump": {
+    //     "name":"strip-conveyor-test"
+    //   }
+    // },
+    {
+      "trans": [84.38, 38.42, -336.91], // translation
+      "etype": "cas-chain-plat",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.6, 0, 1], // quaternion
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"cas-chain-plat"
+      }
+    },
+    {
+      "trans": [77.02, 38.42, -300.00], // translation
+      "etype": "cas-chain-plat",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.6, 0, 1], // quaternion
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"cas-chain-plat"
+      }
+    },
+    {
+      "trans": [121.69, 38.0485, -359.598], // translation
+      "etype": "prsn-cell-door",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.61, 0, 1], // quaternion, 2nd value rotates like kebab
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"prsn-cell-door-test"
+        // "distance": ["meters", 15.0],
+        // "activate-distance": ["meters", 15.0],
+        // "on-notice": "(draw-pink *target*)"
+        // "active-distance": ["meters", 15.0],
+        // "open-distance": ["meters", 15.0]
+        //"art-name": "group-nestb-rift-ring"
+      }
+    },
+    {
+      "trans": [16.14, 34.3171, -18.20], // translation
+      "etype": "turret",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.5, 0, 1], // quaternion
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"turret-test"
+      }
+    },
+    {
+      "trans": [21.33, 37.3171, -12.98], // translation
+      "etype": "drill-metalhead-eggs-a",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.5, 0, 1], // quaternion
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"metal-head-egg-a-test"
+        //"art-name": "group-nestb-rift-ring"
+      }
+    },
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////// WARP GATES ///////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    {
+      "trans": [-6.104, 32.87, 8.245], // translation
+      "etype": "warp-gate",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"umbris-warp-gate-01",
+        "distance": ["meters", 4.0]
+      }
+    },
+    {
+      "trans": [-6.104, 34.88, 8.245], // translation
+      "etype": "castle-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.5, 0, 1], // quaternion
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"warp-gate-part-1",
+        "art-name": "group-target-board"
+      }
+    },
+    {
+      "trans": [-175.01, 20.844, -767.82], // translation
+      "etype": "warp-gate",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"umbris-warp-gate-02",
+        "distance": ["meters", 4.0]
+      }
+    },
+    {
+      "trans": [-175.01, 22.344, -767.82], // translation
+      "etype": "castle-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.5, 0, 1], // quaternion
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"warp-gate-part-2",
+        "art-name": "group-metalkor-shot-anticipate"
+      }
+    },
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////ORBS////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    {
+      "trans": [139.1031, 41.7742, -353.4895], // translation
+      "etype": "skill",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [139.1031, 41.7742, -353.4895, 10], // bounding sphere
+      "lump": {
+        "name":"skill-01"
+      }
+    },
+    {
+      "trans": [25.1942, 48.8546, -428.6829], // translation
+      "etype": "skill",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [25.1942, 48.8546, -428.6829, 10], // bounding sphere
+      "lump": {
+        "name":"skill-02"
+      }
+    },
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////// LIGHTS //////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    {
+      "trans": [-2.05,144.81,-451.98], // translation
+      "etype": "searchlight",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0,0,0, 10], // bounding sphere
+      "lump": {
+        "name":"searchlight-3"
+      }
+    },
+    {
+      "trans": [99.72,144.81,-465.2], // translation
+      "etype": "searchlight",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0,0,0, 10], // bounding sphere
+      "lump": {
+        "name":"searchlight-2"
+      }
+    },
+    {
+      "trans": [167.18,144.81,-540.91], // translation
+      "etype": "searchlight",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0,0,0, 10], // bounding sphere
+      "lump": {
+        "name":"searchlight-1"
+      }
+    },
+    {
+      "trans": [-87.73,144.81,-507.96], // translation
+      "etype": "searchlight",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0,0,0, 10], // bounding sphere
+      "lump": {
+        "name":"searchlight-4"
+      }
+    },
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////// TURRETS ////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   
+    {
+      "trans": [94.00, 41.50, -235.33], // translation
+      "etype": "palent-turret",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, -1, 0, 1], // quaternion
+      "bsphere": [4.33, 3.50, 65.49, 10], // bounding sphere
+      "lump": {
+        "name":"pewpew-1"
+      }
+    },
+    {
+      "trans": [88.65, 42.00, -267.49], // translation
+      "etype": "palent-turret",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, -0.9, 0, 1], // quaternion
+      "bsphere": [4.33, 3.50, 65.49, 10], // bounding sphere
+      "lump": {
+        "name":"pewpew-2"
+      }
+    },
+    {
+      "trans": [-52.64, 48.95, -415.32], // translation
+      "etype": "palent-turret",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.75, 0, 1], // quaternion
+      "bsphere": [4.33, 3.50, 65.49, 10], // bounding sphere
+      "lump": {
+        "name":"pewpew-3"
+      }
+    },
+    {
+      "trans": [95.43,22.72,-142.30], // translation
+      "etype": "pal-gun-turret",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, -0.4, 0, 1], // quaternion
+      "bsphere": [4.33, 3.50, 65.49, 10], // bounding sphere
+      "lump": {
+        "name":"gunturret-1",
+        "activate-distance": ["meters", 10]
+      }
+    },
+    {
+      "trans": [48.98,38.21,-361.10], // translation
+      "etype": "pal-gun-turret",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.5, 0, 1], // quaternion
+      "bsphere": [4.33, 3.50, 65.49, 10], // bounding sphere
+      "lump": {
+        "name":"gunturret-2"
+      }
+    },
+    {
+      "trans": [49.09,38.21,-333.95], // translation
+      "etype": "pal-gun-turret",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [4.33, 3.50, 65.49, 10], // bounding sphere
+      "lump": {
+        "name":"gunturret-3"
+      }
+    },
+    {
+      "trans": [9.96,38.21,-353.10], // translation
+      "etype": "pal-gun-turret",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [4.33, 3.50, 65.49, 10], // bounding sphere
+      "lump": {
+        "name":"gunturret-4"
+      }
+    },
+    {
+      "trans": [-17.58,38.21,-345.95], // translation
+      "etype": "pal-gun-turret",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.5, 0, 1], // quaternion
+      "bsphere": [4.33, 3.50, 65.49, 10], // bounding sphere
+      "lump": {
+        "name":"gunturret-5"
+      }
+    },
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////// MINES ////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    {
+      "trans": [-4.41,23.07,-125.40], // translation
+      "etype": "sew-mine-a",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0, 0, 0, 10], // bounding sphere
+      "lump": {
+        "name":"mine-1"
+      }
+    },
+    {
+      "trans": [10.75, 23.07, -109.79], // translation
+      "etype": "sew-mine-a",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0, 0, 0, 10], // bounding sphere
+      "lump": {
+        "name":"mine-2"
+      }
+    },  
+    {
+      "trans": [-0.23,23.07,-99.51], // translation
+      "etype": "sew-mine-a",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0, 0, 0, 10], // bounding sphere
+      "lump": {
+        "name":"mine-3"
+      }
+    },
+    {
+      "trans": [70.41, 23.07, -108.92], // translation
+      "etype": "sew-mine-a",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0, 0, 0, 10], // bounding sphere
+      "lump": {
+        "name":"mine-4"
+      }
+    },
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////// GAMEPLAY ///////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    {
+      "trans": [20.58, 52.60, 10.516], // translation
+      "etype": "warp-gate",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"umbris-rift-warp-gate",
+        "distance": ["meters", 15.0]
+      }
+    },
+    {
+      "trans": [20.58, 56.6, 10.516], // translation
+      "etype": "rift-ring-in-game",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.5, 0, 1], // quaternion (format is diagonal, vertical, horizontal, idk)
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"rift-ring-umbris"
+        // "vis-dist": 819200.0
+        // "visvol": [[677955.875, 234172.890625, -1817290.5, 1.0],[710723.875, 266940.875, -1784522.5, 1.0]]
+      }
+    },
+    {
+      "trans": [20.58, 56.6, 10.516], // translation
+      "etype": "castle-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.5, 0, 1], // quaternion
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"rift-ring-part",
+        "art-name": "group-nestb-rift-ring"
+      }
+    },
+    
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////// JAK TURRETS ////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    {
+      "trans": [-70.2947, 29.3832, -684.0166], // translation
+      "etype": "turret",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.25, 0, 1], // quaternion
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"turret-11"
+      }
+    },
+    {
+      "trans": [48.0127, 29.3522, -737.1140], // translation
+      "etype": "turret",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.5, 0, 1], // quaternion
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"turret-12"
+      }
+    },
+    {
+      "trans": [8.5251, 29.3648, -823.1741], // translation
+      "etype": "turret",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.25, 0, 1], // quaternion
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"turret-13"
+      }
+    },
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////// MH EGGS ////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    {
+      "trans": [30.6326, 44.8617, -832.1110], // translation
+      "etype": "drill-metalhead-eggs-a",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"metal-head-egg-a-1"
+      }
+    }
+  ]
+}
