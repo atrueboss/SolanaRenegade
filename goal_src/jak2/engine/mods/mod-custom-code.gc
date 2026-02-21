@@ -21,16 +21,19 @@
     ;; Begin function defintions.
     ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-    (defun runs-every-frame ()
-      ;; (increase-power-cell-by-one) This is a call to increase-power-cell-by-one defined in mod-common-functions.gc
+    (defun better-hover-cam ()    ;; cam follows jak as he hovers on board
+      (when *target* 
+        (if (board-hovering?)
+          (set-setting-by-param *setting-control* 'slave-options 'clear 0 16)
+          (remove-setting-by-arg0 *setting-control* 'slave-options)
+        )
+      )
+    )
 
-      ;; Sample code to turn jak pink whenever he's doing the jetboard hover glitch
-      ;; (when *target* 
-      ;;   (if (board-hovering?)
-      ;;     (draw-pink *target*)
-      ;;     (draw-normal *target*)
-      ;;     )
-      ;;   )
+
+    (defun runs-every-frame ()
+     
+      (better-hover-cam)
 
       (if *show-input-display* 
         (input-display-on)
