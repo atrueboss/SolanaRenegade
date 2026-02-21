@@ -10,6 +10,7 @@
 (define-extern warp-gate type)
 
 ;; DECOMP BEGINS
+(define-extern runs-on-jak-spawn (function none))
 
 (define *auto-continue* #f)
 
