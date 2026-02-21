@@ -50,8 +50,18 @@
       )
     )
 
+    (defun unlock-everything ()
+      (logior! (-> *game-info* features) (game-feature 
+      gun gun-yellow gun-red gun-blue gun-dark 
+      gun-upgrade-speed gun-upgrade-ammo gun-upgrade-damage 
+      pass-red pass-green pass-yellow pass-blue 
+      board 
+      darkjak darkjak-bomb0 darkjak-bomb1 darkjak-invinc darkjak-giant))
+    )
+
     (defun runs-every-frame () ;; Code here runs on every frame
-     
+
+      (unlock-everything)
       (better-hover-cam)
       (move-nest-riftring-down)
 
