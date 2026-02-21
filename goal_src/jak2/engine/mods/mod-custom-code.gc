@@ -34,9 +34,26 @@
       (set-setting-by-param *setting-control* 'fov #f (* 182.04445 94) 0) 
     )
 
+    (defun move-nest-riftring-down () ;; move rift ring in metal head nest down to accessible location   
+      (let ((ring (the process-drawable (process-by-ename "rift-ring-ingame-1"))))
+        (when (and ring (task-closed? "nest-boss-resolution"))
+          (cond
+            ((movie?)  ;; hide during movie (normally the scene kills it, but we just want to hide)
+              (logior! (-> ring draw status) (draw-control-status no-draw-bounds))
+            )
+            (else 
+              (logclear! (-> ring draw status) (draw-control-status no-draw-bounds))
+              (set! (-> ring root trans y) (meters 41.0)) ;; set the new height 
+            )
+          )
+        )
+      )
+    )
+
     (defun runs-every-frame () ;; Code here runs on every frame
      
       (better-hover-cam)
+      (move-nest-riftring-down)
 
       (if *show-input-display* 
         (input-display-on)
