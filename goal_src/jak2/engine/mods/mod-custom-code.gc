@@ -185,6 +185,7 @@
     )
 
     (defun unlock-everything ()
+      (task-close! "nest-boss-resolution")
       (logior! (-> *game-info* features) (game-feature 
       gun gun-yellow gun-red gun-blue gun-dark 
       gun-upgrade-speed gun-upgrade-ammo gun-upgrade-damage 
