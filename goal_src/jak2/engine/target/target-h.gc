@@ -24,6 +24,7 @@
 
 ;; for target
 (define-extern want-to-darkjak? (function symbol :behavior target))
+(define-extern want-to-jak? (function symbol :behavior target)) ;; better dark jak mod
 (define-extern can-feet? (function symbol symbol :behavior target))
 (define-extern slide-down-test (function none :behavior target))
 (define-extern target-standard-event-handler (function process int symbol event-message-block object :behavior target))
