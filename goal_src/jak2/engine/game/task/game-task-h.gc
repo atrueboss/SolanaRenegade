@@ -120,7 +120,16 @@
   (stadium-burning-bush-race-class3-r 107)
   (stadium-burning-bush-race-class2-r 108)
   (stadium-burning-bush-race-class1-r 109)
-  (max 110))
+
+  ;; custom tasks 
+  (testzone-burning-bush-get-to 110)
+
+  (veldin1-burning-bush-get-to 111)
+  (orxon-burning-bush-get-to 112)
+  (orxon-burning-bush-collection 113)
+  (veldin2-burning-bush-ring 114)
+
+  (max 115)) ;; vanilla was 110
 ;; ---game-task
 
 ;; +++game-task-node
@@ -451,6 +460,19 @@
   (stadium-burning-bush-race-class2-r-resolution)
   (stadium-burning-bush-race-class1-r-introduction)
   (stadium-burning-bush-race-class1-r-resolution)
+
+  ;;;;;;;;;; custom burning bush
+  (testzone-burning-bush-get-to-introduction)
+  (testzone-burning-bush-get-to-resolution)
+
+  (veldin1-burning-bush-get-to-introduction)
+  (veldin1-burning-bush-get-to-resolution)
+  (orxon-burning-bush-get-to-introduction)
+  (orxon-burning-bush-get-to-resolution)
+  (orxon-burning-bush-collection-introduction)
+  (orxon-burning-bush-collection-resolution)
+  (veldin2-burning-bush-ring-introduction)
+  (veldin2-burning-bush-ring-resolution)
   )
 ;; ---game-task-node
 
