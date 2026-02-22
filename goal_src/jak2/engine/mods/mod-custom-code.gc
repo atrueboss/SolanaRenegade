@@ -168,7 +168,7 @@
       (set-setting-by-param *setting-control* 'fov #f (* 182.04445 94) 0) 
     )
 
-    (defun move-nest-riftring-down () ;; move rift ring in metal head nest down to accessible location   
+    (defun move-nest-riftring () ;; move rift ring in metal head nest down to accessible location   
       (let ((ring (the process-drawable (process-by-ename "rift-ring-ingame-1"))))
         (when (and ring (task-closed? "nest-boss-resolution"))
           (cond
@@ -177,7 +177,13 @@
             )
             (else 
               (logclear! (-> ring draw status) (draw-control-status no-draw-bounds))
-              (set! (-> ring root trans y) (meters 41.0)) ;; set the new height 
+              (set! (-> ring root trans x) (meters 121.61))
+              (set! (-> ring root trans y) (meters 50.0)) ;; set the new height 
+              (set! (-> ring root trans z) (meters -388.57))
+              (set! (-> ring root quat x) 0.2968) 
+              (set! (-> ring root quat y) -0.1537)
+              (set! (-> ring root quat z) -0.0484)
+              (set! (-> ring root quat w) 0.9412)
             )
           )
         )
@@ -198,7 +204,7 @@
 
       (unlock-everything)
       (better-hover-cam)
-      (move-nest-riftring-down)
+      (move-nest-riftring)
 
       (if *show-input-display* 
         (input-display-on)
