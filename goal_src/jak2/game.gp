@@ -384,7 +384,17 @@
 (goal-src "levels/veldin2/veldin2.gc" "process-focusable")
 (custom-level-cgo "VL2.DGO" "veldin2/veldin2.gd")
 
+(build-custom-level "extras-atoll")
+(goal-src "levels/extras-atoll/extras-atoll.gc" "process-focusable")
+(custom-level-cgo "EXA.DGO" "extras-atoll/extras-atoll.gd")
 
+(build-custom-level "extras-ctyport")
+(goal-src "levels/extras-ctyport/extras-ctyport.gc" "process-focusable")
+(custom-level-cgo "ECP.DGO" "extras-ctyport/extras-ctyport.gd")
+
+(build-custom-level "extras-nestb")
+(goal-src "levels/extras-nestb/extras-nestb.gc" "process-focusable")
+(custom-level-cgo "O1G.DGO" "extras-nestb/extras-nestb.gd")
 
 ;; generate the art group for a custom actor.
 ;; requires a .glb model file in custom_assets/jak1/models/custom_levels

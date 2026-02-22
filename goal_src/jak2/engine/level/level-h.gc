@@ -173,6 +173,14 @@
   (the-as int (+ (-> level-vis-info size) (-> this dictionary-length)))
   )
 
+(defenum level-load-flags
+  :bitfield #t
+  :type uint32
+  (city       0)      ;; 1
+  (extras   1)      ;; 2
+  ;; 4
+  )
+
 (deftype level-load-info (basic)
   ((name-list                symbol      6)
    (index                    int16)
@@ -227,7 +235,7 @@
    (texture-anim-map         symbol      :overlay-at (-> texture-anim 8))
    (texture-anim-sky         symbol      :overlay-at (-> texture-anim 9))
    (draw-priority            float)
-   (level-flags              uint32)
+   (level-flags              level-load-flags) ;; (level-flags              uint32)
    (fog-height               float)
    (bigmap-id                bigmap-id)
    (ocean-near-translucent?  symbol)

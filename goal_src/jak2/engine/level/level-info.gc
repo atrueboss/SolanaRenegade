@@ -7348,8 +7348,9 @@
     :activate-func #f
     :deactivate-func #f
     :kill-func #f
-    :borrow-level (new 'static 'array symbol 2 #f #f)
-    :borrow-display? (new 'static 'array symbol 2 #f #f)
+    :borrow-size (new 'static 'array uint16 2 160 160) ;; delete this whole line to return to vanilla
+    :borrow-level (new 'static 'array symbol 2 #f 'extras-ctyport) ;; :borrow-level (new 'static 'array symbol 2 #f #f)
+    :borrow-display? (new 'static 'array symbol 2 #f 'display) ;; :borrow-display? (new 'static 'array symbol 2 #f 'display)
     :texture-anim-tfrag #f
     :texture-anim-pris #f
     :texture-anim-shrub #f
@@ -20029,9 +20030,8 @@
     :activate-func #f
     :deactivate-func #f
     :kill-func #f
-    ;; :borrow-size (new 'static 'array uint16 2 160 160) ;; delete this whole line to return to vanilla
-    :borrow-level (new 'static 'array symbol 2 #f #f) ;; :borrow-level (new 'static 'array symbol 2 #f #f)
-    :borrow-display? (new 'static 'array symbol 2 #f #f) ;; :borrow-display? (new 'static 'array symbol 2 #f 'display)
+    :borrow-level (new 'static 'array symbol 2 #f #f)
+    :borrow-display? (new 'static 'array symbol 2 #f 'display)
     :base-task-mask (task-mask task0)
     :texture-anim-tfrag #f
     :texture-anim-pris #f
@@ -20056,27 +20056,97 @@
     )
   )
 
+(defmacro extras-level (index name visname nick mood-func level-size)
+  "shorthand for setting up an extras level"
+  `(new 'static 'level-load-info
+    :index ,index
+    :name ,name
+    :visname ,visname
+    :nickname ,nick
+    :dbname ,name
+    :taskname 'default
+    :packages '()
+    :memory-mode (load-buffer-mode ,level-size)
+    :music-bank #f
+    :ambient-sounds '()
+    :mood-func ,mood-func
+    :mood-init #f
+    :ocean #f
+    :sky #f
+    :use-camera-other #f
+    :part-engine-max 100
+    :continues '()
+    :tasks '()
+    :priority 50
+    :load-commands '()
+    :alt-load-commands '()
+    :bsp-mask #xffffffffffffffff
+    :buttom-height (meters -10000000)
+    :run-packages '()
+    :wait-for-load #t
+    :login-func #f
+    :activate-func #f
+    :deactivate-func #f
+    :kill-func #f
+    :borrow-level (new 'static 'array symbol 2 #f #f)
+    :borrow-display? (new 'static 'array symbol 2 #f #f)
+    :base-task-mask (task-mask task0)
+    :texture-anim-tfrag #f
+    :texture-anim-pris #f
+    :texture-anim-shrub #f
+    :texture-anim-alpha #f
+    :texture-anim-water #f
+    :texture-anim-twarp #f
+    :texture-anim-pris2 #f
+    :texture-anim-sprite #f
+    :texture-anim-map #f
+    :texture-anim-sky #f
+    :draw-priority 9.0
+    :level-flags (level-load-flags extras)
+    :fog-height 327680.0
+    :bigmap-id (bigmap-id city)
+    :ocean-near-translucent? #f
+    :ocean-far? #f
+    :mood-range (new 'static 'mood-range :data (new 'static 'array float 4 0.0 1.0 0.0 1.0))
+    :max-rain 1.0
+    :fog-mult 1.0
+    :ocean-alpha 1.0
+    :extra-sound-bank #f
+    )
+  )
+
+(defmacro extras-borrow-level (index name visname nick mood-func)
+  "shorthand for setting up an extras borrow level"
+ `(extras-level ,index ,name ,visname ,nick ,mood-func borrow)
+  )
+
+(define extras-atoll        (extras-borrow-level #xe3 'extras-atoll        'extras-atoll-vis        'exa 'update-mood-atoll))
+(define extras-ctyport        (extras-borrow-level #xe4 'extras-ctyport        'extras-ctyport-vis        'ecp 'update-mood-ctyport))
+(define extras-nestb        (extras-borrow-level #xe2 'extras-nestb        'extras-nestb-vis        'o1g 'update-mood-nestb))
 
 (#when PC_PORT
   (cons! *level-load-list* 'test-zone)
-  (cons! *level-load-list* 'veldin2)
-  (cons! *level-load-list* 'drek)
-  (cons! *level-load-list* 'kalebo)
-  (cons! *level-load-list* 'quartu)
-  (cons! *level-load-list* 'oltanis)
-  (cons! *level-load-list* 'gemlik)
-  (cons! *level-load-list* 'hoven)
-  (cons! *level-load-list* 'pokitaru)
-  (cons! *level-load-list* 'pokisewer)
-  (cons! *level-load-list* 'orxon)
-  (cons! *level-load-list* 'gaspar)
-  (cons! *level-load-list* 'batalia)
-  (cons! *level-load-list* 'umbris)
-  (cons! *level-load-list* 'rilgar)
-  (cons! *level-load-list* 'blarg)
-  (cons! *level-load-list* 'eudora)
+  (cons! *level-load-list* 'veldin1)
+  (cons! *level-load-list* 'novalis)
   (cons! *level-load-list* 'aridia)
   (cons! *level-load-list* 'kerwan)
-  (cons! *level-load-list* 'novalis)
-  (cons! *level-load-list* 'veldin1)
+  (cons! *level-load-list* 'eudora)
+  (cons! *level-load-list* 'blarg)
+  (cons! *level-load-list* 'rilgar)
+  (cons! *level-load-list* 'umbris)
+  (cons! *level-load-list* 'batalia)
+  (cons! *level-load-list* 'gaspar)
+  (cons! *level-load-list* 'orxon)
+  (cons! *level-load-list* 'pokitaru)
+  (cons! *level-load-list* 'pokisewer)
+  (cons! *level-load-list* 'hoven)
+  (cons! *level-load-list* 'gemlik)
+  (cons! *level-load-list* 'oltanis)
+  (cons! *level-load-list* 'quartu)
+  (cons! *level-load-list* 'kalebo)
+  (cons! *level-load-list* 'drek)
+  (cons! *level-load-list* 'veldin2)
+  (cons! *level-load-list* 'extras-atoll)  
+  (cons! *level-load-list* 'extras-ctyport)  
+  (cons! *level-load-list* 'extras-nestb)
   )
