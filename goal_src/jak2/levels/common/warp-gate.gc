@@ -490,7 +490,545 @@
         (set! (-> this on-close) (the-as pair (car (cdr (cdr (cdr s5-0))))))
         )
       (else
-        (set! (-> this continue) #f)
+        (case-str (-> this name)
+          
+          ;; //////////////////////////////////////////////////////////////
+          ;; ////////////// RIFT-RING WARPS ///////////////////////////////
+          ;; //////////////////////////////////////////////////////////////
+
+          ;; nestb -> veldin1-start
+          (("nestb-warp-gate-01")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide so it looks like rift-ring is warp
+            (when (task-closed? "nest-boss-resolution")  ;; kor dead, allow use
+              (set! (-> this continue) (get-continue-by-name *game-info* "veldin1-start"))
+              (set! (-> this on-activate) '())
+              (set! (-> this wait-for) '())
+              (set! (-> this on-close) '())
+              )
+            )
+          ;; veldin1 -> novalis 
+          (("veldin1-rift-warp-gate") 
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "novalis-start"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())
+            )
+          ;; novalis -> aridia 
+          (("novalis-rift-warp-gate") 
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "aridia-start"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())
+            )
+          ;; aridia -> kerwan 
+          (("aridia-rift-warp-gate") 
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "kerwan-start"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())
+            )
+          ;; kerwan -> eudora
+          (("kerwan-rift-warp-gate") 
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "eudora-start"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())
+            )
+          ;; eudora -> blarg
+          (("eudora-rift-warp-gate") 
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "blarg-start"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())
+            )
+          ;; blarg -> rilgar
+          (("blarg-rift-warp-gate") 
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "rilgar-start"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())
+            )
+          ;; rilgar -> umbris
+          (("rilgar-rift-warp-gate") 
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "umbris-start"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())
+            )
+          ;; umbris -> batalia
+          (("umbris-rift-warp-gate") 
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "batalia-start"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())
+            )
+          ;; batalia -> gaspar
+          (("batalia-rift-warp-gate") 
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "gaspar-start"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())
+            )
+          ;; gaspar -> orxon
+          (("gaspar-rift-warp-gate") 
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "orxon-start"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())
+            )
+          ;; orxon -> pokitaru 
+          (("orxon-rift-warp-gate") 
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "pokitaru-start"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())
+            )
+          ;; pokitaru -> hoven
+          (("pokitaru-rift-warp-gate") 
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "hoven-start"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())
+            )
+          ;; hoven -> gemlik
+          (("hoven-rift-warp-gate") 
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "gemlik-start"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())
+            )
+          ;; gemlik -> oltanis 
+          (("gemlik-rift-warp-gate") 
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "oltanis-start"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())
+            )
+          ;; oltanis -> quartu 
+          (("oltanis-rift-warp-gate") 
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "quartu-start"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())
+            )
+          ;; quartu -> kalebo
+          (("quartu-rift-warp-gate") 
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "kalebo-start"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())
+            )
+          ;; kalebo -> drek
+          (("kalebo-rift-warp-gate") 
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "drek-start"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())
+            )
+          ;; drek -> veldin2
+          (("drek-rift-warp-gate") 
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "veldin2-start"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())
+            )
+          ;; veldin2 -> nestb 
+          (("veldin2-rift-warp-gate") 
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "nestb-start"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())
+            )
+
+          ;; //////////////////////////////////////////////////////////////
+          ;; ////////////// RILGAR WARP GATES /////////////////////////////
+          ;; //////////////////////////////////////////////////////////////
+
+          ;; rilgar-race-lobby -> rilgar-race-track
+          (("rilgar-warp-gate-01")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "rilgar-race-track-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+          ;; rilgar-race-track -> rilgar-race-lobby
+          (("rilgar-warp-gate-02")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "rilgar-race-lobby-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+
+          ;; //////////////////////////////////////////////////////////////
+          ;; ////////////// UMBRIS WARP GATES /////////////////////////////
+          ;; //////////////////////////////////////////////////////////////
+
+          ;; start -> end
+          (("umbris-warp-gate-01")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            ;; (set! (-> this continue) (get-continue-by-name *game-info* "umbris-end-warp"))
+            ;; (set! (-> this on-activate) '())
+            ;; (set! (-> this wait-for) '())
+            ;; (set! (-> this on-close) '())            
+            )
+
+          ;; end -> start
+          (("umbris-warp-gate-02")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "umbris-start-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+
+          ;; //////////////////////////////////////////////////////////////
+          ;; ////////////// BATALIA WARP GATES ////////////////////////////
+          ;; //////////////////////////////////////////////////////////////
+
+          ;; start -> turret-area
+          (("batalia-warp-gate-01")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "batalia-turret-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+          ;; rail-end -> start
+          (("batalia-warp-gate-02")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "batalia-start-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+          ;; turret-area -> start
+          (("batalia-warp-gate-03")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "batalia-start-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+          
+          ;; //////////////////////////////////////////////////////////////
+          ;; //////////////// GASPAR WARP GATES /////////////////////////// 
+          ;; //////////////////////////////////////////////////////////////
+
+          ;; gaspar-center-warp -> gasbar-lava-bolt-warp
+          (("gaspar-warp-gate-01")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            ;; (set! (-> this continue) (get-continue-by-name *game-info* "gaspar-center-warp"))
+            ;; (set! (-> this on-activate) '())
+            ;; (set! (-> this wait-for) '())
+            ;; (set! (-> this on-close) '())
+            )
+          
+          ;; gaspar-lava-bolt-warp -> gaspar-center-warp
+          (("gaspar-warp-gate-02")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "gaspar-center-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())
+            )
+
+          ;; //////////////////////////////////////////////////////////////
+          ;; ////////////// POKITARU WARP GATES /////////////////////////// 
+          ;; //////////////////////////////////////////////////////////////
+
+          ;; pokitaru -> pokisewer-start
+          (("pokitaru-warp-gate-01")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "pokisewer-start"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())
+            )
+
+          ;; //////////////////////////////////////////////////////////////
+          ;; ////////////// POKISEWER WARP GATES ///////////////////////// 
+          ;; //////////////////////////////////////////////////////////////
+
+          ;; pokisewer-start -> pokitaru
+          (("pokisewer-warp-gate-01")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "pokitaru-sewer-exit"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+          ;; pokisewer-end -> pokitaru
+          (("pokisewer-warp-gate-02")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "pokitaru-sewer-exit"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+          
+          ;; //////////////////////////////////////////////////////////////
+          ;; /////////////////// HOVEN WARP GATES ///////////////////////// 
+          ;; //////////////////////////////////////////////////////////////
+
+          ;; hoven-cave -> hoven-workshop
+          (("hoven-warp-gate-01")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            ;; (set! (-> this continue) (get-continue-by-name *game-info* "hoven-start"))
+            ;; (set! (-> this on-activate) '())
+            ;; (set! (-> this wait-for) '())
+            ;; (set! (-> this on-close) '())            
+            )
+          
+          ;; hoven-workshop -> hoven-cave
+          (("hoven-warp-gate-02")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "hoven-cave-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+
+          ;; //////////////////////////////////////////////////////////////
+          ;; ////////////////// GEMLIK WARP GATES ///////////////////////// 
+          ;; //////////////////////////////////////////////////////////////
+
+          ;; gemlik-start-warp -> gemlik-end-warp
+          (("gemlik-warp-gate-01")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            ;; (set! (-> this continue) (get-continue-by-name *game-info* "gemlik-start-warp"))
+            ;; (set! (-> this on-activate) '())
+            ;; (set! (-> this wait-for) '())
+            ;; (set! (-> this on-close) '())            
+            )          
+          
+          ;; gemlik-end-warp -> gemlik-start-warp
+          (("gemlik-warp-gate-02")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "gemlik-start-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+
+
+          ;; //////////////////////////////////////////////////////////////
+          ;; ///////////////// OLTANIS WARP GATES ///////////////////////// 
+          ;; //////////////////////////////////////////////////////////////
+
+          ;; oltanis-center -> oltanis-top
+          (("oltanis-warp-gate-01")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "oltanis-top-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+          ;; oltanis-top -> oltanis-center
+          (("oltanis-warp-gate-02")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "oltanis-center-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+          ;; oltanis-end -> oltanis-center
+          (("oltanis-warp-gate-03")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "oltanis-center-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+
+          ;; //////////////////////////////////////////////////////////////
+          ;; ///////////////// KALEBO WARP GATES ////////////////////////// 
+          ;; //////////////////////////////////////////////////////////////
+
+          ;; kalebo-rail-office-warp -> kalebo-start-warp
+          (("kalebo-warp-gate-01")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "kalebo-start-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+          ;; kalebo-rail-end-warp -> kalebo-break-room-warp
+          (("kalebo-warp-gate-02")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "kalebo-break-room-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+          ;; kalebo-break-room-warp -> kalebo-rail-end-warp 
+          (("kalebo-warp-gate-03")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "kalebo-rail-end-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+          ;; kalebo-race-lobby-warp -> kalebo-race-track-warp 
+          (("kalebo-warp-gate-04")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "kalebo-race-track-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+          ;; kalebo-race-track-warp -> kalebo-race-lobby-warp 
+          (("kalebo-warp-gate-05")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "kalebo-race-lobby-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+          ;; idle-warp at start 
+          (("kalebo-warp-gate-06")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            ;; (set! (-> this continue) (get-continue-by-name *game-info* "kalebo-race-lobby-warp"))
+            ;; (set! (-> this on-activate) '())
+            ;; (set! (-> this wait-for) '())
+            ;; (set! (-> this on-close) '())            
+            )
+
+          
+          ;; //////////////////////////////////////////////////////////////
+          ;; ////////////// DREK'S FLEET WARP GATES /////////////////////// 
+          ;; //////////////////////////////////////////////////////////////
+
+          ;; drek-start -> drek-ship-01
+          (("drek-warp-gate-01")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "drek-ship-01-start-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+          ;; drek-ship-01 -> drek-start-warp
+          (("drek-warp-gate-02")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "drek-start-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+          ;; drek-ship-01 -> drek-ship-02
+          (("drek-warp-gate-03")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "drek-ship-02-start-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+          ;; drek-ship-02 -> drek-ship-01
+          (("drek-warp-gate-04")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "drek-ship-01-end-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+          ;; drek-ship-02 -> drek-ship-03
+          (("drek-warp-gate-05")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "drek-ship-03-start-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+          ;; drek-ship-03 -> drek-ship-02
+          (("drek-warp-gate-06")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "drek-ship-02-end-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+          ;; drek-ship-03 -> drek-ship-04
+          (("drek-warp-gate-07")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "drek-ship-04-start-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+          ;; drek-ship-04 -> drek-ship-03
+          (("drek-warp-gate-08")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "drek-ship-03-end-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+          ;; drek-ship-04 -> drek-start-warp
+          (("drek-warp-gate-09")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "drek-start-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+            ;; drek-extra-path-end -> drek-start-warp
+          (("drek-warp-gate-10")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "drek-start-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+          
+          ;; //////////////////////////////////////////////////////////////
+          ;; ///////////// VELDIN2 WARP GATES ///////////////////////////// 
+          ;; //////////////////////////////////////////////////////////////
+
+          ;; veldin2-start-warp -> veldin2-boss-warp
+          (("veldin2-warp-gate-01")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            ;; (set! (-> this continue) (get-continue-by-name *game-info* "veldin2-boss-warp"))
+            ;; (set! (-> this on-activate) '())
+            ;; (set! (-> this wait-for) '())
+            ;; (set! (-> this on-close) '())            
+            )
+          ;; veldin2-boss-warp -> veldin2-start-warp
+          (("veldin2-warp-gate-02")
+            (logior! (-> this draw status) (draw-control-status no-draw)) ;; hide real warp gate
+            (set! (-> this continue) (get-continue-by-name *game-info* "veldin2-start-warp"))
+            (set! (-> this on-activate) '())
+            (set! (-> this wait-for) '())
+            (set! (-> this on-close) '())            
+            )
+
+
+          ;; idk?
+          (else
+            (set! (-> this continue) #f)
+          )
+        )
+        
+        ;; (set! (-> this continue) #f)
         )
       )
     )

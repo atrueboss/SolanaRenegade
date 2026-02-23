@@ -4888,8 +4888,9 @@
     :activate-func #f
     :deactivate-func #f
     :kill-func #f
-    :borrow-level (new 'static 'array symbol 2 #f #f)
-    :borrow-display? (new 'static 'array symbol 2 #f #f)
+    :borrow-size (new 'static 'array uint16 2 160 160) ;; delete this whole line to return to vanilla
+    :borrow-level (new 'static 'array symbol 2 #f 'extras-atoll) ;; :borrow-level (new 'static 'array symbol 2 #f #f)
+    :borrow-display? (new 'static 'array symbol 2 #f 'display) ;; :borrow-display? (new 'static 'array symbol 2 #f 'display)
     :base-task-mask (task-mask task0 primary0)
     :texture-anim-tfrag #f
     :texture-anim-pris #f
@@ -13862,8 +13863,9 @@
     :activate-func 'nestb-activate
     :deactivate-func 'nestb-deactivate
     :kill-func #f
-    :borrow-level (new 'static 'array symbol 2 #f #f)
-    :borrow-display? (new 'static 'array symbol 2 #f #f)
+    :borrow-size (new 'static 'array uint16 2 160 160) ;; delete this whole line to return to vanilla
+    :borrow-level (new 'static 'array symbol 2 #f 'extras-nestb) ;; :borrow-level (new 'static 'array symbol 2 #f #f)
+    :borrow-display? (new 'static 'array symbol 2 #f 'display) ;; :borrow-display? (new 'static 'array symbol 2 #f 'display) 
     :base-task-mask (task-mask task0)
     :texture-anim-tfrag #f
     :texture-anim-pris '*darkjak-hires-nest-texture-anim-array*
@@ -15906,8 +15908,8 @@
     :activate-func #f
     :deactivate-func #f
     :kill-func #f
-    :borrow-level (new 'static 'array symbol 2 #f 'ctywide) ;; :borrow-level (new 'static 'array symbol 2 #f #f)
-    :borrow-display? (new 'static 'array symbol 2 #f #f) ;; :borrow-display? (new 'static 'array symbol 2 #f 'display)
+    :borrow-level (new 'static 'array symbol 2 #f #f)
+    :borrow-display? (new 'static 'array symbol 2 #f #f)
     :base-task-mask (task-mask task0)
     :texture-anim-tfrag #f
     :texture-anim-pris #f

@@ -72,7 +72,7 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
       "lump": {
-        "name":"veldin-2-warp-gate-01",
+        "name":"veldin2-warp-gate-01",
         "distance": ["meters", 4.0]
       }
     },
@@ -94,7 +94,7 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
       "lump": {
-        "name":"veldin-2-warp-gate-02",
+        "name":"veldin2-warp-gate-02",
         "distance": ["meters", 4.0]
       }
     },
@@ -156,7 +156,7 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
       "lump": {
-        "name":"veldin-2-rift-warp-gate",
+        "name":"veldin2-rift-warp-gate",
         "distance": ["meters", 25.0]
       }
     },

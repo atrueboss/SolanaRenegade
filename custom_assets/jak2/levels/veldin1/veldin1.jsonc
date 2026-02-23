@@ -91,7 +91,7 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
       "lump": {
-        "name":"veldin-1-rift-warp-gate",
+        "name":"veldin1-rift-warp-gate",
         "distance": ["meters", 20.0]
       }
     },

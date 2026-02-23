@@ -64,7 +64,7 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
       "lump": {
-        "name":"drek-fleet-warp-gate-01",
+        "name":"drek-warp-gate-01",
         "distance": ["meters", 4.0]
       }
     },
@@ -86,7 +86,7 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
       "lump": {
-        "name":"drek-fleet-warp-gate-02",
+        "name":"drek-warp-gate-02",
         "distance": ["meters", 4.0]
       }
     },
@@ -108,7 +108,7 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
       "lump": {
-        "name":"drek-fleet-warp-gate-03",
+        "name":"drek-warp-gate-03",
         "distance": ["meters", 4.0]
       }
     },
@@ -130,7 +130,7 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
       "lump": {
-        "name":"drek-fleet-warp-gate-04",
+        "name":"drek-warp-gate-04",
         "distance": ["meters", 4.0]
       }
     },
@@ -152,7 +152,7 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
       "lump": {
-        "name":"drek-fleet-warp-gate-05",
+        "name":"drek-warp-gate-05",
         "distance": ["meters", 4.0]
       }
     },
@@ -174,7 +174,7 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
       "lump": {
-        "name":"drek-fleet-warp-gate-06",
+        "name":"drek-warp-gate-06",
         "distance": ["meters", 4.0]
       }
     },
@@ -196,7 +196,7 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
       "lump": {
-        "name":"drek-fleet-warp-gate-07",
+        "name":"drek-warp-gate-07",
         "distance": ["meters", 4.0]
       }
     },
@@ -218,7 +218,7 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
       "lump": {
-        "name":"drek-fleet-warp-gate-08",
+        "name":"drek-warp-gate-08",
         "distance": ["meters", 4.0]
       }
     },
@@ -240,7 +240,7 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
       "lump": {
-        "name":"drek-fleet-warp-gate-09",
+        "name":"drek-warp-gate-09",
         "distance": ["meters", 4.0]
       }
     },
@@ -262,7 +262,7 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
       "lump": {
-        "name":"drek-fleet-warp-gate-10",
+        "name":"drek-warp-gate-10",
         "distance": ["meters", 4.0]
       }
     },
@@ -289,7 +289,7 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
       "lump": {
-        "name":"drek-fleet-rift-warp-gate",
+        "name":"drek-rift-warp-gate",
         "distance": ["meters", 15.0]
       }
     },

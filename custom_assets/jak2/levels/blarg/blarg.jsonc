@@ -106,7 +106,7 @@
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
       "lump": {
-        "name":"blarg-station-rift-warp-gate",
+        "name":"blarg-rift-warp-gate",
         "distance": ["meters", 15.0]
       }
     },
