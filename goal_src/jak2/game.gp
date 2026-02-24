@@ -299,9 +299,102 @@
 ;; this path is relative to the custom_assets/jak2/levels folder
 ;; it should point to the .jsonc file that specifies the level.
 (build-custom-level "test-zone")
-;; the DGO file
+;; file with all the assets
 (goal-src "levels/test-zone/test-zone-obs.gc" "process-focusable")
+;; the DGO file
 (custom-level-cgo "TSZ.DGO" "test-zone/testzone.gd")
+
+(build-custom-level "veldin1")
+(goal-src "levels/veldin1/veldin1.gc" "process-focusable")
+(custom-level-cgo "VL1.DGO" "veldin1/veldin1.gd")
+
+(build-custom-level "novalis")
+(goal-src "levels/novalis/novalis.gc" "process-focusable")
+(custom-level-cgo "NOV.DGO" "novalis/novalis.gd")
+
+(build-custom-level "kerwan")
+(goal-src "levels/kerwan/kerwan.gc" "process-focusable")
+(custom-level-cgo "KER.DGO" "kerwan/kerwan.gd")
+
+(build-custom-level "aridia")
+(goal-src "levels/aridia/aridia.gc" "process-focusable")
+(custom-level-cgo "ARI.DGO" "aridia/aridia.gd")
+
+(build-custom-level "eudora")
+(goal-src "levels/eudora/eudora.gc" "process-focusable")
+(custom-level-cgo "EUD.DGO" "eudora/eudora.gd")
+
+(build-custom-level "blarg")
+(goal-src "levels/blarg/blarg.gc" "process-focusable")
+(custom-level-cgo "BGS.DGO" "blarg/blarg.gd")
+
+(build-custom-level "rilgar")
+(goal-src "levels/rilgar/rilgar.gc" "process-focusable")
+(custom-level-cgo "RIL.DGO" "rilgar/rilgar.gd")
+
+(build-custom-level "umbris")
+(goal-src "levels/umbris/umbris.gc" "process-focusable")
+(custom-level-cgo "UMB.DGO" "umbris/umbris.gd")
+
+(build-custom-level "batalia")
+(goal-src "levels/batalia/batalia.gc" "process-focusable")
+(custom-level-cgo "BAT.DGO" "batalia/batalia.gd")
+
+(build-custom-level "gaspar")
+(goal-src "levels/gaspar/gaspar.gc" "process-focusable")
+(custom-level-cgo "GAS.DGO" "gaspar/gaspar.gd")
+
+(build-custom-level "orxon")
+(goal-src "levels/orxon/orxon.gc" "process-focusable")
+(custom-level-cgo "ORX.DGO" "orxon/orxon.gd")
+
+(build-custom-level "pokitaru")
+(goal-src "levels/pokitaru/pokitaru.gc" "process-focusable")
+(custom-level-cgo "POK.DGO" "pokitaru/pokitaru.gd")
+
+(build-custom-level "pokisewer")
+(goal-src "levels/pokisewer/pokisewer.gc" "process-focusable")
+(custom-level-cgo "PSW.DGO" "pokisewer/pokisewer.gd")
+
+(build-custom-level "hoven")
+(goal-src "levels/hoven/hoven.gc" "process-focusable")
+(custom-level-cgo "HOV.DGO" "hoven/hoven.gd")
+
+(build-custom-level "gemlik")
+(goal-src "levels/gemlik/gemlik.gc" "process-focusable")
+(custom-level-cgo "GEM.DGO" "gemlik/gemlik.gd")
+
+(build-custom-level "oltanis")
+(goal-src "levels/oltanis/oltanis.gc" "process-focusable")
+(custom-level-cgo "OLT.DGO" "oltanis/oltanis.gd")
+
+(build-custom-level "quartu")
+(goal-src "levels/quartu/quartu.gc" "process-focusable")
+(custom-level-cgo "QUA.DGO" "quartu/quartu.gd")
+
+(build-custom-level "kalebo")
+(goal-src "levels/kalebo/kalebo.gc" "process-focusable")
+(custom-level-cgo "KAL.DGO" "kalebo/kalebo.gd")
+
+(build-custom-level "drek")
+(goal-src "levels/drek/drek.gc" "process-focusable")
+(custom-level-cgo "DRE.DGO" "drek/drek.gd")
+
+(build-custom-level "veldin2")
+(goal-src "levels/veldin2/veldin2.gc" "process-focusable")
+(custom-level-cgo "VL2.DGO" "veldin2/veldin2.gd")
+
+(build-custom-level "extras-atoll")
+(goal-src "levels/extras-atoll/extras-atoll.gc" "process-focusable")
+(custom-level-cgo "EXA.DGO" "extras-atoll/extras-atoll.gd")
+
+(build-custom-level "extras-ctyport")
+(goal-src "levels/extras-ctyport/extras-ctyport.gc" "process-focusable")
+(custom-level-cgo "ECP.DGO" "extras-ctyport/extras-ctyport.gd")
+
+(build-custom-level "extras-nestb")
+(goal-src "levels/extras-nestb/extras-nestb.gc" "process-focusable")
+(custom-level-cgo "O1G.DGO" "extras-nestb/extras-nestb.gd")
 
 ;; generate the art group for a custom actor.
 ;; requires a .glb model file in custom_assets/jak1/models/custom_levels

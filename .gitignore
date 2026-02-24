@@ -57,6 +57,9 @@ imgui.ini
 # website stuff
 node_modules/
 
+# >100MB .glb map files
+custom_assets/jak2/levels/**/*.glb
+
 # texture replacements
 # custom_assets/jak1/texture_replacements/*
 # custom_assets/jak2/texture_replacements/*

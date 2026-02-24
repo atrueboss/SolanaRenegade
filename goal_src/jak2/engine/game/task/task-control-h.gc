@@ -80,6 +80,13 @@
   (samos-garage 65)
   (baron-consite 66)
   (whack-a-metal-hiphog 67)
+
+  ;; custom burning bush
+  (burning-bush-testzone-get-to 68)
+  (burning-bush-veldin1-get-to 69)
+  (burning-bush-orxon-get-to 70)
+  (burning-bush-orxon-collection 71)
+  (burning-bush-veldin2-ring 72)
   )
 
 (defenum game-task-action
@@ -602,6 +609,22 @@
                        )
                       ((string= arg0 "GAME_TASK_CITY_MEET_BRUTTER")
                        39
+                       )
+                       ;;; custom entries 
+                      ((string= arg0 "GAME_TASK_TESTZONE_BURNING_BUSH_GET_TO") ;; testzone get-to bbush
+                       110
+                       )
+                      ((string= arg0 "GAME_TASK_VELDIN1_BURNING_BUSH_GET_TO") ;; veldin1 get-to bbush
+                       111
+                       )
+                      ((string= arg0 "GAME_TASK_ORXON_BURNING_BUSH_GET_TO") ;; orxon get-to bbush
+                       112
+                       )
+                      ((string= arg0 "GAME_TASK_ORXON_BURNING_BUSH_COLLECTION") ;; orxon collection bbush
+                       113
+                       )
+                      ((string= arg0 "GAME_TASK_VELDIN2_BURNING_BUSH_RING") ;; veldin2 ring bbush
+                       114
                        )
                       (else
                         -1

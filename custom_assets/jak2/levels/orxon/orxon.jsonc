@@ -1,0 +1,175 @@
+{
+  // The "in-game" name of the level. Should be lower case, with dashes (GOAL symbol name)
+  // the name of this file, and the folder this file is in must have the same name AND be 10 characters of less.
+  "long_name": "orxon",
+  // The file name, should be upper case and 8 characters or less.
+  "iso_name": "ORXON",
+  // The nickname, should be exactly 3 characters
+  "nickname": "orx", // 3 char name, all lowercase
+  // Background mesh file.
+  // Must have vertex colors. Use the blender cycles renderer, bake, diffuse, uncheck color,
+  // and bake to vertex colors. For now, only the first vertex color group is used, so make sure you
+  // only have 1.
+  "gltf_file": "custom_assets/jak2/levels/orxon/orxon.glb",
+
+  // automatically set wall vs. ground based on angle. Useful if you don't want to assign this yourself
+  "automatic_wall_detection": true,
+  "automatic_wall_angle": 45.0,
+
+  // if your mesh has triangles with incorrect orientation, set this to make all collision mesh triangles double sided
+  // this makes collision 2x slower and bigger, so only use if really needed
+  "double_sided_collide": false,
+
+  // available res-lump tag data types:
+  // int32, float, meters, vector, vector4m (meters)
+  //
+  // examples:
+  //
+  // adds a float tag 'spring-height' with value of 200 meters (1 meter = 4096.0 units):
+  // "spring-height": ["meters", 200.0]
+  //
+  // adds a vector tag 'movie-pos':
+  // "movie-pos": ["vector", [4096000.0, -176128.0, 1353973.76, 1.0]]
+
+   // The base actor id for your custom level. If you have multiple levels, this should be unique!
+   "base_id": 1400,
+
+  // All art groups you want to use in your custom level. Will add their models and corresponding textures to the FR3 file.
+  // Removed so that the release builds don't have to double-decompile the game
+  //"art_groups": ["prsn-torture-ag"],
+  "art_groups": [
+                  "dig-jump-pad-ag", 
+                  "castle-part-ag",
+                  "rift-ring-in-game-ag",
+                  "burning-bush-ag"
+                ],
+
+   // Any textures you want to include in your custom level.
+   // This is mainly useful for textures which are not in the common level files and have no art group associated with them.
+   // To get a list of all the textures, you can extract all of the game's textures
+   // by setting "save_texture_pngs" to true in the decompiler config.
+   "textures": [],
+
+  "actors" : [
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////ORBS////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    {
+      "trans": [92.98, 88.44, 189.56], // translation
+      "etype": "skill",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [92.98, 88.44, 189.56, 10], // bounding sphere
+      "lump": {
+        "name":"skill-01"
+      }
+    },
+    {
+      "trans": [-126.91, 83.19, 136.08], // translation
+      "etype": "skill",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-126.91, 83.19, 136.08, 10], // bounding sphere
+      "lump": {
+        "name":"skill-02"
+      }
+    },
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////PICKUPS/////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    {
+      "trans": [-19.37, 58.41, 46.42], // translation
+      "etype": "eco-blue",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [0,0,0, 10], // bounding sphere
+      "lump": {
+        "name":"eco-1"
+      }
+    },
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////// GAMEPLAY ///////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    {
+      "trans": [-25.14, 74.70, 89.26], // translation
+      "etype": "warp-gate",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"orxon-rift-warp-gate",
+        "distance": ["meters", 15.0]
+      }
+    },
+    {
+      "trans": [-25.14, 78.70, 89.26], // translation
+      "etype": "rift-ring-in-game",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0.45, 3, 0, 1], // quaternion (format is vertical, horizontal, diagonal, idk)
+      "bsphere": [0,0,0, 10], // bounding sphere
+      "lump": {
+        "name":"rift-ring-orxon"
+      }
+    },
+    {
+      "trans": [-25.14, 78.70, 89.26], // translation
+      "etype": "castle-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [6.32, 4.88, 10.11, 10], // bounding sphere
+      "lump": {
+        "name":"rift-ring-part",
+        "art-name": "group-nestb-rift-ring"
+      }
+    },
+    {
+      "trans": [-41.45, 51.67, -167.41], // translation
+      "etype": "burning-bush",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0.00, -0.95, -0.00, -0.30], // quaternion provided by Print Quat
+      "bsphere": [-2.70, 3.50, 64, 10], // bounding sphere
+      "lump": {
+        "name":"burning-bush-orxon-get-to",
+        "task-actor": ["int32", 70]
+      }
+    },
+    {
+      "trans": [-53.47, 74.72, 193.58], // translation
+      "etype": "burning-bush",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0.0000, -0.9923, 0.0000, -0.0166], // quaternion provided by Print Quat
+      "bsphere": [-2.70, 3.50, 64, 10], // bounding sphere
+      "lump": {
+        "name":"burning-bush-orxon-collection",
+        "task-actor": ["int32", 71]
+      }
+    },
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////GREEN SLIME/////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    {
+      "trans": [0,18.43,0], // translation
+      "etype": "castle-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [6.32, 4.88, 10.11, 10], // bounding sphere
+      "lump": {
+        "name":"green-slime",
+        "art-name": "group-castle-green-slime"
+      }
+    },
+    {
+      "trans": [26,18.43,12], // translation
+      "etype": "castle-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [6.32, 4.88, 10.11, 10], // bounding sphere
+      "lump": {
+        "name":"green-slime",
+        "art-name": "group-castle-green-slime"
+      }
+    }
+
+  ]
+}

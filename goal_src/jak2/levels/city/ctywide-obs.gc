@@ -3743,7 +3743,11 @@
    - sounds"
   (burning-bush-method-30 this)
   (process-drawable-from-entity! this arg0)
-  (ctywide-entity-hack)
+  (cond ;; runs (ctywide-entity-hack) only if ctywide is loaded (to fix crash of loading bbush in custom levels)
+    ((= (level-status *level* 'ctywide) 'active)
+     (ctywide-entity-hack)
+    )
+  )
   (initialize-skeleton
     this
     (the-as skeleton-group (art-group-get-by-name *level* "skel-burning-bush" (the-as (pointer uint32) #f)))

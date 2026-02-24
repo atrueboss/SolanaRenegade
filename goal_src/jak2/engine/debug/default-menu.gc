@@ -2819,6 +2819,27 @@
                     nest
                     default
                     test
+                    test-zone
+                    veldin1
+                    novalis
+                    aridia
+                    kerwan
+                    eudora
+                    blarg
+                    rilgar
+                    umbris
+                    batalia
+                    gaspar
+                    orxon
+                    pokitaru
+                    pokisewer
+                    hoven
+                    gemlik
+                    oltanis
+                    quartu
+                    kalebo
+                    drek
+                    veldin2
                     )
                  )
            (a0-3 (car s3-0))
@@ -3537,6 +3558,26 @@
                 nest
                 default
                 test
+                veldin1
+                novalis
+                aridia
+                kerwan
+                eudora
+                blarg
+                rilgar
+                umbris
+                batalia
+                gaspar
+                orxon
+                pokitaru
+                pokisewer
+                hoven
+                gemlik
+                oltanis
+                quartu
+                kalebo
+                drek
+                veldin2
                 )
              )
            (a1-7 (car s3-2))
@@ -4180,7 +4221,14 @@
            (flag "Slow Frame Rate" *slow-frame-rate* dm-boolean-toggle-pick-func)
            (function "Print Pos" #f ,(lambda ()
                                        (let ((v1-0 (target-pos 0)))
-                                         (format #t "~6,,2m ~6,,2m ~6,,2m~%" (-> v1-0 x) (-> v1-0 y) (-> v1-0 z))
+                                         (format #t ":x (meters ~6,,2m) :y (meters ~6,,2m) :z (meters ~6,,2m) :w ~6,,2m~%" (-> v1-0 x) (-> v1-0 y) (-> v1-0 z) (-> v1-0 w))
+                                         )
+                                       0
+                                       )
+                     )
+            (function "Print Quat" #f ,(lambda ((arg0 int) (arg1 debug-menu-msg) (arg2 float))
+                                       (let ((v1-0 (-> *target* root quat)))
+                                         (format #t "~6,,2f ~6,,2f ~6,,2f ~6,,2f~%" (-> v1-0 x) (-> v1-0 y) (-> v1-0 z) (-> v1-0 w))
                                          )
                                        0
                                        )

@@ -1,0 +1,285 @@
+{
+  // The "in-game" name of the level. Should be lower case, with dashes (GOAL symbol name)
+  // the name of this file, and the folder this file is in must have the same name AND be 10 characters of less.
+  "long_name": "kalebo",
+  // The file name, should be upper case and 8 characters or less.
+  "iso_name": "KALEBO",
+  // The nickname, should be exactly 3 characters
+  "nickname": "kal", // 3 char name, all lowercase
+  // Background mesh file.
+  // Must have vertex colors. Use the blender cycles renderer, bake, diffuse, uncheck color,
+  // and bake to vertex colors. For now, only the first vertex color group is used, so make sure you
+  // only have 1.
+  "gltf_file": "custom_assets/jak2/levels/kalebo/kalebo.glb",
+
+  // automatically set wall vs. ground based on angle. Useful if you don't want to assign this yourself
+  "automatic_wall_detection": true,
+  "automatic_wall_angle": 45.0,
+
+  // if your mesh has triangles with incorrect orientation, set this to make all collision mesh triangles double sided
+  // this makes collision 2x slower and bigger, so only use if really needed
+  "double_sided_collide": false,
+
+  // available res-lump tag data types:
+  // int32, float, meters, vector, vector4m (meters)
+  //
+  // examples:
+  //
+  // adds a float tag 'spring-height' with value of 200 meters (1 meter = 4096.0 units):
+  // "spring-height": ["meters", 200.0]
+  //
+  // adds a vector tag 'movie-pos':
+  // "movie-pos": ["vector", [4096000.0, -176128.0, 1353973.76, 1.0]]
+
+   // The base actor id for your custom level. If you have multiple levels, this should be unique!
+   "base_id": 2000,
+
+  // All art groups you want to use in your custom level. Will add their models and corresponding textures to the FR3 file.
+  // Removed so that the release builds don't have to double-decompile the game
+  //"art_groups": ["prsn-torture-ag"],
+  "art_groups": [
+    "forest-part-ag",
+    "rift-ring-in-game-ag",
+    
+    "burning-bush-ag"
+                ],
+
+   // Any textures you want to include in your custom level.
+   // This is mainly useful for textures which are not in the common level files and have no art group associated with them.
+   // To get a list of all the textures, you can extract all of the game's textures
+   // by setting "save_texture_pngs" to true in the decompiler config.
+   "textures": [],
+
+  "actors" : [
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////// WARP GATES ///////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    {
+      "trans": [177.13, 94.98, 93.65], // translation
+      "etype": "warp-gate",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"kalebo-warp-gate-01", //office -> start
+        "distance": ["meters", 4.0]
+      }
+    },
+    {
+      "trans": [177.13, 95.98, 93.65], // translation
+      "etype": "forest-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.5, 0, 1], // quaternion
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"warp-gate-part-1",
+        "art-name": "group-metalkor-shot-anticipate"
+      }
+    },
+    {
+      "trans": [241.05, 83.806, 46.27], // translation
+      "etype": "warp-gate",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"kalebo-warp-gate-02", //rail-end -> break-room
+        "distance": ["meters", 4.0]
+      }
+    },
+    {
+      "trans": [241.05, 84.406, 46.27], // translation
+      "etype": "forest-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.5, 0, 1], // quaternion
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"warp-gate-part-2",
+        "art-name": "group-metalkor-shot-anticipate"
+      }
+    },
+    {
+      "trans": [214.26, 83.25, -108.83], // translation
+      "etype": "warp-gate",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"kalebo-warp-gate-03", //break-room -> rail-end
+        "distance": ["meters", 4.0]
+      }
+    },
+    {
+      "trans": [214.26, 84.25, -108.83], // translation
+      "etype": "forest-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.5, 0, 1], // quaternion
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"warp-gate-part-3",
+        "art-name": "group-metalkor-shot-anticipate"
+      }
+    },
+    {
+      "trans": [-183.12, 87.04, -112.55], // translation
+      "etype": "warp-gate",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"kalebo-warp-gate-04", //race-lobby -> race-track
+        "distance": ["meters", 4.0]
+      }
+    },
+    {
+      "trans": [-183.12, 87.64, -112.55], // translation
+      "etype": "forest-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.5, 0, 1], // quaternion
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"warp-gate-part-4",
+        "art-name": "group-metalkor-shot-anticipate"
+      }
+    },
+    {
+      "trans": [-146.78, 19.33, 385.72], // translation
+      "etype": "warp-gate",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"kalebo-warp-gate-05", //race-track -> race-lobby
+        "distance": ["meters", 4.0]
+      }
+    },
+    {
+      "trans": [-146.78, 19.93, 385.72], // translation
+      "etype": "forest-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.5, 0, 1], // quaternion
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"warp-gate-part-5",
+        "art-name": "group-metalkor-shot-anticipate"
+      }
+    },
+    {
+      "trans": [-128.66, 105.07, 207.39], // translation
+      "etype": "warp-gate",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"kalebo-warp-gate-06", //idle warp, at start of level
+        "distance": ["meters", 4.0]
+      }
+    },
+    {
+      "trans": [-128.66, 106.47, 207.39], // translation
+      "etype": "forest-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0.5, 0, 1], // quaternion
+      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+      "lump": {
+        "name":"warp-gate-part-6",
+        "art-name": "group-target-board"
+      }
+    },
+    {
+      "trans": [-119.54, 117.80, 240.81], // translation
+      "etype": "warp-gate",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"kalebo-rift-warp-gate",
+        "distance": ["meters", 15.0]
+      }
+    },
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////// GAMEPLAY /////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    {
+      "trans": [-119.54, 121.80, 240.81], // translation
+      "etype": "rift-ring-in-game",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0.05, -0.25, 0, 1], // quaternion (format is X, Z, Y(inverted), W - https://opengoal.dev/docs/developing/custom_levels/actors#quat)
+      "bsphere": [0,0,0, 10], // bounding sphere
+      "lump": {
+        "name":"rift-ring-kalebo"
+      }
+    },
+    {
+      "trans": [-119.54, 121.80, 240.81], // translation
+      "etype": "forest-part",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0.05, -0.25, 0, 1], // quaternion
+      "bsphere": [6.32, 4.88, 10.11, 10], // bounding sphere
+      "lump": {
+        "name":"rift-ring-part",
+        "art-name": "group-nestb-rift-ring"
+      }
+    },
+    {
+      "trans": [-155.38, 20.52, 375.14], // translation
+      "etype": "burning-bush",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [-2.70, 3.50, 64, 10], // bounding sphere
+      "lump": {
+        "name":"burning-bush-kalebo",
+        "task-actor": ["int32", 42]
+      }
+    },
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////// COLLECTABLES /////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    {
+      "trans": [164.51, 98.69, 53.70], // translation
+      "etype": "skill",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"skill-01"
+      }
+    },
+    {
+      "trans": [214.20, 87.12, -123.64], // translation
+      "etype": "skill",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
+      "lump": {
+        "name":"skill-02"
+      }
+    },
+    {
+      "trans": [169.48, 117.09, 331.71], // translation
+      "etype": "skill",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
+      "lump": {
+        "name":"skill-03"
+      }
+    },
+    {
+      "trans": [-179.37, 90.07, -121.34], // translation
+      "etype": "skill",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
+      "lump": {
+        "name":"skill-04"
+      }
+    }
+  ]
+}

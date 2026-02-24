@@ -21,6 +21,140 @@
     ;; Begin function defintions.
     ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+    ;; remember these git commands for committing large .glb 
+    ;; git add custom_assets/jak2/levels/veldin1/veldin1.glb 
+    ;; git commit -m "veldin1.glb"
+        ;; Custom Moods for different levels
+    (defun custom-mood-on-spawn ()
+      (case (-> (level-get-target-inside *level*) name)
+        (('veldin1)
+          (send-event (ppointer->process *time-of-day*) 'change 'hour 7)
+          (set! (-> *mood-control* overide-weather-flag) #t)
+          (set! (-> *mood-control* overide cloud) 0.4960) 
+          (set! (-> *mood-control* overide fog) 0.5)
+          )
+        (('novalis)
+          (send-event (ppointer->process *time-of-day*) 'change 'hour 10)
+          (set! (-> *mood-control* overide-weather-flag) #t)
+          (set! (-> *mood-control* overide cloud) 0.4414) 
+          (set! (-> *mood-control* overide fog) 0.5)
+          )
+        (('aridia)
+          (send-event (ppointer->process *time-of-day*) 'change 'hour 19)
+          (set! (-> *mood-control* overide-weather-flag) #t)
+          (set! (-> *mood-control* overide cloud) 0.2968) 
+          (set! (-> *mood-control* overide fog) 0.5)
+          )
+        (('kerwan) ;; palette-5 just looks too good here, try to find way to add later without game breaking
+          (send-event (ppointer->process *time-of-day*) 'change 'hour 10)
+          (set! (-> *mood-control* overide-weather-flag) #t)
+          (set! (-> *mood-control* overide cloud) 0.4804) 
+          (set! (-> *mood-control* overide fog) 0.5)
+          )
+        (('eudora)
+          (send-event (ppointer->process *time-of-day*) 'change 'hour 10)
+          (set! (-> *mood-control* overide-weather-flag) #t)
+          (set! (-> *mood-control* overide cloud) 0.4804) 
+          (set! (-> *mood-control* overide fog) 0.5)
+          )
+        (('blarg)
+          (send-event (ppointer->process *time-of-day*) 'change 'hour 10)
+          (set! (-> *mood-control* overide-weather-flag) #t)
+          (set! (-> *mood-control* overide cloud) 0.8203) 
+          (set! (-> *mood-control* overide fog) 0.5)
+          )
+        (('rilgar)
+          (send-event (ppointer->process *time-of-day*) 'change 'hour 23)
+          (set! (-> *mood-control* overide-weather-flag) #t)
+          (set! (-> *mood-control* overide cloud) 0.6093) 
+          (set! (-> *mood-control* overide fog) 0.6875)
+          )
+        (('umbris)
+          (send-event (ppointer->process *time-of-day*) 'change 'hour 19)
+          (set! (-> *mood-control* overide-weather-flag) #t)
+          (set! (-> *mood-control* overide cloud) 0.4921) 
+          (set! (-> *mood-control* overide fog) 0.5)
+          )
+        (('batalia)
+          (send-event (ppointer->process *time-of-day*) 'change 'hour 12)
+          (set! (-> *mood-control* overide-weather-flag) #t)
+          (set! (-> *mood-control* overide cloud) 0.8437) 
+          (set! (-> *mood-control* overide fog) 0.8437)
+          )
+        (('gaspar)
+          (send-event (ppointer->process *time-of-day*) 'change 'hour 7)
+          (set! (-> *mood-control* overide-weather-flag) #t)
+          (set! (-> *mood-control* overide cloud) 0.4609) 
+          (set! (-> *mood-control* overide fog) 0.0781)
+          )
+        (('orxon)
+          (send-event (ppointer->process *time-of-day*) 'change 'hour 10)
+          (set! (-> *mood-control* overide-weather-flag) #t)
+          (set! (-> *mood-control* overide cloud) 0.5703) 
+          (set! (-> *mood-control* overide fog) 0.2187)
+          )
+        (('pokitaru)
+          (send-event (ppointer->process *time-of-day*) 'change 'hour 12)
+          (set! (-> *mood-control* overide-weather-flag) #t)
+          (set! (-> *mood-control* overide cloud) 0.4648) 
+          (set! (-> *mood-control* overide fog) 0.5)
+          )
+        (('pokisewer)
+          (send-event (ppointer->process *time-of-day*) 'change 'hour 19)
+          (set! (-> *mood-control* overide-weather-flag) #t)
+          (set! (-> *mood-control* overide cloud) 0.5468) 
+          (set! (-> *mood-control* overide fog) 0.4)
+          )
+        (('hoven)
+          (send-event (ppointer->process *time-of-day*) 'change 'hour 12)
+          (set! (-> *mood-control* overide-weather-flag) #t)
+          (set! (-> *mood-control* overide cloud) 0.4882) 
+          (set! (-> *mood-control* overide fog) 0.0781)
+          )
+        (('gemlik)
+          (send-event (ppointer->process *time-of-day*) 'change 'hour 7)
+          (set! (-> *mood-control* overide-weather-flag) #t)
+          (set! (-> *mood-control* overide cloud) 0.7656) 
+          (set! (-> *mood-control* overide fog) 0.5)
+          )
+        (('oltanis)
+          (send-event (ppointer->process *time-of-day*) 'change 'hour 12)
+          (set! (-> *mood-control* overide-weather-flag) #t)
+          (set! (-> *mood-control* overide cloud) 1.0) 
+          (set! (-> *mood-control* overide fog) 1.0)
+          )
+        (('quartu)
+          (send-event (ppointer->process *time-of-day*) 'change 'hour 14)
+          (set! (-> *mood-control* overide-weather-flag) #t)
+          (set! (-> *mood-control* overide cloud) 0.6875) 
+          (set! (-> *mood-control* overide fog) 0.5)
+          )
+        (('kalebo) ;;same as kerwan; palette-5 would be nice
+          (send-event (ppointer->process *time-of-day*) 'change 'hour 12)
+          (set! (-> *mood-control* overide-weather-flag) #t)
+          (set! (-> *mood-control* overide cloud) 0.4140) 
+          (set! (-> *mood-control* overide fog) 0.5)
+          )
+        (('drek)
+          (send-event (ppointer->process *time-of-day*) 'change 'hour 12)
+          (set! (-> *mood-control* overide-weather-flag) #t)
+          (set! (-> *mood-control* overide cloud) 0.5312) 
+          (set! (-> *mood-control* overide fog) 0.5)
+          )
+        (('veldin2)
+          (send-event (ppointer->process *time-of-day*) 'change 'hour 23)
+          (set! (-> *mood-control* overide-weather-flag) #t)
+          (set! (-> *mood-control* overide cloud) 0.4921) 
+          (set! (-> *mood-control* overide fog) 0.4218)
+          )
+        (else
+        (set! (-> *mood-control* overide-weather-flag) #f)
+        )
+      )
+    (none)
+    )
+
     (defun better-hover-cam ()    ;; cam follows jak as he hovers on board
       (when *target* 
         (if (board-hovering?)
@@ -34,9 +168,43 @@
       (set-setting-by-param *setting-control* 'fov #f (* 182.04445 94) 0) 
     )
 
+    (defun move-nest-riftring () ;; move rift ring in metal head nest down to accessible location   
+      (let ((ring (the process-drawable (process-by-ename "rift-ring-ingame-1"))))
+        (when (and ring (task-closed? "nest-boss-resolution"))
+          (cond
+            ((movie?)  ;; hide during movie (normally the scene kills it, but we just want to hide)
+              (logior! (-> ring draw status) (draw-control-status no-draw-bounds))
+            )
+            (else 
+              (logclear! (-> ring draw status) (draw-control-status no-draw-bounds))
+              (set! (-> ring root trans x) (meters 121.61))
+              (set! (-> ring root trans y) (meters 50.0)) ;; set the new height 
+              (set! (-> ring root trans z) (meters -388.57))
+              (set! (-> ring root quat x) 0.2968) 
+              (set! (-> ring root quat y) -0.1537)
+              (set! (-> ring root quat z) -0.0484)
+              (set! (-> ring root quat w) 0.9412)
+            )
+          )
+        )
+      )
+    )
+
+    (defun unlock-everything ()
+      (task-close! "nest-boss-resolution")
+      (logior! (-> *game-info* features) (game-feature 
+      gun gun-yellow gun-red gun-blue gun-dark 
+      gun-upgrade-speed gun-upgrade-ammo gun-upgrade-damage 
+      pass-red pass-green pass-yellow pass-blue 
+      board 
+      darkjak darkjak-bomb0 darkjak-bomb1 darkjak-invinc darkjak-giant))
+    )
+
     (defun runs-every-frame () ;; Code here runs on every frame
-     
+
+      (unlock-everything)
       (better-hover-cam)
+      (move-nest-riftring)
 
       (if *show-input-display* 
         (input-display-on)
@@ -91,7 +259,7 @@
     (defun runs-on-jak-spawn () ;; Code here runs every time jak spawns (loading a file new game or death)
          
       (wider-view)
-
+      (custom-mood-on-spawn)
       (none)
       )
 
@@ -110,10 +278,8 @@
       (none)
       )
 
-
     ;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; deprecated function defintions.
     ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-    #| these are no longer recommended/supported however we include them anyways to not break anyones mods.
-    |#
+    #| these are no longer recommended/supported however we include them anyways to not break anyones mods.|#
