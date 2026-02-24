@@ -67,6 +67,9 @@ node_modules/
 # custom_assets/jak2/merc_replacements/*
 # custom_assets/jak3/merc_replacements/*
 
+# >100MB .glb level files
+custom_assets/**/levels/**/*.glb
+
 # generated cmake files
 svnrev.h
 common/versions/revision.h
