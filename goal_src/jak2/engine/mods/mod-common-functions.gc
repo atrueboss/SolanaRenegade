@@ -288,14 +288,39 @@ if the result of rand-vu-int-range is 1, then DANCE! if it is not 1, then Don't 
   )
 
 
-;;This returns true or false if jak is within a bubble defined by coordiantes and width
+;; This returns true or false if jak is within a bubble defined by coordinates and width
+;; Update: Now also draws the sphere in debug mode
 (defun in-bubble? ((x float) (y float) (z float) (w float))
-  (<= 
-    (vector-vector-distance 
-      (target-pos 0) 
-      (set-vector! (new-stack-vector0) x y z 1.0)
+  (let ((bubble-center (new 'stack-no-clear 'vector))
+        (result #f))
+    (set-vector! bubble-center x y z 1.0) ;; Set up the bubble center position
+    
+    ;; Calculate if target is in bubble
+    (set! result
+      (<= 
+        (vector-vector-distance 
+          (target-pos 0) 
+          bubble-center
+          )
+        (/ w 2.0)
+        )
       )
-    (/ w 2.0)
+    
+    ;; Draw the debug sphere when debug mode is active
+    (when *debug-segment*
+      (add-debug-sphere 
+        #t 
+        (bucket-id debug-no-zbuf1)
+        bubble-center 
+        (/ w 2.0)
+        (if result
+            (static-rgba #x00 #xff #x00 #x40)  ;; Green if inside
+            (static-rgba #xff #x00 #x00 #x40)  ;; Red if outside
+            )
+        )
+      )
+    ;; Return the result
+    result
     )
   )
 
