@@ -21,11 +21,11 @@
     ;; Begin function defintions.
     ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
     ;; remember these git commands for committing large .glb 
     ;; git add custom_assets/jak2/levels/veldin1/veldin1.glb 
     ;; git commit -m "veldin1.glb"
-        ;; Custom Moods for different levels
+    
+    ;; Custom Moods for different levels
     (defun custom-mood-on-spawn ()
       (case (-> (level-get-target-inside *level*) name)
         (('veldin1)
@@ -191,13 +191,24 @@
     )
 
     (defun unlock-everything ()
-      (task-close! "nest-boss-resolution")
+      ;; (task-close! "nest-boss-resolution")
       (logior! (-> *game-info* features) (game-feature 
       gun gun-yellow gun-red gun-blue gun-dark 
       gun-upgrade-speed gun-upgrade-ammo gun-upgrade-damage 
       pass-red pass-green pass-yellow pass-blue 
       board 
-      darkjak darkjak-bomb0 darkjak-bomb1 darkjak-invinc darkjak-giant))
+      darkjak darkjak-bomb0 darkjak-bomb1 
+      ;; darkjak-invinc darkjak-giant ;; these are kinda too broken combined with "better dark jak" mod
+      ))
+    )
+
+
+    (defun event-trigger ()
+      (cond 
+        ( (in-bubble? (meters 192.82) (meters  17.28) (meters 1737.85) (meters 25.0))
+          (draw-pink *target*)
+        )
+      )
     )
 
     (defun runs-every-frame () ;; Code here runs on every frame
@@ -205,6 +216,7 @@
       (unlock-everything)
       (better-hover-cam)
       (move-nest-riftring)
+      (event-trigger)
 
       (if *show-input-display* 
         (input-display-on)
@@ -228,27 +240,31 @@
       (none)
       )
 
-    (defun runs-on-eco-pickup ((eco-type pickup-type) (parent process-tree))
+    (defun runs-on-eco-pickup ((eco-type pickup-type) (parent process-tree)) ;; Code here runs as soon as you pickup ANY eco
       (let* ((from-vent? #f))
-        ;; Code here runs as soon as you pickup ANY eco
 
-        (case eco-type
-          (((pickup-type eco-yellow)) ;; Code here runs as soon as you pickup yellow eco
+        (case eco-type ;; Code here runs as soon as you pickup yellow eco
+          (((pickup-type eco-yellow))      
+            
 
             )
-          (((pickup-type eco-red)) ;; Code here runs as soon as you pickup red eco
+          (((pickup-type eco-red)) ;; Code here runs as soon as you pickup red eco 
+            
 
             )
           (((pickup-type eco-blue)) ;; Code here runs as soon as you pickup blue eco
+            
 
             )
 
-          (((pickup-type eco-green)) ;; Code here runs as soon as you pickup big green eco 
+          (((pickup-type eco-green)) ;; Code here runs as soon as you pickup big green eco    
+            
 
             )
           )
         
         (when from-vent? ;; Code here runs only if the eco was picked up from a vent
+          
 
           )
         )
@@ -256,21 +272,22 @@
       (none)
       )
 
-    (defun runs-on-jak-spawn () ;; Code here runs every time jak spawns (loading a file new game or death)
-         
+    (defun runs-on-jak-spawn () ;; Code here runs every time jak spawns (loading a file new game or death) 
+        
       (wider-view)
       (custom-mood-on-spawn)
+
       (none)
       )
 
     (defun runs-on-jak-death ((death-event symbol))
       (case death-event
-        (('dying) ;; Code here runs immediately every time jak dies, before any death animation or death cutscene
-          
+        (('dying)
+          ;; Code here runs immediately every time jak dies, before any death animation or death cutscene
           
           )
-        (('blackout) ;; Code here runs after jak dies (and any death cutscene finishes), during the blackout before he spawns
-          
+        (('blackout)
+          ;; Code here runs after jak dies (and any death cutscene finishes), during the blackout before he spawns
 
           )
         )
@@ -278,8 +295,10 @@
       (none)
       )
 
+
     ;;;;;;;;;;;;;;;;;;;;;;;;;;
     ;; deprecated function defintions.
     ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-    #| these are no longer recommended/supported however we include them anyways to not break anyones mods.|#
+    #| these are no longer recommended/supported however we include them anyways to not break anyones mods.
+    |#
