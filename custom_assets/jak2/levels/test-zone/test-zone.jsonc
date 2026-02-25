@@ -78,18 +78,18 @@
   "textures": ["yak-medfur-end"], // for yakow texture fix
 
   "actors": [
-    // {
-    //   "trans": [-15.2818, 15.2461, 17.136], // translation
-    //   "etype": "crate", // actor type
-    //   "game_task": 0, // associated game task (for powercells, etc)
-    //   "kill_mask": 0,
-    //   "quat": [0, 0, 0, 1], // quaternion
-    //   "bsphere": [-15.2818, 15.2461, 17.136, 10], // bounding sphere
-    //   "lump": {
-    //     "name": "test-crate",
-    //     "eco-info": ["eco-info", "(pickup-type health)", 2]
-    //   }
-    // },
+    {
+      "trans": [20.71, 1.04, 23.09], // translation
+      "etype": "crate", // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "kill_mask": 0,
+      "quat": [0, 0, 0, 1], // quaternion
+      "bsphere": [-15.2818, 15.2461, 17.136, 10], // bounding sphere
+      "lump": {
+        "name": "test-crate",
+        "eco-info": ["eco-info", "(pickup-type health)", 2]
+      }
+    },
 
     // {
     //   "trans": [-7.41, 1.04, 28.42], // translation
@@ -134,27 +134,29 @@
       }
     },
     {
-      "trans": [16.58, 3.5, 28.261], // translation
+      "trans": [16.58, 1.04, 28.261], // translation
       "etype": "sol-crate", // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat": [0, 0, 0, 1], // quaternion
       "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
       "lump": {
-        "name": "sol-crate-test"
+        "name": "sol-crate-test",
+        "eco-info": ["eco-info", "(pickup-type health)", 2]
       }
     },
     {
-      "trans": [21.70, 3.5, 28.831], // translation
+      "trans": [21.70, 1.04, 28.831], // translation
       "etype": "sol-crate-ammo", // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat": [0, 0, 0, 1], // quaternion
       "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
       "lump": {
-        "name": "sol-crate-ammo-test"
+        "name": "sol-crate-ammo-test",
+        "eco-info": ["eco-info", "(pickup-type health)", 2]
       }
     },
     {
-      "trans": [-8.27, 3.5, 28.57], // translation
+      "trans": [-8.27, 3.5, 28.571], // translation
       "etype": "infobot", // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat": [0, 1, 0, 0], // quaternion
