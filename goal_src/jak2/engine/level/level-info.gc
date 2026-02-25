@@ -15761,7 +15761,7 @@
     :taskname 'default
     :packages '()
     ;; :memory-mode (load-buffer-mode small-center)
-    :music-bank #f
+    :music-bank 'city1
     :ambient-sounds '()
     :mood-func 'update-mood-default
     :mood-init #f
@@ -15772,8 +15772,8 @@
     :continues '((new 'static 'continue-point
         :name "test-zone-start"
         :level 'test-zone
-        :trans (new 'static 'vector :x 0.0 :y (meters 10) :z (meters 10) :w 1.0)
-        :quat (new 'static 'vector :y 0.061 :w 0.9981)
+        :trans (new 'static 'vector :x (meters 1.24) :y (meters 1.04) :z (meters 1.85) :w 1.0)
+        :quat (new 'static 'vector :y -0.04 :w 0.99)
         :camera-trans (new 'static 'vector :x 0.0 :y (meters 1) :z 0.0 :w 1.0)
         :camera-rot (new 'static 'inline-array vector3s 3
           (new 'static 'vector3s :data (new 'static 'array float 3 1.0 0.0 0.0))
@@ -15798,7 +15798,7 @@
     :load-commands '()
     :alt-load-commands '()
     :bsp-mask #xffffffffffffffff
-    :buttom-height (meters -10000000)
+    :buttom-height (meters -100)
     :run-packages '()
     :wait-for-load #t
     :login-func #f

@@ -301,6 +301,7 @@
 (build-custom-level "test-zone")
 ;; file with all the assets
 (goal-src "levels/test-zone/test-zone-obs.gc" "process-focusable")
+(goal-src "levels/common/solana-common-obs.gc" "process-focusable")
 ;; the DGO file
 (custom-level-cgo "TSZ.DGO" "test-zone/testzone.gd")
 
@@ -400,6 +401,12 @@
 ;; requires a .glb model file in custom_assets/jak1/models/custom_levels
 ;; to also generate a collide-mesh, add :gen-mesh #t
 (build-actor "test-actor" :force-run #t :gen-mesh #t)
+(build-actor "goldbolt" :force-run #t :gen-mesh #t)
+(build-actor "infobot" :force-run #t :gen-mesh #t)
+(build-actor "sol-crate" :force-run #t :gen-mesh #t)
+(build-actor "sol-crate-ammo" :force-run #t :gen-mesh #t)
+(build-actor "vendor" :force-run #t :gen-mesh #t)
+(build-actor "teleporter" :force-run #t :gen-mesh #t)
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; ANIMATIONS

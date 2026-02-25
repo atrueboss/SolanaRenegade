@@ -59,7 +59,15 @@
 
   // If you have any custom models in the "custom_assets/jak2/models/custom_levels" folder that you want to use in your level, add them to this list.
   // Note: Like with art groups, these should also be added to your level's .gd file.
-  "custom_models": ["test-actor"],
+  "custom_models": [
+                    "test-actor",
+                    "goldbolt",
+                    "infobot",
+                    "sol-crate",
+                    "sol-crate-ammo",
+                    "vendor",
+                    "teleporter"
+                   ],
 
   // Any textures you want to include in your custom level.
   // This is mainly useful for textures which are not in the common level files and have no art group associated with them.
@@ -70,41 +78,29 @@
   "textures": ["yak-medfur-end"], // for yakow texture fix
 
   "actors": [
-    {
-      "trans": [-15.2818, 15.2461, 17.136], // translation
-      "etype": "crate", // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "kill_mask": 0,
-      "quat": [0, 0, 0, 1], // quaternion
-      "bsphere": [-15.2818, 15.2461, 17.136, 10], // bounding sphere
-      "lump": {
-        "name": "test-crate",
-        "eco-info": ["eco-info", "(pickup-type health)", 2]
-      }
-    },
+    // {
+    //   "trans": [-15.2818, 15.2461, 17.136], // translation
+    //   "etype": "crate", // actor type
+    //   "game_task": 0, // associated game task (for powercells, etc)
+    //   "kill_mask": 0,
+    //   "quat": [0, 0, 0, 1], // quaternion
+    //   "bsphere": [-15.2818, 15.2461, 17.136, 10], // bounding sphere
+    //   "lump": {
+    //     "name": "test-crate",
+    //     "eco-info": ["eco-info", "(pickup-type health)", 2]
+    //   }
+    // },
 
-    {
-      "trans": [-5.463, 17.4553, 1.6169], // translation
-      "etype": "eco-yellow", // actor type
-      "game_task": "(game-task none)", // associated game task (for powercells, etc)
-      "kill_mask": 0,
-      "quat": [0, 0, 0, 1], // quaternion
-      "bsphere": [-5.463, 17.4553, 1.6169, 10], // bounding sphere
-      "lump": {
-        "name": "test-eco"
-      }
-    },
-
-    {
-      "trans": [-7.41, 1.04, 28.42], // translation
-      "etype": "yakow", // actor type
-      "game_task": "(game-task none)", // associated game task (for powercells, etc)
-      "quat": [0, 0, 0, 1], // quaternion
-      "bsphere": [-7.41, 1.04, 28.42, 10], // bounding sphere
-      "lump": {
-        "name": "test-yakow"
-      }
-    },
+    // {
+    //   "trans": [-7.41, 1.04, 28.42], // translation
+    //   "etype": "yakow", // actor type
+    //   "game_task": "(game-task none)", // associated game task (for powercells, etc)
+    //   "quat": [0, 0, 0, 1], // quaternion
+    //   "bsphere": [-7.41, 1.04, 28.42, 10], // bounding sphere
+    //   "lump": {
+    //     "name": "test-yakow"
+    //   }
+    // },
 
     {
       "trans": [5.41, 3.5, 28.42], // translation
@@ -114,6 +110,67 @@
       "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
       "lump": {
         "name": "test-actor"
+      }
+    },
+
+    {
+      "trans": [-0.35, 3.5, 29.162], // translation
+      "etype": "goldbolt", // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat": [0, 0, 0, 1], // quaternion
+      "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
+      "lump": {
+        "name": "goldbolt-test"
+      }
+    },
+    {
+      "trans": [10.82, 6.5, 28.45], // translation
+      "etype": "vendor", // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat": [0, 0, 0, 1], // quaternion
+      "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
+      "lump": {
+        "name": "vendor-test"
+      }
+    },
+    {
+      "trans": [16.58, 3.5, 28.261], // translation
+      "etype": "sol-crate", // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat": [0, 0, 0, 1], // quaternion
+      "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
+      "lump": {
+        "name": "sol-crate-test"
+      }
+    },
+    {
+      "trans": [21.70, 3.5, 28.831], // translation
+      "etype": "sol-crate-ammo", // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat": [0, 0, 0, 1], // quaternion
+      "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
+      "lump": {
+        "name": "sol-crate-ammo-test"
+      }
+    },
+    {
+      "trans": [-8.27, 3.5, 28.57], // translation
+      "etype": "infobot", // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat": [0, 1, 0, 0], // quaternion
+      "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
+      "lump": {
+        "name": "infobot-test"
+      }
+    },
+    {
+      "trans": [-11.51, 3.5, 29.09], // translation
+      "etype": "teleporter", // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat": [0, 0, 0, 1], // quaternion
+      "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
+      "lump": {
+        "name": "teleporter-test"
       }
     }
   ]
