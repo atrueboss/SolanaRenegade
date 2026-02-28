@@ -390,6 +390,8 @@
      (set! (-> this gem-total) 0.0)
      (set! (-> this skill) 0.0)
      (set! (-> this skill-total) 0.0)
+     (set! (-> this goldbolt) 0.0)
+     (set! (-> this goldbolt-total) 0.0)
      (set! (-> this karma) 0.0)
      (set! (-> this perm-list length) 0)
      (dotimes (v1-69 (-> this unknown-pad6 allocated-length))
@@ -445,6 +447,7 @@
              (set! (-> a1-16 death-count) (the-as uint 0))
              (set! (-> a1-16 gem-count) (the-as uint 0))
              (set! (-> a1-16 skill-count) (the-as uint 0))
+             (set! (-> a1-16 goldbolt-count) (the-as uint 0))
              (set! (-> a1-16 close-time) 0)
              )
            0

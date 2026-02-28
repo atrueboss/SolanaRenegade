@@ -46,6 +46,9 @@
   (pass-yellow    31)
   (pass-blue      32)
   (ammo-random    33)
+
+  ;; custom stuff 
+  (goldbolt       34)
   )
 
 (defenum continue-flags
@@ -263,6 +266,8 @@
    (gem-total               float)
    (skill                   float)
    (skill-total             float)
+   (goldbolt                float)          ;; MOD: for goldbolts
+   (goldbolt-total          float)          ;; MOD: for goldbolts 
    (karma                   float)
    (eco-pill-dark           float)
    (eco-pill-dark-total     float)
