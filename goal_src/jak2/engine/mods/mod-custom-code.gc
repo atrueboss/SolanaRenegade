@@ -202,6 +202,14 @@
       ))
     )
 
+    (defun print-goldbolt-count-on-L3 () ;; print jak goldbolt-count on L3 press
+      (when (and (= *cheat-mode* 'debug) (cpad-pressed? 0 l3)) 
+                (format #t "Goldbolts: ~D/~D~%" 
+                  (the int (-> *game-info* goldbolt)) 
+                  (the int (-> *game-info* goldbolt-total)))
+      )
+    )
+
 
     (defun event-trigger ()
       (cond 
@@ -217,6 +225,7 @@
       (better-hover-cam)
       (move-nest-riftring)
       (event-trigger)
+      (print-goldbolt-count-on-L3)
 
       (if *show-input-display* 
         (input-display-on)
