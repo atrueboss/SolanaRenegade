@@ -121,15 +121,41 @@
   (stadium-burning-bush-race-class2-r 108)
   (stadium-burning-bush-race-class1-r 109)
 
-  ;; custom tasks 
-  (testzone-burning-bush-get-to 110)
+  ;;;;;;;;;;;;;;;;;;
+  ;; custom tasks ;;
+  ;;;;;;;;;;;;;;;;;;
 
-  (veldin1-burning-bush-get-to 111)
-  (orxon-burning-bush-get-to 112)
-  (orxon-burning-bush-collection 113)
-  (veldin2-burning-bush-ring 114)
+  ;; infobots 
+  (city-get-infobot-veldin1 110)
+  (veldin1-get-infobot-novalis 111)
+  (novalis-get-infobot-aridia 112)
+  (novalis-get-infobot-kerwan 113)
+  (kerwan-get-infobot-eudora 114)
+  (eudora-get-infobot-blarg 115)
+  (blarg-get-infobot-rilgar 116)
+  (rilgar-get-infobot-umbris 117)
+  (umbris-get-infobot-batalia 118)
+  (batalia-get-infobot-gaspar 119)
+  (batalia-get-infobot-orxon 120)
+  (orxon-get-infobot-pokitaru 121)
+  (orxon-get-infobot-hoven 122)
+  (hoven-get-infobot-gemlik 123)
+  (gemlik-get-infobot-oltanis 124)
+  (oltanis-get-infobot-quartu 125)
+  (quartu-get-infobot-kalebo 126)
+  (quartu-get-infobot-drek 127)
+  (drek-get-infobot-veldin2 128)
 
-  (max 115)) ;; vanilla was 110
+  ;; test burning bush
+  (testzone-burning-bush-get-to 129)
+
+  ;; custom burning bush
+  (veldin1-burning-bush-get-to 130)
+  (orxon-burning-bush-get-to 131)
+  (orxon-burning-bush-collection 132)
+  (veldin2-burning-bush-ring 133)
+
+  (max 134)) ;; vanilla was 110
 ;; ---game-task
 
 ;; +++game-task-node
@@ -461,10 +487,51 @@
   (stadium-burning-bush-race-class1-r-introduction)
   (stadium-burning-bush-race-class1-r-resolution)
 
-  ;;;;;;;;;; custom burning bush
+  ;; get infobot 
+  (city-get-infobot-veldin1-introduction)
+  (city-get-infobot-veldin1-resolution)
+  (veldin1-get-infobot-novalis-introduction)
+  (veldin1-get-infobot-novalis-resolution)
+  (novalis-get-infobot-aridia-introduction)
+  (novalis-get-infobot-aridia-resolution)
+  (novalis-get-infobot-kerwan-introduction)
+  (novalis-get-infobot-kerwan-resolution)
+  (kerwan-get-infobot-eudora-introduction)
+  (kerwan-get-infobot-eudora-resolution)
+  (eudora-get-infobot-blarg-introduction)
+  (eudora-get-infobot-blarg-resolution)
+  (blarg-get-infobot-rilgar-introduction)
+  (blarg-get-infobot-rilgar-resolution)
+  (rilgar-get-infobot-umbris-introduction)
+  (rilgar-get-infobot-umbris-resolution)
+  (umbris-get-infobot-batalia-introduction)
+  (umbris-get-infobot-batalia-resolution)
+  (batalia-get-infobot-gaspar-introduction)
+  (batalia-get-infobot-gaspar-resolution)
+  (batalia-get-infobot-orxon-introduction)
+  (batalia-get-infobot-orxon-resolution)
+  (orxon-get-infobot-pokitaru-introduction)
+  (orxon-get-infobot-pokitaru-resolution)
+  (orxon-get-infobot-hoven-introduction)
+  (orxon-get-infobot-hoven-resolution)
+  (hoven-get-infobot-gemlik-introduction)
+  (hoven-get-infobot-gemlik-resolution)
+  (gemlik-get-infobot-oltanis-introduction)
+  (gemlik-get-infobot-oltanis-resolution)
+  (oltanis-get-infobot-quartu-introduction)
+  (oltanis-get-infobot-quartu-resolution)
+  (quartu-get-infobot-kalebo-introduction)
+  (quartu-get-infobot-kalebo-resolution)
+  (quartu-get-infobot-drek-introduction)
+  (quartu-get-infobot-drek-resolution)
+  (drek-get-infobot-veldin2-introduction)
+  (drek-get-infobot-veldin2-resolution)
+
+  ;; test burning bush 
   (testzone-burning-bush-get-to-introduction)
   (testzone-burning-bush-get-to-resolution)
 
+  ;; actual burning bush
   (veldin1-burning-bush-get-to-introduction)
   (veldin1-burning-bush-get-to-resolution)
   (orxon-burning-bush-get-to-introduction)

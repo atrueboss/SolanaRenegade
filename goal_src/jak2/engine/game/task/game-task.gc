@@ -1037,6 +1037,180 @@
           ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
           ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; CUSTOM TASKS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
           ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+          
+          ;; get infobots 
+          (new 'static 'game-task-info
+            :name "city-get-infobot-veldin1"
+            :pre-play-node (game-task-node city-get-infobot-veldin1-introduction)
+            :kiosk-play-node (game-task-node city-get-infobot-veldin1-resolution)
+            :pre-play-continue #f
+            :play-node (game-task-node city-get-infobot-veldin1-resolution)
+            :play-continue "ctyport-start"
+            :kiosk-play-continue #f
+            )
+          (new 'static 'game-task-info
+            :name "veldin1-get-infobot-novalis"
+            :pre-play-node (game-task-node veldin1-get-infobot-novalis-introduction)
+            :kiosk-play-node (game-task-node veldin1-get-infobot-novalis-resolution)
+            :pre-play-continue #f
+            :play-node (game-task-node veldin1-get-infobot-novalis-resolution)
+            :play-continue "veldin1-start"
+            :kiosk-play-continue #f
+            )
+          (new 'static 'game-task-info
+            :name "novalis-get-infobot-aridia"
+            :pre-play-node (game-task-node novalis-get-infobot-aridia-introduction)
+            :kiosk-play-node (game-task-node novalis-get-infobot-aridia-resolution)
+            :pre-play-continue #f
+            :play-node (game-task-node novalis-get-infobot-aridia-resolution)
+            :play-continue "novalis-start"
+            :kiosk-play-continue #f
+            )
+          (new 'static 'game-task-info
+            :name "novalis-get-infobot-kerwan"
+            :pre-play-node (game-task-node novalis-get-infobot-kerwan-introduction)
+            :kiosk-play-node (game-task-node novalis-get-infobot-kerwan-resolution)
+            :pre-play-continue #f
+            :play-node (game-task-node novalis-get-infobot-kerwan-resolution)
+            :play-continue "novalis-start"
+            :kiosk-play-continue #f
+            )
+          (new 'static 'game-task-info
+            :name "kerwan-get-infobot-eudora"
+            :pre-play-node (game-task-node kerwan-get-infobot-eudora-introduction)
+            :kiosk-play-node (game-task-node kerwan-get-infobot-eudora-resolution)
+            :pre-play-continue #f
+            :play-node (game-task-node kerwan-get-infobot-eudora-resolution)
+            :play-continue "kerwan-start"
+            :kiosk-play-continue #f
+            )
+          (new 'static 'game-task-info
+            :name "eudora-get-infobot-blarg"
+            :pre-play-node (game-task-node eudora-get-infobot-blarg-introduction)
+            :kiosk-play-node (game-task-node eudora-get-infobot-blarg-resolution)
+            :pre-play-continue #f
+            :play-node (game-task-node eudora-get-infobot-blarg-resolution)
+            :play-continue "eudora-start"
+            :kiosk-play-continue #f
+            )
+          (new 'static 'game-task-info
+            :name "blarg-get-infobot-rilgar"
+            :pre-play-node (game-task-node blarg-get-infobot-rilgar-introduction)
+            :kiosk-play-node (game-task-node blarg-get-infobot-rilgar-resolution)
+            :pre-play-continue #f
+            :play-node (game-task-node blarg-get-infobot-rilgar-resolution)
+            :play-continue "blarg-start"
+            :kiosk-play-continue #f
+            )
+          (new 'static 'game-task-info
+            :name "rilgar-get-infobot-umbris"
+            :pre-play-node (game-task-node rilgar-get-infobot-umbris-introduction)
+            :kiosk-play-node (game-task-node rilgar-get-infobot-umbris-resolution)
+            :pre-play-continue #f
+            :play-node (game-task-node rilgar-get-infobot-umbris-resolution)
+            :play-continue "rilgar-start"
+            :kiosk-play-continue #f
+            )
+          (new 'static 'game-task-info
+            :name "umbris-get-infobot-batalia"
+            :pre-play-node (game-task-node umbris-get-infobot-batalia-introduction)
+            :kiosk-play-node (game-task-node umbris-get-infobot-batalia-resolution)
+            :pre-play-continue #f
+            :play-node (game-task-node umbris-get-infobot-batalia-resolution)
+            :play-continue "umbris-start"
+            :kiosk-play-continue #f
+            )
+          (new 'static 'game-task-info
+            :name "batalia-get-infobot-gaspar"
+            :pre-play-node (game-task-node batalia-get-infobot-gaspar-introduction)
+            :kiosk-play-node (game-task-node batalia-get-infobot-gaspar-resolution)
+            :pre-play-continue #f
+            :play-node (game-task-node batalia-get-infobot-gaspar-resolution)
+            :play-continue "batalia-start"
+            :kiosk-play-continue #f
+            )
+          (new 'static 'game-task-info
+            :name "batalia-get-infobot-orxon"
+            :pre-play-node (game-task-node batalia-get-infobot-orxon-introduction)
+            :kiosk-play-node (game-task-node batalia-get-infobot-orxon-resolution)
+            :pre-play-continue #f
+            :play-node (game-task-node batalia-get-infobot-orxon-resolution)
+            :play-continue "batalia-start"
+            :kiosk-play-continue #f
+            )
+          (new 'static 'game-task-info
+            :name "orxon-get-infobot-pokitaru"
+            :pre-play-node (game-task-node orxon-get-infobot-pokitaru-introduction)
+            :kiosk-play-node (game-task-node orxon-get-infobot-pokitaru-resolution)
+            :pre-play-continue #f
+            :play-node (game-task-node orxon-get-infobot-pokitaru-resolution)
+            :play-continue "orxon-start"
+            :kiosk-play-continue #f
+            )
+          (new 'static 'game-task-info
+            :name "orxon-get-infobot-hoven"
+            :pre-play-node (game-task-node orxon-get-infobot-hoven-introduction)
+            :kiosk-play-node (game-task-node orxon-get-infobot-hoven-resolution)
+            :pre-play-continue #f
+            :play-node (game-task-node orxon-get-infobot-hoven-resolution)
+            :play-continue "orxon-start"
+            :kiosk-play-continue #f
+            )
+          (new 'static 'game-task-info
+            :name "hoven-get-infobot-gemlik"
+            :pre-play-node (game-task-node hoven-get-infobot-gemlik-introduction)
+            :kiosk-play-node (game-task-node hoven-get-infobot-gemlik-resolution)
+            :pre-play-continue #f
+            :play-node (game-task-node hoven-get-infobot-gemlik-resolution)
+            :play-continue "hoven-start"
+            :kiosk-play-continue #f
+            )
+          (new 'static 'game-task-info
+            :name "gemlik-get-infobot-oltanis"
+            :pre-play-node (game-task-node gemlik-get-infobot-oltanis-introduction)
+            :kiosk-play-node (game-task-node gemlik-get-infobot-oltanis-resolution)
+            :pre-play-continue #f
+            :play-node (game-task-node gemlik-get-infobot-oltanis-resolution)
+            :play-continue "gemlik-start"
+            :kiosk-play-continue #f
+            )
+          (new 'static 'game-task-info
+            :name "oltanis-get-infobot-quartu"
+            :pre-play-node (game-task-node oltanis-get-infobot-quartu-introduction)
+            :kiosk-play-node (game-task-node oltanis-get-infobot-quartu-resolution)
+            :pre-play-continue #f
+            :play-node (game-task-node oltanis-get-infobot-quartu-resolution)
+            :play-continue "oltanis-start"
+            :kiosk-play-continue #f
+            )
+          (new 'static 'game-task-info
+            :name "quartu-get-infobot-kalebo"
+            :pre-play-node (game-task-node quartu-get-infobot-kalebo-introduction)
+            :kiosk-play-node (game-task-node quartu-get-infobot-kalebo-resolution)
+            :pre-play-continue #f
+            :play-node (game-task-node quartu-get-infobot-kalebo-resolution)
+            :play-continue "quartu-start"
+            :kiosk-play-continue #f
+            )
+          (new 'static 'game-task-info
+            :name "quartu-get-infobot-drek"
+            :pre-play-node (game-task-node quartu-get-infobot-drek-introduction)
+            :kiosk-play-node (game-task-node quartu-get-infobot-drek-resolution)
+            :pre-play-continue #f
+            :play-node (game-task-node quartu-get-infobot-drek-resolution)
+            :play-continue "quartu-start"
+            :kiosk-play-continue #f
+            )
+          (new 'static 'game-task-info
+            :name "drek-get-infobot-veldin2"
+            :pre-play-node (game-task-node drek-get-infobot-veldin2-introduction)
+            :kiosk-play-node (game-task-node drek-get-infobot-veldin2-resolution)
+            :pre-play-continue #f
+            :play-node (game-task-node drek-get-infobot-veldin2-resolution)
+            :play-continue "drek-start"
+            :kiosk-play-continue #f
+            )
+          ;; burning-bush side missions  
           (new 'static 'game-task-info
             :name "testzone-burning-bush-get-to" ;; name of task 
             :pre-play-node (game-task-node testzone-burning-bush-get-to-introduction) ;; intro node
@@ -12358,6 +12532,695 @@
             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; CUSTOM TASKS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+          
+          ;;;;;;;;;;;;;;;;; INFOBOT PICKUPS ;;;;;;;;;;;;;;;;;; 
+          (new 'static 'game-task-node-info
+            :level 'city
+            :task (game-task city-get-infobot-veldin1)
+            :name "city-get-infobot-veldin1-introduction"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node nest-boss-resolution)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'city
+            :task (game-task city-get-infobot-veldin1)
+            :name "city-get-infobot-veldin1-resolution"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node city-get-infobot-veldin1-introduction)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'veldin1
+            :task (game-task veldin1-get-infobot-novalis)
+            :name "veldin1-get-infobot-novalis-introduction"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node city-get-infobot-veldin1-resolution)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'veldin1
+            :task (game-task veldin1-get-infobot-novalis)
+            :name "veldin1-get-infobot-novalis-resolution"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node veldin1-get-infobot-novalis-introduction)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'novalis
+            :task (game-task novalis-get-infobot-aridia)
+            :name "novalis-get-infobot-aridia-introduction"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node veldin1-get-infobot-novalis-resolution)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'novalis
+            :task (game-task novalis-get-infobot-aridia)
+            :name "novalis-get-infobot-aridia-resolution"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node novalis-get-infobot-aridia-introduction)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'novalis
+            :task (game-task novalis-get-infobot-kerwan)
+            :name "novalis-get-infobot-kerwan-introduction"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node veldin1-get-infobot-novalis-resolution)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'novalis
+            :task (game-task novalis-get-infobot-kerwan)
+            :name "novalis-get-infobot-kerwan-resolution"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node novalis-get-infobot-kerwan-introduction)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'kerwan
+            :task (game-task kerwan-get-infobot-eudora)
+            :name "kerwan-get-infobot-eudora-introduction"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node novalis-get-infobot-kerwan-resolution)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'kerwan
+            :task (game-task kerwan-get-infobot-eudora)
+            :name "kerwan-get-infobot-eudora-resolution"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node kerwan-get-infobot-eudora-introduction)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'eudora
+            :task (game-task eudora-get-infobot-blarg)
+            :name "eudora-get-infobot-blarg-introduction"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node kerwan-get-infobot-eudora-resolution)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'eudora
+            :task (game-task eudora-get-infobot-blarg)
+            :name "eudora-get-infobot-blarg-resolution"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node eudora-get-infobot-blarg-introduction)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'blarg
+            :task (game-task blarg-get-infobot-rilgar)
+            :name "blarg-get-infobot-rilgar-introduction"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node eudora-get-infobot-blarg-resolution)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'blarg
+            :task (game-task blarg-get-infobot-rilgar)
+            :name "blarg-get-infobot-rilgar-resolution"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node blarg-get-infobot-rilgar-introduction)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'rilgar
+            :task (game-task rilgar-get-infobot-umbris)
+            :name "rilgar-get-infobot-umbris-introduction"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node blarg-get-infobot-rilgar-resolution)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'rilgar
+            :task (game-task rilgar-get-infobot-umbris)
+            :name "rilgar-get-infobot-umbris-resolution"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node rilgar-get-infobot-umbris-introduction)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'umbris
+            :task (game-task umbris-get-infobot-batalia)
+            :name "umbris-get-infobot-batalia-introduction"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node rilgar-get-infobot-umbris-resolution)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'umbris
+            :task (game-task umbris-get-infobot-batalia)
+            :name "umbris-get-infobot-batalia-resolution"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node umbris-get-infobot-batalia-introduction)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'batalia
+            :task (game-task batalia-get-infobot-gaspar)
+            :name "batalia-get-infobot-gaspar-introduction"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node umbris-get-infobot-batalia-resolution)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'batalia
+            :task (game-task batalia-get-infobot-gaspar)
+            :name "batalia-get-infobot-gaspar-resolution"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node batalia-get-infobot-gaspar-introduction)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'batalia
+            :task (game-task batalia-get-infobot-orxon)
+            :name "batalia-get-infobot-orxon-introduction"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node umbris-get-infobot-batalia-resolution)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'batalia
+            :task (game-task batalia-get-infobot-orxon)
+            :name "batalia-get-infobot-orxon-resolution"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node batalia-get-infobot-orxon-introduction)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'orxon
+            :task (game-task orxon-get-infobot-pokitaru)
+            :name "orxon-get-infobot-pokitaru-introduction"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node batalia-get-infobot-orxon-resolution)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'orxon
+            :task (game-task orxon-get-infobot-pokitaru)
+            :name "orxon-get-infobot-pokitaru-resolution"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node orxon-get-infobot-pokitaru-introduction)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'orxon
+            :task (game-task orxon-get-infobot-hoven)
+            :name "orxon-get-infobot-hoven-introduction"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node batalia-get-infobot-orxon-resolution)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'orxon
+            :task (game-task orxon-get-infobot-hoven)
+            :name "orxon-get-infobot-hoven-resolution"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node orxon-get-infobot-hoven-introduction)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'hoven
+            :task (game-task hoven-get-infobot-gemlik)
+            :name "hoven-get-infobot-gemlik-introduction"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node orxon-get-infobot-hoven-resolution)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'hoven
+            :task (game-task hoven-get-infobot-gemlik)
+            :name "hoven-get-infobot-gemlik-resolution"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node hoven-get-infobot-gemlik-introduction)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'gemlik
+            :task (game-task gemlik-get-infobot-oltanis)
+            :name "gemlik-get-infobot-oltanis-introduction"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node hoven-get-infobot-gemlik-resolution)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'gemlik
+            :task (game-task gemlik-get-infobot-oltanis)
+            :name "gemlik-get-infobot-oltanis-resolution"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node gemlik-get-infobot-oltanis-introduction)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'oltanis
+            :task (game-task oltanis-get-infobot-quartu)
+            :name "oltanis-get-infobot-quartu-introduction"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node gemlik-get-infobot-oltanis-resolution)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'oltanis
+            :task (game-task oltanis-get-infobot-quartu)
+            :name "oltanis-get-infobot-quartu-resolution"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node oltanis-get-infobot-quartu-introduction)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'quartu
+            :task (game-task quartu-get-infobot-kalebo)
+            :name "quartu-get-infobot-kalebo-introduction"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node oltanis-get-infobot-quartu-resolution)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'quartu
+            :task (game-task quartu-get-infobot-kalebo)
+            :name "quartu-get-infobot-kalebo-resolution"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node quartu-get-infobot-kalebo-introduction)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'quartu
+            :task (game-task quartu-get-infobot-drek)
+            :name "quartu-get-infobot-drek-introduction"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node oltanis-get-infobot-quartu-resolution)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'quartu
+            :task (game-task quartu-get-infobot-drek)
+            :name "quartu-get-infobot-drek-resolution"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node quartu-get-infobot-drek-introduction)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'drek
+            :task (game-task drek-get-infobot-veldin2)
+            :name "drek-get-infobot-veldin2-introduction"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node quartu-get-infobot-drek-resolution)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          (new 'static 'game-task-node-info
+            :level 'drek
+            :task (game-task drek-get-infobot-veldin2)
+            :name "drek-get-infobot-veldin2-resolution"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node drek-get-infobot-veldin2-introduction)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
+          
+
+          ;;;;;;;;;;;;;;;;; BURNING-BUSH SIDE MISSIONS ;;;;;;;;;;;;;;;;;;
           (new 'static 'game-task-node-info
             :level 'test-zone
             :task (game-task testzone-burning-bush-get-to)
@@ -12452,7 +13315,7 @@
               )
             :flags (game-task-node-flag save-on-try)
             :parent-node (new 'static 'array game-task-node 4
-              (game-task-node nest-boss-resolution)
+              (game-task-node veldin1-get-infobot-novalis-resolution)
               (game-task-node none)
               (game-task-node none)
               (game-task-node none)
