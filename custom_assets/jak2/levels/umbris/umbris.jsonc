@@ -67,11 +67,20 @@
 
                   "strip-conveyor-ag",
 
-                  "water-anim-tomb-dark-eco-ag",
-                  "dark-eco-pool-ag",
-
                   "prsn-cell-door-ag"
                 ],
+
+  // If you have any custom models in the "custom_assets/jak2/models/custom_levels" folder that you want to use in your level, add them to this list.
+  // Note: Like with art groups, these should also be added to your level's .gd file.
+  "custom_models": [
+                    "test-actor",
+                    "goldbolt",
+                    "infobot",
+                    "sol-crate",
+                    "sol-crate-ammo",
+                    "vendor",
+                    "teleporter"
+                   ],
 
    // Any textures you want to include in your custom level.
    // This is mainly useful for textures which are not in the common level files and have no art group associated with them.
@@ -85,47 +94,38 @@
     /////////////////////////////////////////////////// EXPERIMENTAL /////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    {
-      "trans": [-53.86, 26.89, -58.21], // translation
-      "etype": "dark-eco-pool",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0.5, 0, 1], // quaternion
-      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
-      "lump": {
-        "name":"dark-eco-pool-test"
-      }
-    },
-    {
-      "trans": [-4.49, 34.3171, -15.921], // translation
-      "etype": "fort-elec-switch",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0.5, 0, 1], // quaternion
-      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
-      "lump": {
-        "name":"elec-switch-test",
-        "on-death": "(draw-pink *target*)"
-      }
-    },
-    {
-      "trans": [-4.49, 34.3171, -15.921], // translation
-      "etype": "cas-electric-fence",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0.5, 0, 1], // quaternion
-      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
-      "lump": {
-        "name":"castle-elec-gate-test"
-      }
-    },
+
     // {
     //   "trans": [-4.49, 34.3171, -15.921], // translation
-    //   "etype": "strip-conveyor",  // actor type
+    //   "etype": "fort-elec-switch",  // actor type
     //   "game_task": 0, // associated game task (for powercells, etc)
     //   "quat" : [0, 0.5, 0, 1], // quaternion
     //   "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
     //   "lump": {
-    //     "name":"strip-conveyor-test"
+    //     "name":"elec-switch-test",
+    //     "on-death": "(draw-pink *target*)"
     //   }
     // },
+    // {
+    //   "trans": [-4.49, 34.3171, -15.921], // translation
+    //   "etype": "cas-electric-fence",  // actor type
+    //   "game_task": 0, // associated game task (for powercells, etc)
+    //   "quat" : [0, 0.5, 0, 1], // quaternion
+    //   "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+    //   "lump": {
+    //     "name":"castle-elec-gate-test"
+    //   }
+    // },
+    // // {
+    // //   "trans": [-4.49, 34.3171, -15.921], // translation
+    // //   "etype": "strip-conveyor",  // actor type
+    // //   "game_task": 0, // associated game task (for powercells, etc)
+    // //   "quat" : [0, 0.5, 0, 1], // quaternion
+    // //   "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
+    // //   "lump": {
+    // //     "name":"strip-conveyor-test"
+    // //   }
+    // // },
     {
       "trans": [84.38, 38.42, -336.91], // translation
       "etype": "cas-chain-plat",  // actor type
@@ -234,28 +234,45 @@
       }
     },
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////ORBS////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////// GOLD BOLTS ////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     {
       "trans": [139.1031, 41.7742, -353.4895], // translation
-      "etype": "skill",  // actor type
+      "etype": "goldbolt",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [139.1031, 41.7742, -353.4895, 10], // bounding sphere
       "lump": {
-        "name":"skill-01"
+        "name":"goldbolt-1"
       }
     },
     {
       "trans": [25.1942, 48.8546, -428.6829], // translation
-      "etype": "skill",  // actor type
+      "etype": "goldbolt",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [25.1942, 48.8546, -428.6829, 10], // bounding sphere
       "lump": {
-        "name":"skill-02"
+        "name":"goldbolt-2"
       }
     },
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////// INFOBOTS /////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    {
+      "trans": [-188.59, 25.58, -756.56], // translation
+      "etype": "infobot",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [92.98, 88.44, 189.56, 10], // bounding sphere
+      "lump": {
+        "name": "infobot-for-batalia",
+        "close-task": "umbris-get-infobot-batalia-resolution"
+      }
+    },
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////// LIGHTS //////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

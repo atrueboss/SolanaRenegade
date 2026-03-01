@@ -7,10 +7,14 @@
   "strip-ocean.o" ;;ocean 
   "water-anim.o" ;;water anim
 
-  "palcab-obs.o" ;;palace stuff (for the turret enemies)
-  "pal-gun-turret-ag.go" ;;palace red gun turret
-  "sewer-obs.o" ;sewer stuff (for the turret enemies)
-  "sew-gunturret-ag.go" ;;sewer blue gun turret 
+  "solana-common-obs.o"
+  "goldbolt-ag.go"
+  "infobot-ag.go"
+  "sol-crate-ag.go"
+  "sol-crate-ammo-ag.go"
+  "vendor-ag.go"
+  "teleporter-ag.go"
+  "drill-part.o" ;; for goldbolt / infobot glow particle
 
   "dig1-obs.o" ;;dig stuff (for the jump-pad)
   "dig-jump-pad-ag.go" ;;jump pad
@@ -23,9 +27,6 @@
 
   "under-laser.o" ;; under-laser 
   "under-laser-ag.go" ;; under-laser
-
-  "drill-moving-staircase-ag.go" ;; moving staircase (conveyor)
-  "drillmid-obs.o"
 
   "oltanis.go"
   ))

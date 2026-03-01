@@ -134,35 +134,58 @@
       }
     },
     {
-      "trans": [16.58, 1.04, 28.261], // translation
+      "trans": [16.58, 1.04, 28.261], // for placing on top, crate height is +1.76
       "etype": "sol-crate", // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat": [0, 0, 0, 1], // quaternion
       "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
       "lump": {
-        "name": "sol-crate-test",
-        "eco-info": ["eco-info", "(pickup-type health)", 2]
+        "name": "sol-crate-test-1",
+        "eco-info": ["eco-info", "(pickup-type eco-pill-dark)", 2]
       }
     },
     {
-      "trans": [21.70, 1.04, 28.831], // translation
+      "trans": [16.58, 2.80, 28.261], // for placing on top, crate height is +1.76
+      "etype": "sol-crate", // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat": [0, 0, 0, 1], // quaternion
+      "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
+      "lump": {
+        "name": "sol-crate-test-2",
+        "eco-info": ["eco-info", "(pickup-type eco-pill-dark)", 3]
+      }
+    },
+    {
+      "trans": [16.58, 4.56, 28.261], // for placing on top, crate height is +1.76
+      "etype": "sol-crate", // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat": [0, 0, 0, 1], // quaternion
+      "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
+      "lump": {
+        "name": "sol-crate-test-3",
+        "eco-info": ["eco-info", "(pickup-type eco-pill-dark)", 3]
+      }
+    },
+    {
+      "trans": [21.70, 1.04, 28.8311], // translation
       "etype": "sol-crate-ammo", // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat": [0, 0, 0, 1], // quaternion
       "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
       "lump": {
         "name": "sol-crate-ammo-test",
-        "eco-info": ["eco-info", "(pickup-type health)", 2]
+        "eco-info": ["eco-info", "(pickup-type ammo-red)", 3]
       }
     },
     {
-      "trans": [-8.27, 3.5, 28.571], // translation
+      "trans": [-8.27, 3.5, 28.571], // location of actor 
       "etype": "infobot", // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat": [0, 1, 0, 0], // quaternion
-      "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
-      "lump": {
-        "name": "infobot-test"
+      "game_task": 0, // ignore
+      "quat": [0, 1, 0, 0], // rotation of actor
+      "bsphere": [5.41, 3.5, 28.42, 10], // ignore
+      "lump": { 
+        "name": "infobot-for-test", // given name to the actor
+        "close-task": "city-get-infobot-veldin1-resolution"
       }
     },
     {

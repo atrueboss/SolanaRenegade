@@ -9,6 +9,15 @@
   "sewer-obs.o" ;sewer stuff (for the turret enemies)
   "sew-gunturret-ag.go" ;;sewer blue gun turret 
 
+  "solana-common-obs.o"
+  "goldbolt-ag.go"
+  "infobot-ag.go"
+  "sol-crate-ag.go"
+  "sol-crate-ammo-ag.go"
+  "vendor-ag.go"
+  "teleporter-ag.go"
+  "drill-part.o" ;; for goldbolt / infobot glow particle
+
   "dig1-obs.o" ;;dig stuff (for the jump-pad)
   "dig-jump-pad-ag.go" ;;jump pad
   "dig-part.o" ;; particles for jump pad

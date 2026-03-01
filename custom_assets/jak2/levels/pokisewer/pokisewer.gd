@@ -6,8 +6,14 @@
  (
   "water-anim.o" ;;water anim
 
-  "sewer-obs.o" ;sewer stuff (for the turret enemies)
-  "sew-gunturret-ag.go" ;;sewer blue gun turret 
+  "solana-common-obs.o"
+  "goldbolt-ag.go"
+  "infobot-ag.go"
+  "sol-crate-ag.go"
+  "sol-crate-ammo-ag.go"
+  "vendor-ag.go"
+  "teleporter-ag.go"
+  "drill-part.o" ;; for goldbolt / infobot glow particle (group-drill-orange-light)
 
   "forest-part.o"
   "metalkor-part.o" 

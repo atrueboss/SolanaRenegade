@@ -7,14 +7,27 @@
   "strip-ocean.o" ;;ocean 
   "water-anim.o" ;;water anim
   
+  "solana-common-obs.o"
+  "goldbolt-ag.go"
+  "infobot-ag.go"
+  "sol-crate-ag.go"
+  "sol-crate-ammo-ag.go"
+  "vendor-ag.go"
+  "teleporter-ag.go"
+  "drill-part.o" ;; for goldbolt / infobot glow particle 
+  
+  
   "dig1-obs.o" ;;dig stuff (for the jump-pad)
   "dig-jump-pad-ag.go" ;;jump pad
   "dig-part.o"
   
+
+
   ;; for the butterflies, catelia, waterfalls
   "forest-part.o"
   
-    "tpage-1414.go"
+  
+  "tpage-1414.go"
   "tpage-1416.go"
   "tpage-1415.go"
   "tpage-1413.go"

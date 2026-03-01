@@ -7,6 +7,15 @@
   "strip-ocean.o" ;;ocean 
   "water-anim.o" ;;water anim
 
+  "solana-common-obs.o"
+  "goldbolt-ag.go"
+  "infobot-ag.go"
+  "sol-crate-ag.go"
+  "sol-crate-ammo-ag.go"
+  "vendor-ag.go"
+  "teleporter-ag.go"
+  "drill-part.o" ;; for goldbolt / infobot glow particle
+
   "palcab-obs.o" ;;palace stuff (for the turret enemies)
   "pal-gun-turret-ag.go" ;;palace red gun turret
   "sewer-obs.o" ;sewer stuff (for the turret enemies)

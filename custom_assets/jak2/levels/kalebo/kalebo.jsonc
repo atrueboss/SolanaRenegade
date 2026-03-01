@@ -44,6 +44,18 @@
     "burning-bush-ag"
                 ],
 
+  // If you have any custom models in the "custom_assets/jak2/models/custom_levels" folder that you want to use in your level, add them to this list.
+  // Note: Like with art groups, these should also be added to your level's .gd file.
+  "custom_models": [
+                    "test-actor",
+                    "goldbolt",
+                    "infobot",
+                    "sol-crate",
+                    "sol-crate-ammo",
+                    "vendor",
+                    "teleporter"
+                   ],
+
    // Any textures you want to include in your custom level.
    // This is mainly useful for textures which are not in the common level files and have no art group associated with them.
    // To get a list of all the textures, you can extract all of the game's textures
@@ -188,41 +200,42 @@
         "art-name": "group-target-board"
       }
     },
-    {
-      "trans": [-119.54, 117.80, 240.81], // translation
-      "etype": "warp-gate",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
-      "lump": {
-        "name":"kalebo-rift-warp-gate",
-        "distance": ["meters", 15.0]
-      }
-    },
+    
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////// GAMEPLAY /////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     {
-      "trans": [-119.54, 121.80, 240.81], // translation
+      "trans": [-120.76, 123.80, 236.46], // translation
       "etype": "rift-ring-in-game",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0.05, -0.25, 0, 1], // quaternion (format is X, Z, Y(inverted), W - https://opengoal.dev/docs/developing/custom_levels/actors#quat)
+      "quat" : [0.00, -0.99, 0, 0.04], // quaternion (format is X, Z, Y(inverted), W - https://opengoal.dev/docs/developing/custom_levels/actors#quat)
       "bsphere": [0,0,0, 10], // bounding sphere
       "lump": {
         "name":"rift-ring-kalebo"
       }
     },
     {
-      "trans": [-119.54, 121.80, 240.81], // translation
+      "trans": [-120.76, 123.80, 236.46], // translation
       "etype": "forest-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0.05, -0.25, 0, 1], // quaternion
+      "quat" : [0.00, -0.99, 0, 0.04], // quaternion
       "bsphere": [6.32, 4.88, 10.11, 10], // bounding sphere
       "lump": {
         "name":"rift-ring-part",
         "art-name": "group-nestb-rift-ring"
+      }
+    },
+    {
+      "trans": [-120.76, 122.30, 236.46], // translation
+      "etype": "warp-gate",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0.00, -0.99, 0, 0.04], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"kalebo-rift-warp-gate",
+        "distance": ["meters", 18.0]
       }
     },
     {
@@ -238,47 +251,53 @@
     },
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////// COLLECTABLES /////////////////////////////////////////////////////
+    /////////////////////////////////////////////////// GOLD BOLTS ///////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     {
-      "trans": [164.51, 98.69, 53.70], // translation
-      "etype": "skill",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
-      "lump": {
-        "name":"skill-01"
-      }
-    },
-    {
       "trans": [214.20, 87.12, -123.64], // translation
-      "etype": "skill",  // actor type
+      "etype": "goldbolt",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
       "lump": {
-        "name":"skill-02"
+        "name":"goldbolt-1"
       }
     },
     {
       "trans": [169.48, 117.09, 331.71], // translation
-      "etype": "skill",  // actor type
+      "etype": "goldbolt",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
       "lump": {
-        "name":"skill-03"
+        "name":"goldbolt-2"
+      }
+    },
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////// GENERIC ITEMS /////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    {
+      "trans": [164.51, 98.69, 53.70], // translation
+      "etype": "sol-crate-ammo",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
+      "lump": {
+        "name":"sol-crate-ammo-1",
+        "eco-info": ["eco-info", "(pickup-type ammo-red)", 2]
       }
     },
     {
       "trans": [-179.37, 90.07, -121.34], // translation
-      "etype": "skill",  // actor type
+      "etype": "sol-crate-ammo",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
       "lump": {
-        "name":"skill-04"
+        "name":"sol-crate-ammo-2",
+        "eco-info": ["eco-info", "(pickup-type ammo-yellow)", 11]
       }
     }
   ]

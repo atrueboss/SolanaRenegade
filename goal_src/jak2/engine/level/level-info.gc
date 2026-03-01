@@ -15840,7 +15840,7 @@
     :dbname 'veldin1
     :taskname 'veldin1
     :packages '()
-    :memory-mode (load-buffer-mode small-edge)
+    :memory-mode (load-buffer-mode large)
     :music-bank #f
     :ambient-sounds '()
     :mood-func 'update-mood-default

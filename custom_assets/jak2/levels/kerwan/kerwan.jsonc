@@ -43,6 +43,18 @@
                  "tomb-plat-wall-ag"
                 ],
 
+  // If you have any custom models in the "custom_assets/jak2/models/custom_levels" folder that you want to use in your level, add them to this list.
+  // Note: Like with art groups, these should also be added to your level's .gd file.
+  "custom_models": [
+                    "test-actor",
+                    "goldbolt",
+                    "infobot",
+                    "sol-crate",
+                    "sol-crate-ammo",
+                    "vendor",
+                    "teleporter"
+                   ],
+
    // Any textures you want to include in your custom level.
    // This is mainly useful for textures which are not in the common level files and have no art group associated with them.
    // To get a list of all the textures, you can extract all of the game's textures
@@ -66,7 +78,7 @@
       }
     },
     {
-      "trans": [298.15, 148.93, 166.03], // translation
+      "trans": [298.15, 148.93, 166.011], // translation
       "etype": "tomb-plat-wall",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
@@ -128,49 +140,67 @@
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////ORBS////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////// GOLDBOLTS ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     {
       "trans": [5.8611, 107.06, 31.93], // translation
-      "etype": "skill",  // actor type
+      "etype": "goldbolt",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [5.8611, 107.06, -31.93, 10], // bounding sphere
       "lump": {
-        "name":"skill-01"
+        "name":"goldbolt-1"
       }
     },
     {
-      "trans": [176.5291, 139.6617, 238.6383], // translation
-      "etype": "skill",  // actor type
+      "trans": [176.5291, 139.6617, 238.6381], // translation
+      "etype": "goldbolt",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [176.5291, 139.6617, 238.6383, 10], // bounding sphere
       "lump": {
-        "name":"skill-02"
+        "name":"goldbolt-2"
       }
     },
     {
       "trans": [-27.4681, 217.2131, 573.0549], // translation
-      "etype": "skill",  // actor type
+      "etype": "goldbolt",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [-27.4681, 217.2131, 573.0549, 10], // bounding sphere
       "lump": {
-        "name":"skill-03"
+        "name":"goldbolt-3"
       }
     },
+
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////PICKUPS/////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////// INFOBOTS /////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    {
+      "trans": [292.89, 171.30, -42.22], // translation
+      "etype": "infobot",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [92.98, 88.44, 189.56, 10], // bounding sphere
+      "lump": {
+        "name": "infobot-for-eudora",
+        "close-task": "kerwan-get-infobot-eudora-resolution"
+      }
+    },
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////// GENERIC ITEMS /////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     {
       "trans": [3.1094, 146.5209, 29.5805], // translation
-      "etype": "eco-blue",  // actor type
+      "etype": "crate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [3.1094, 146.5209, 29.5805, 10], // bounding sphere
       "lump": {
-        "name":"eco-blue-01"
+        "name":"crate-1",
+        "eco-info": ["eco-info", "(pickup-type health)", 2]
       }
     },
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

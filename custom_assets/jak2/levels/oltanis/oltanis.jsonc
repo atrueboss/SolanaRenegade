@@ -41,11 +41,21 @@
                   "forest-part-ag",
                   "rift-ring-in-game-ag",
                   "dig-jump-pad-ag", 
-                  "sew-gunturret-ag",
-                  "pal-gun-turret-ag",
                   "under-laser-ag",
                   "drill-moving-staircase-ag"
                 ],
+
+  // If you have any custom models in the "custom_assets/jak2/models/custom_levels" folder that you want to use in your level, add them to this list.
+  // Note: Like with art groups, these should also be added to your level's .gd file.
+  "custom_models": [
+                    "test-actor",
+                    "goldbolt",
+                    "infobot",
+                    "sol-crate",
+                    "sol-crate-ammo",
+                    "vendor",
+                    "teleporter"
+                   ],
 
    // Any textures you want to include in your custom level.
    // This is mainly useful for textures which are not in the common level files and have no art group associated with them.
@@ -59,16 +69,6 @@
     //////////////////////////////////////////////// ELEC LASERS /////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    {
-      "trans": [-20.23, 90.39, -130.14], // translation
-      "etype": "drill-moving-staircase",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0.5, 0, 1], // quaternion
-      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
-      "lump": {
-        "name":"drill-moving-staircase-test"
-      }
-    },
     {
       "trans": [155.83, 82.35, -48.82], // translation
       "etype": "under-laser",  // actor type
@@ -254,97 +254,75 @@
 
     {
       "trans": [70.94, 96.09, -64.77], // translation
-      "etype": "skill",  // actor type
+      "etype": "infobot",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
       "lump": {
-        "name":"skill-01"
-      }
-    },
-    {
-      "trans": [-141.03, 131.53, -246.66], // translation
-      "etype": "skill",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
-      "lump": {
-        "name":"skill-02"
-      }
-    },
-    {
-      "trans": [-56.11, 139.68, -194.91], // translation
-      "etype": "skill",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
-      "lump": {
-        "name":"skill-03"
+        "name": "infobot-for-quartu",
+        "close-task": "oltanis-get-infobot-quartu-resolution"
       }
     },
     {
       "trans": [301.64, 94.88, 147.63], // translation
-      "etype": "skill",  // actor type
+      "etype": "goldbolt",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
       "lump": {
-        "name":"skill-04"
+        "name":"goldbolt-1"
       }
     },
     {
       "trans": [-6.84, 104.72, 54.84], // translation
-      "etype": "skill",  // actor type
+      "etype": "goldbolt",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
       "lump": {
-        "name":"skill-05"
+        "name":"goldbolt-2"
       }
     },
     {
       "trans": [31.73, 127.79, -304.36], // translation
-      "etype": "skill",  // actor type
+      "etype": "goldbolt",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
       "lump": {
-        "name":"skill-06"
+        "name":"goldbolt-3"
       }
     },
     {
       "trans": [-62.18, 138.89, -295.43], // translation
-      "etype": "skill",  // actor type
+      "etype": "goldbolt",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [0.0, 0.0, 0.0, 10], // bounding sphere
       "lump": {
-        "name":"skill-07"
-      }
-    },
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////// ENEMIES ////////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    {
-      "trans": [4.33, 3.50, 65.49], // translation
-      "etype": "sew-gunturret",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [4.33, 3.50, 65.49, 10], // bounding sphere
-      "lump": {
-        "name":"sew-gunturret"
+        "name":"goldbolt-4"
       }
     },
     {
-      "trans": [9.33, 3.50, 65.49], // translation
-      "etype": "pal-gun-turret",  // actor type
+      "trans": [-141.03, 131.53, -246.66], // translation
+      "etype": "sol-crate-ammo",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [4.33, 3.50, 65.49, 10], // bounding sphere
+      "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
       "lump": {
-        "name":"pal-gunturret"
+        "name":"sol-crate-ammo-1",
+        "eco-info": ["eco-info", "(pickup-type ammo-red)", 3]
+      }
+    },
+    {
+      "trans": [-56.11, 136.18, -194.91], // translation
+      "etype": "sol-crate-ammo",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
+      "lump": {
+        "name":"sol-crate-ammo-2", 
+        "eco-info": ["eco-info", "(pickup-type ammo-red)", 3]
       }
     }
   ]

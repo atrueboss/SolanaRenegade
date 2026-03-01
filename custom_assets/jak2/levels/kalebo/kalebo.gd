@@ -7,6 +7,16 @@
   "strip-ocean.o" ;;ocean 
   "water-anim.o" ;;water anim
 
+  "solana-common-obs.o"
+  "goldbolt-ag.go"
+  "infobot-ag.go"
+  "sol-crate-ag.go"
+  "sol-crate-ammo-ag.go"
+  "vendor-ag.go"
+  "teleporter-ag.go"
+  "drill-part.o" ;; for goldbolt / infobot glow particle
+
+
   "forest-part.o"
   "metalkor-part.o"
   "rift-ring-in-game-ag.go"

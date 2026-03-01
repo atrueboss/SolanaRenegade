@@ -45,6 +45,18 @@
                   "burning-bush-ag"
                 ],
 
+  // If you have any custom models in the "custom_assets/jak2/models/custom_levels" folder that you want to use in your level, add them to this list.
+  // Note: Like with art groups, these should also be added to your level's .gd file.
+  "custom_models": [
+                    "test-actor",
+                    "goldbolt",
+                    "infobot",
+                    "sol-crate",
+                    "sol-crate-ammo",
+                    "vendor",
+                    "teleporter"
+                   ],
+
    // Any textures you want to include in your custom level.
    // This is mainly useful for textures which are not in the common level files and have no art group associated with them.
    // To get a list of all the textures, you can extract all of the game's textures
@@ -166,159 +178,6 @@
         "name": "rift-ring-rilgar"
       }
     },
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////// ECO //////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    {
-      "trans": [552.68, 20.89, 399.66], // translation
-      "etype": "eco-blue",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [0, 0, 0, 10], // bounding sphere
-      "lump": {
-        "name":"eco-blue-1"
-      }
-    },
-    {
-      "trans": [609.71,20.898,421.39], // translation
-      "etype": "eco-blue",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [0, 0, 0, 10], // bounding sphere
-      "lump": {
-        "name":"eco-blue-2"
-      }
-    },
-    {
-      "trans": [642.37,20.898,450.34], // translation
-      "etype": "eco-blue",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [0, 0, 0, 10], // bounding sphere
-      "lump": {
-        "name":"eco-blue-3"
-      }
-    },
-    {
-      "trans": [714.52,20.898,581.85], // translation
-      "etype": "eco-blue",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [0, 0, 0, 10], // bounding sphere
-      "lump": {
-        "name":"eco-blue-4"
-      }
-    },
-    {
-      "trans": [658.78,20.898,717.66], // translation
-      "etype": "eco-blue",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [0, 0, 0, 10], // bounding sphere
-      "lump": {
-        "name":"eco-blue-5"
-      }
-    },
-    {
-      "trans": [631.38,39.36,787.4], // translation
-      "etype": "eco-blue",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [0, 0, 0, 10], // bounding sphere
-      "lump": {
-        "name":"eco-blue-6"
-      }
-    },
-    {
-      "trans": [652.65,39.364,671.38], // translation
-      "etype": "eco-blue",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [0, 0, 0, 10], // bounding sphere
-      "lump": {
-        "name":"eco-blue-7"
-      }
-    },
-    {
-      "trans": [408.06,39.364,314.14], // translation
-      "etype": "eco-blue",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [0, 0, 0, 10], // bounding sphere
-      "lump": {
-        "name":"eco-blue-8"
-      }
-    },
-    {
-      "trans": [315.24,39.364,383.4], // translation
-      "etype": "eco-blue",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [0, 0, 0, 10], // bounding sphere
-      "lump": {
-        "name":"eco-blue-9"
-      }
-    },
-    {
-      "trans": [265.91,39.364,487.47], // translation
-      "etype": "eco-blue",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [0, 0, 0, 10], // bounding sphere
-      "lump": {
-        "name":"eco-blue-10"
-      }
-    },
-    {
-      "trans": [79.912,36.607,714], // translation
-      "etype": "eco-blue",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [0, 0, 0, 10], // bounding sphere
-      "lump": {
-        "name":"eco-blue-11"
-      }
-    },
-    {
-      "trans": [30.045,35.696,755.76], // translation
-      "etype": "eco-blue",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [0, 0, 0, 10], // bounding sphere
-      "lump": {
-        "name":"eco-blue-12"
-      }
-    },
-    {
-      "trans": [160.99,9.2415,830.27], // translation
-      "etype": "eco-blue",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [0, 0, 0, 10], // bounding sphere
-      "lump": {
-        "name":"eco-blue-13"
-      }
-    },
-    {
-      "trans": [288.56,18.203,826.48], // translation
-      "etype": "eco-blue",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [0, 0, 0, 10], // bounding sphere
-      "lump": {
-        "name":"eco-blue-14"
-      }
-    },
-    {
-      "trans": [380.24,20.492,792.35], // translation
-      "etype": "eco-blue",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [0, 0, 0, 10], // bounding sphere
-      "lump": {
-        "name":"eco-blue-15"
-      }
-    },
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////// WARP GATES /////////////////////////////////////////////////////////////////////
@@ -370,28 +229,45 @@
     },
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////// ORBS /////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////// GOLDBOLTS ////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     {
       "trans": [351.23, -10.27, 454.75], // translation
-      "etype": "skill",  // actor type
+      "etype": "goldbolt",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
       "lump": {
-        "name":"skill-01"
+        "name":"goldbolt-1"
       }
     },
     {
       "trans": [-5.27, 31.47, 530.94], // translation
-      "etype": "skill",  // actor type
+      "etype": "goldbolt",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
       "lump": {
-        "name":"skill-02"
+        "name":"goldbolt-2"
       }
     },
+  
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////// INFOBOTS /////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    {
+      "trans": [281.06, 100.68, 243.47], // translation
+      "etype": "infobot",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [92.98, 88.44, 189.56, 10], // bounding sphere
+      "lump": {
+        "name": "infobot-for-umbris",
+        "close-task": "rilgar-get-infobot-umbris-resolution"
+      }
+    },
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////// OTHER ///////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

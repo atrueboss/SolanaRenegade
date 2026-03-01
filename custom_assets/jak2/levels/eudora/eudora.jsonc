@@ -42,6 +42,18 @@
                   "rift-ring-in-game-ag"
                 ],
 
+  // If you have any custom models in the "custom_assets/jak2/models/custom_levels" folder that you want to use in your level, add them to this list.
+  // Note: Like with art groups, these should also be added to your level's .gd file.
+  "custom_models": [
+                    "test-actor",
+                    "goldbolt",
+                    "infobot",
+                    "sol-crate",
+                    "sol-crate-ammo",
+                    "vendor",
+                    "teleporter"
+                   ],
+                
    // Any textures you want to include in your custom level.
    // This is mainly useful for textures which are not in the common level files and have no art group associated with them.
    // To get a list of all the textures, you can extract all of the game's textures
@@ -50,36 +62,38 @@
 
   "actors" : [
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////ORBS////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////// COLLECTABLES ///////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     {
-      "trans": [-114.16, 15.38, 23.37], // translation
-      "etype": "skill",  // actor type
+      "trans": [-114.16, 17.00, 23.37], // translation
+      "etype": "goldbolt",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [92.98, 88.44, 189.56, 10], // bounding sphere
       "lump": {
-        "name":"skill-01"
+        "name":"goldbolt-1"
       }
     },
     {
       "trans": [-99.4026, 8.27, -28.1714], // translation
-      "etype": "skill",  // actor type
+      "etype": "infobot",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [92.98, 88.44, 189.56, 10], // bounding sphere
       "lump": {
-        "name":"skill-02"
+        "name": "infobot-for-blarg",
+        "close-task": "eudora-get-infobot-blarg-resolution"
       }
     },
     {
       "trans": [-253.30, 24.67, 223.39], // translation
-      "etype": "skill",  // actor type
+      "etype": "sol-crate-ammo",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [-126.91, 83.19, 136.08, 10], // bounding sphere
       "lump": {
-        "name":"skill-03"
+        "name":"sol-crate-ammo-2",
+        "eco-info": ["eco-info", "(pickup-type ammo-yellow)", 3]
       }
     },
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -87,12 +101,13 @@
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     {
       "trans": [-17.83, 3.14, 58.96], // translation
-      "etype": "eco-blue",  // actor type
+      "etype": "sol-crate-ammo",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [0,0,0, 10], // bounding sphere
       "lump": {
-        "name":"eco-1"
+        "name":"sol-crate-ammo-1",
+        "eco-info": ["eco-info", "(pickup-type ammo-yellow)", 3]
       }
     },
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

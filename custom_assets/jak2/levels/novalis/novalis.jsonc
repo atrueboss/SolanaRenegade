@@ -43,6 +43,18 @@
                   "jak-pole+0-ag"
                 ],
 
+  // If you have any custom models in the "custom_assets/jak2/models/custom_levels" folder that you want to use in your level, add them to this list.
+  // Note: Like with art groups, these should also be added to your level's .gd file.
+  "custom_models": [
+                    "test-actor",
+                    "goldbolt",
+                    "infobot",
+                    "sol-crate",
+                    "sol-crate-ammo",
+                    "vendor",
+                    "teleporter"
+                   ],
+
    // Any textures you want to include in your custom level.
    // This is mainly useful for textures which are not in the common level files and have no art group associated with them.
    // To get a list of all the textures, you can extract all of the game's textures
@@ -51,36 +63,58 @@
 
   "actors" : [
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////ORBS////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////// COLLECTABLES ////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     {
       "trans": [-171.5149, 131.1380, -51.3654], // translation
-      "etype": "skill",  // actor type
+      "etype": "goldbolt",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [-171.5149, 72.47, -51.3654, 10], // bounding sphere
       "lump": {
-        "name":"skill-01"
+        "name":"goldbolt-01"
       }
     },
     {
       "trans": [168.5299, 60.6143, -52.6835], // translation
-      "etype": "skill",  // actor type
+      "etype": "goldbolt",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [168.5299, 2, -52.6835, 10], // bounding sphere
       "lump": {
-        "name":"skill-02"
+        "name":"goldbolt-02"
       }
     },
     {
       "trans": [301.3742, 36.6185, -18.6392], // translation
-      "etype": "skill",  // actor type
+      "etype": "goldbolt",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [301.3742, -22, -18.6392, 10], // bounding sphere
       "lump": {
-        "name":"skill-03"
+        "name":"goldbolt-03"
+      }
+    },
+    {
+      "trans": [-194.37, 151.31, 143.45], // translation
+      "etype": "infobot",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [92.98, 88.44, 189.56, 10], // bounding sphere
+      "lump": {
+        "name": "infobot-for-aridia",
+        "close-task": "novalis-get-infobot-aridia-resolution"
+      }
+    },
+    {
+      "trans": [-16.01, 23.28, 184.59], // translation
+      "etype": "infobot",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [92.98, 88.44, 189.56, 10], // bounding sphere
+      "lump": {
+        "name": "infobot-for-kerwan",
+        "close-task": "novalis-get-infobot-kerwan-resolution"
       }
     },
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -45,6 +45,16 @@
                   "pal-gun-turret-ag"
                 ],
 
+  "custom_models": [
+                    "test-actor",
+                    "goldbolt",
+                    "infobot",
+                    "sol-crate",
+                    "sol-crate-ammo",
+                    "vendor",
+                    "teleporter"
+                   ],
+                
    // Any textures you want to include in your custom level.
    // This is mainly useful for textures which are not in the common level files and have no art group associated with them.
    // To get a list of all the textures, you can extract all of the game's textures
@@ -103,57 +113,60 @@
     },
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////// ORBS /////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////// GOLD BOLTS /////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     {
       "trans": [138.71, 45.84, 151.56], // translation
-      "etype": "skill",  // actor type
+      "etype": "goldbolt",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
       "lump": {
-        "name":"skill-01"
-      }
-    },
-    {
-      "trans": [179.61, 23.44, -299.37], // translation
-      "etype": "skill",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
-      "lump": {
-        "name":"skill-02"
-      }
-    },
-    {
-      "trans": [-123.73, 55.22, 181.40], // translation
-      "etype": "skill",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
-      "lump": {
-        "name":"skill-03"
-      }
-    },
-    {
-      "trans": [-16.89, 73.93, -10.37], // translation
-      "etype": "skill",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
-      "lump": {
-        "name":"skill-04"
+        "name":"goldbolt-1"
       }
     },
     {
       "trans": [203.58, 33.39, 55.17], // translation
-      "etype": "skill",  // actor type
+      "etype": "goldbolt",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
       "lump": {
-        "name":"skill-05"
+        "name":"goldbolt-2"
+      }
+    },
+    {
+      "trans": [179.61, 23.44, -299.37], // translation
+      "etype": "sol-crate",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
+      "lump": {
+        "name":"sol-crate-1",
+        "eco-info": ["eco-info", "(pickup-type eco-pill-dark)", 4]
+      }
+    },
+    {
+      "trans": [-123.73, 55.22, 181.40], // translation
+      "etype": "sol-crate",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
+      "lump": {
+        "name":"sol-crate-2",
+        "eco-info": ["eco-info", "(pickup-type eco-pill-dark)", 4]
+      }
+    },
+    {
+      "trans": [-16.89, 73.93, -10.37], // translation
+      "etype": "infobot",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
+      "lump": {
+        "name": "infobot-for-gemlik",
+        "close-task": "hoven-get-infobot-gemlik-resolution"
       }
     },
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

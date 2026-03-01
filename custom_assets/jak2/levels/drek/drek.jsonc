@@ -45,6 +45,18 @@
     "pal-gun-turret-ag"
                 ],
 
+  // If you have any custom models in the "custom_assets/jak2/models/custom_levels" folder that you want to use in your level, add them to this list.
+  // Note: Like with art groups, these should also be added to your level's .gd file.
+  "custom_models": [
+                    "test-actor",
+                    "goldbolt",
+                    "infobot",
+                    "sol-crate",
+                    "sol-crate-ammo",
+                    "vendor",
+                    "teleporter"
+                   ],
+
    // Any textures you want to include in your custom level.
    // This is mainly useful for textures which are not in the common level files and have no art group associated with them.
    // To get a list of all the textures, you can extract all of the game's textures
@@ -331,43 +343,56 @@
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     {
-      "trans": [-297.4, 341.3, 321.4], // translation
-      "etype": "skill",  // actor type
+      "trans": [14.98, 386.35, 139.35], // translation
+      "etype": "infobot",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
       "lump": {
-        "name":"skill-01"
+        "name": "infobot-for-veldin2",
+        "close-task": "drek-get-infobot-veldin2-resolution"
       }
     },
     {
-      "trans": [11.45, 386.4, 452.7], // translation
-      "etype": "skill",  // actor type
+      "trans": [-297.4, 341.3, 321.4], // translation
+      "etype": "goldbolt",  // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat" : [0, 0, 0, 1], // quaternion
+      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
+      "lump": {
+        "name":"goldbolt-1"
+      }
+    },
+    {
+      "trans": [14.49, 386.4, 411.7], // translation
+      "etype": "goldbolt",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
       "lump": {
-        "name":"skill-02"
+        "name":"goldbolt-2"
       }
     },
     {
       "trans": [-406.32, 324.89, 512.93], // translation
-      "etype": "skill",  // actor type
+      "etype": "sol-crate-ammo",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
       "lump": {
-        "name":"skill-03"
+        "name":"sol-crate-ammo-1",
+        "eco-info": ["eco-info", "(pickup-type ammo-blue)", 2]
       }
     },
     {
       "trans": [-345.2, 353.2, -37.15], // translation
-      "etype": "eco-blue",  // actor type
+      "etype": "sol-crate-ammo",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-2.70, 3.50, 64, 10], // bounding sphere
+      "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
       "lump": {
-        "name":"eco-blue-01"
+        "name":"sol-crate-ammo-2",
+        "eco-info": ["eco-info", "(pickup-type ammo-red)", 2]
       }
     }
   ]

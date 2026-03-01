@@ -7,6 +7,16 @@
   "strip-ocean.o" ;;ocean
   "forest-part.o"
   "rift-ring-in-game-ag.go"
+
+  "solana-common-obs.o"
+  "goldbolt-ag.go"
+  "infobot-ag.go"
+  "sol-crate-ag.go"
+  "sol-crate-ammo-ag.go"
+  "vendor-ag.go"
+  "teleporter-ag.go"
+  "drill-part.o" ;; for goldbolt / infobot glow particle 
+
   ;; "metalkor-extras.o" ;; contains data for rift-ring but causes crash idk why
   "metalkor-part.o" 
   "novalis.go"

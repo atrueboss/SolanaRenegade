@@ -4,6 +4,16 @@
 ;; the actual file name still needs to be 8.3
 ("UMB.DGO"
  (
+
+  "solana-common-obs.o"
+  "goldbolt-ag.go"
+  "infobot-ag.go"
+  "sol-crate-ag.go"
+  "sol-crate-ammo-ag.go"
+  "vendor-ag.go"
+  "teleporter-ag.go"
+  "drill-part.o" ;; for goldbolt / infobot glow particle
+
   ;; sewer objects, turrets, mines etc
   "sew-gunturret.o" ;;palace red gun turret
   "sewer-obs.o" ;sewer stuff (for the turret enemies)
@@ -13,10 +23,6 @@
   "sew-mine-a-ag.go"
   "sew-mine-b-ag.go"
   
-  ;; dark eco pool
-  "water-anim-tomb-dark-eco-ag.go"
-  "dark-eco-pool.o"
-
   ;; palace turrets
   "pal-obs.o"
   "palent-turret-ag.go"
@@ -67,13 +73,6 @@
   "cas-elevator-ag.go"
   "cas-button-ag.go"
   "cas-electric-fence-ag.go"
-
-;; strip actors
-  ;; "strip-obs.o"
-
-;; dig actors
-  "dig1-obs.o" ;;dig stuff (for the jump-pad)
-  "dig-jump-pad-ag.go" ;;jump pad
 
 ;; searchlights
   "searchlight.o"

@@ -10,6 +10,15 @@
   "metalkor-part.o"
   "aridia.go"
   
+  "solana-common-obs.o"
+  "goldbolt-ag.go"
+  "infobot-ag.go"
+  "sol-crate-ag.go"
+  "sol-crate-ammo-ag.go"
+  "vendor-ag.go"
+  "teleporter-ag.go"
+  "drill-part.o" ;; for goldbolt / infobot glow particle 
+
   "elec-gate.o"
   "fort-elec-switch-ag.go"
   "fort-fence-ag.go"
