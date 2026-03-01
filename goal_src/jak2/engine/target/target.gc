@@ -2915,6 +2915,7 @@
         ((and (focus-test? self dark)
               (nonzero? (-> self darkjak))
               (logtest? (-> self darkjak stage) (darkjak-stage bomb1))
+              (>= (-> self game eco-pill-dark) 50.0) ;; need half bar to use darkjak-bomb1
               )
          (set! (-> self control unknown-sound-id00)
                (add-process *gui-control* self (gui-channel jak) (gui-action queue) "darkbom1" -99.0 0)
@@ -2924,6 +2925,7 @@
            (suspend)
            (ja :num! (seek! (ja-aframe 7.0 0)))
            )
+         (send-event self 'get-pickup (pickup-type eco-pill-dark) -50.0) ;; actually drain dark eco when use bomb1
          (go target-darkjak-bomb1 arg0 arg1)
          )
         (else
