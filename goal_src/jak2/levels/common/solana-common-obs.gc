@@ -56,7 +56,7 @@
 ;;   (set! (-> this notify) (the-as handle #f))
 ;;   (set! (-> this fact) (new 'process 'fact-info this (pickup-type goldbolt) 1.0))
   
-;;   ;; Set up task like skill does
+;;   ;; Set up task like skill does, permanently die after collecting
 ;;   (let ((entity (-> this entity)))
 ;;     (if (when entity
 ;;           (let ((task (-> entity extra perm task)))
@@ -205,8 +205,8 @@
       )
   
   ;; Set infobot color (optional - make it look different)
-  (set-vector! (-> this draw color-mult) 1.0 0.8 0.0 1.0)
-  (set-vector! (-> this draw color-emissive) 0.3 0.2 0.0 1.0)
+  ;; (set-vector! (-> this draw color-mult) 1.0 0.8 0.0 1.0)
+  ;; (set-vector! (-> this draw color-emissive) 0.3 0.2 0.0 1.0)
   
   0
   (none)
