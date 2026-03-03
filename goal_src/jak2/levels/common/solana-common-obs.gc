@@ -468,7 +468,26 @@
            )
        )
       )
-    (drop-pickup (-> self fact) #t *entity-pool* (the-as fact-info #f) arg1)
+    ;; MODIFIED: Spawn multiple pickups from eco-info
+(let ((eco-array (res-lump-data (-> self entity) 'eco-info (pointer int32))))
+  (if eco-array
+      ;; Has eco-info - spawn multiple items
+      (dotimes (i 2)
+        (let ((pickup-id (-> eco-array (* i 2)))
+              (amount (-> eco-array (+ (* i 2) 1))))
+          (when (> pickup-id 0)  ;; Only spawn if valid ID
+            ;; Temporarily set the crate's fact to this pickup type
+            (set! (-> self fact pickup-type) (the-as pickup-type pickup-id))
+            (set! (-> self fact pickup-amount) (the float amount))
+            ;; Use the original drop-pickup which handles positioning correctly
+            (drop-pickup (-> self fact) #t *entity-pool* (the-as fact-info #f) arg1)
+            )
+          )
+        )
+      ;; No eco-info - use default drop-pickup
+      (drop-pickup (-> self fact) #t *entity-pool* (the-as fact-info #f) arg1)
+      )
+  )
     (process-entity-status! self (entity-perm-status dead) #t)
     (process-entity-status! self (entity-perm-status subtask-complete) #t)
     (suspend-for (seconds 5)
@@ -681,7 +700,26 @@
            )
        )
       )
-    (drop-pickup (-> self fact) #t *entity-pool* (the-as fact-info #f) arg1)
+    ;; MODIFIED: Spawn multiple pickups from eco-info
+(let ((eco-array (res-lump-data (-> self entity) 'eco-info (pointer int32))))
+  (if eco-array
+      ;; Has eco-info - spawn multiple items
+      (dotimes (i 2)
+        (let ((pickup-id (-> eco-array (* i 2)))
+              (amount (-> eco-array (+ (* i 2) 1))))
+          (when (> pickup-id 0)  ;; Only spawn if valid ID
+            ;; Temporarily set the crate's fact to this pickup type
+            (set! (-> self fact pickup-type) (the-as pickup-type pickup-id))
+            (set! (-> self fact pickup-amount) (the float amount))
+            ;; Use the original drop-pickup which handles positioning correctly
+            (drop-pickup (-> self fact) #t *entity-pool* (the-as fact-info #f) arg1)
+            )
+          )
+        )
+      ;; No eco-info - use default drop-pickup
+      (drop-pickup (-> self fact) #t *entity-pool* (the-as fact-info #f) arg1)
+      )
+  )
     (process-entity-status! self (entity-perm-status dead) #t)
     (process-entity-status! self (entity-perm-status subtask-complete) #t)
     (suspend-for (seconds 5)

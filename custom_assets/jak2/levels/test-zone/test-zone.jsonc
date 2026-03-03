@@ -156,7 +156,10 @@
       "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
       "lump": {
         "name": "sol-crate-test-2",
-        "eco-info": ["eco-info", "(pickup-type eco-pill-dark)", 3]
+        "eco-info": ["int32", 
+                    34, 3, // bolt-1 x3
+                    35, 2  // bolt-5 x2
+                    ]  
       }
     },
     {
@@ -178,7 +181,10 @@
       "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
       "lump": {
         "name": "sol-crate-ammo-test",
-        "eco-info": ["eco-info", "(pickup-type ammo-red)", 3]
+        "eco-info": ["int32", 
+                    13, 21, // ammo-yellow x2
+                    14, 14  // ammo-red x2
+                    ]  
       }
     },
     {
