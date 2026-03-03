@@ -851,7 +851,8 @@
    (death-count       uint16)
    (gem-count         uint16)
    (skill-count       uint16)
-   (goldbolt-count    uint16)
+   (bolt-count        uint16) ;; MOD
+   (goldbolt-count    uint16) ;; MOD
    (suck-death-count  uint8)
    (add               game-task-node-command)
    (description       text-id)

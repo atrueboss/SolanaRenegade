@@ -256,6 +256,21 @@
     (((pickup-type pass-yellow))
      "pass-yellow"
      )
+    (((pickup-type bolt-1))
+     "bolt-1"
+     )
+    (((pickup-type bolt-5))
+     "bolt-5"
+     )
+    (((pickup-type bolt-20))
+     "bolt-20"
+     )
+    (((pickup-type bolt-50))
+     "bolt-50"
+     )
+    (((pickup-type goldbolt))
+     "goldbolt"
+     )
     (((pickup-type health))
      "health"
      )

@@ -48,7 +48,11 @@
   (ammo-random    33)
 
   ;; custom stuff 
-  (goldbolt       34)
+  (bolt-1         34)
+  (bolt-5         35)
+  (bolt-20        36)
+  (bolt-50        37)
+  (goldbolt       38)
   )
 
 (defenum continue-flags
@@ -266,8 +270,10 @@
    (gem-total               float)
    (skill                   float)
    (skill-total             float)
-   (goldbolt                float)          ;; MOD: for goldbolts
-   (goldbolt-total          float)          ;; MOD: for goldbolts 
+   (bolt                    float)          ;; MOD: for bolts
+   (bolt-total              float)          ;; MOD: for bolts
+   (goldbolt                float)          ;; MOD: for gold bolts
+   (goldbolt-total          float)          ;; MOD: for gold bolts 
    (karma                   float)
    (eco-pill-dark           float)
    (eco-pill-dark-total     float)

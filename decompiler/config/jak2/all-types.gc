@@ -14834,6 +14834,13 @@ Consists of a header and a list of [[merc-effect]]s."
   (pass-yellow    31)
   (pass-blue      32)
   (ammo-random    33)
+
+    ;; custom stuff 
+  (bolt-1         34)
+  (bolt-5         35)
+  (bolt-20        36)
+  (bolt-50        37)
+  (goldbolt       38)
   )
 
 (deftype game-bank (basic)

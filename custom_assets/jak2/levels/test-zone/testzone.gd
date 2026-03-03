@@ -7,17 +7,19 @@
   ;; "yakow.o" ;; leave this out, so it will spawn dummy viewer process (otherwise yakow needs navmesh)
   "yakow-ag.go"
   "test-zone-obs.o"
+  
   "solana-common-obs.o"
-
   "test-actor-ag.go"
-
   "goldbolt-ag.go"
   "infobot-ag.go"
   "sol-crate-ag.go"
   "sol-crate-ammo-ag.go"
   "vendor-ag.go"
   "teleporter-ag.go"
-
+  "bolt-1-ag.go"
+  "bolt-5-ag.go"
+  "bolt-20-ag.go"
+  "bolt-50-ag.go"
   "drill-part.o" ;; for goldbolt / infobot glow particle 
 
   "test-zone.go"

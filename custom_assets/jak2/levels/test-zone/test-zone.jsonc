@@ -66,7 +66,11 @@
                     "sol-crate",
                     "sol-crate-ammo",
                     "vendor",
-                    "teleporter"
+                    "teleporter",
+                    "bolt-1",
+                    "bolt-5",
+                    "bolt-20",
+                    "bolt-50"
                    ],
 
   // Any textures you want to include in your custom level.
@@ -79,7 +83,7 @@
 
   "actors": [
     {
-      "trans": [20.71, 1.04, 23.09], // translation
+      "trans": [27.09, 1.04, 27.70], // translation
       "etype": "crate", // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "kill_mask": 0,
@@ -141,7 +145,7 @@
       "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
       "lump": {
         "name": "sol-crate-test-1",
-        "eco-info": ["eco-info", "(pickup-type eco-pill-dark)", 2]
+        "eco-info": ["eco-info", "(pickup-type bolt-20)", 2]
       }
     },
     {
@@ -163,7 +167,7 @@
       "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
       "lump": {
         "name": "sol-crate-test-3",
-        "eco-info": ["eco-info", "(pickup-type eco-pill-dark)", 3]
+        "eco-info": ["eco-info", "(pickup-type bolt-1)", 5]
       }
     },
     {
@@ -189,14 +193,54 @@
       }
     },
     {
-      "trans": [-11.51, 3.5, 29.09], // translation
-      "etype": "teleporter", // actor type
+      "trans": [20.71, 1.04, 23.091], // translation
+      "etype": "bolt-1", // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat": [0, 0, 0, 1], // quaternion
       "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
       "lump": {
-        "name": "teleporter-test"
+        "name": "bolt-1-test"
+      }
+    },
+    {
+      "trans": [20.95, 1.04, 15.221], // translation
+      "etype": "bolt-5", // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat": [0, 0, 0, 1], // quaternion
+      "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
+      "lump": {
+        "name": "bolt-5-test"
+      }
+    },
+    {
+      "trans": [20.64, 1.04, 8.101], // translation
+      "etype": "bolt-20", // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat": [0, 0, 0, 1], // quaternion
+      "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
+      "lump": {
+        "name": "bolt-20-test"
+      }
+    },
+    {
+      "trans": [20.91, 1.04, -0.121], // translation
+      "etype": "bolt-50", // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat": [0, 0, 0, 1], // quaternion
+      "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
+      "lump": {
+        "name": "bolt-50-test"
       }
     }
+    // {
+    //   "trans": [-11.51, 3.5, 29.09], // translation
+    //   "etype": "teleporter", // actor type
+    //   "game_task": 0, // associated game task (for powercells, etc)
+    //   "quat": [0, 0, 0, 1], // quaternion
+    //   "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
+    //   "lump": {
+    //     "name": "teleporter-test"
+    //   }
+    // }
   ]
 }
