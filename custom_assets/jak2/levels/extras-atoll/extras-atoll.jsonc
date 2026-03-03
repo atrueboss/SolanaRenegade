@@ -40,6 +40,7 @@
   "art_groups":   [
                   "warp-gate-ag",
                   "forest-part-ag"
+                  // "metalmonk-ag"
                   ],
 
    // Any textures you want to include in your custom level.
@@ -47,10 +48,43 @@
    // To get a list of all the textures, you can extract all of the game's textures
    // by setting "save_texture_pngs" to true in the decompiler config.
    "textures":  [
-
                 ],
 
   "actors" : [
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////// EXTRA ENEMIES /////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    // ATTEMPT AT ADDING AN EXTRA ENEMY TO A VANILLA LEVEL
+
+    // {
+    //   "aid": 800000,
+    //   "trans": [ 554.23, 1.08, -903.19], // location
+    //   "etype": "metalmonk",  // actor type
+    //   "game_task": 0, // associated game task (for powercells, etc)
+    //   "quat" : [0, 0.6314, 0, 0.7754], // quaternion
+    //   "bsphere": [ 167.06,  36.22, -441.12, 10], // bounding sphere
+    //   "lump": {
+    //     "name":"extra-metalmonk-1",
+    //     "nav-mesh-actor": ["uint32", 4505], // value is the "aid" of the nav-mesh, not the "nav-mesh" itself
+    //     "enemy-options": ["enum-uint32", "(enemy-option multi-focus spawner)"], // force spawn 
+    //     // "path": ["vector4m",
+    //     //   [1187.94, -66.72, 465.60, 1.0],
+    //     //   [1192.30, -66.72, 465.65, 1.0],
+    //     //   [1187.09, -66.72, 462.88, 1.0],
+    //     //   [1187.94, -66.72, 465.60, 1.0]
+    //     //   ]
+    //     "path": ["vector",
+    //     [2255467.25, -437.1503601074219, -3640977.75, 1.0],
+    //     [2280449.5, -437.1503601074219, -3678675.5, 1.0],
+    //     [2243345.5, 437.1503601074219, -3693566.75, 1.0],
+    //     [2255467.25, -437.1503601074219, -3640977.75, 1.0]
+    //     ]
+    //  }
+    // },
+
     {
       "trans": [ 558.23,  4.34, -855.91], // hidden behind rift ring
       "etype": "skill",  // actor type
@@ -58,7 +92,7 @@
       "quat" : [0, 0.6314, 0, 0.7754], // quaternion
       "bsphere": [ 167.06,  36.22, -441.12, 10], // bounding sphere
       "lump": {
-        "name":"extra-skill-01"
+        "name":"extra-skill-1"
       }
     },
     {
@@ -68,7 +102,7 @@
       "quat" : [0, 0.6314, 0, 0.7754], // quaternion
       "bsphere": [ 167.06,  36.22, -441.12, 10], // bounding sphere
       "lump": {
-        "name":"extra-skill-02"
+        "name":"extra-skill-2"
       }
     }
   ]

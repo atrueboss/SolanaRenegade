@@ -25,6 +25,27 @@
     ;; git add custom_assets/jak2/levels/veldin1/veldin1.glb 
     ;; git commit -m "veldin1.glb"
     
+;; Attempt at adding extra enemies to vanilla levels  
+;; Fix compiler error just in case I move this somewhere else
+(declare-type metalmonk nav-enemy)
+;; Hack to force enemies to spawn
+(process-spawn-function process
+  (lambda :behavior process ()
+    (loop
+       ;; If final boss killed
+       (when (= (-> (level-get-target-inside *level*) name) 'atoll)
+         (when (task-closed? "nest-boss-resolution")
+           ;; METALMONK in extras-atoll (atoll)
+           (when (and (entity-by-type juicer) (task-closed? "nest-boss-resolution"))
+             (logclear! (-> (entity-by-name "extra-metalmonk-1") extra kill-mask) (task-mask done task1 task2 task3)) ;; extra-metalmonk-1
+           )
+         )
+       )
+  (suspend)
+    )
+  )
+)
+
     ;; Custom Moods for different levels
     (defun custom-mood-on-spawn ()
       (case (-> (level-get-target-inside *level*) name)

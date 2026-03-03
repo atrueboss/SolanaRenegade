@@ -20068,7 +20068,7 @@
     :dbname ,name
     :taskname 'default
     :packages '()
-    :memory-mode (load-buffer-mode ,level-size)
+    :memory-mode (load-buffer-mode borrow)
     :music-bank #f
     :ambient-sounds '()
     :mood-func ,mood-func

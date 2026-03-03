@@ -4,5 +4,7 @@
 ;; the actual file name still needs to be 8.3
 ("EXA.DGO"
  (
+;;   "metalmonk.o"
+;;   "metalmonk-ag.go"
   "extras-atoll.go"
   ))
