@@ -468,20 +468,27 @@
            )
        )
       )
-    ;; MODIFIED: Spawn multiple pickups from eco-info
+   ;; MODIFIED: Spawn multiple pickups from eco-info (max 3 pairs, strict validation)
 (let ((eco-array (res-lump-data (-> self entity) 'eco-info (pointer int32))))
   (if eco-array
-      ;; Has eco-info - spawn multiple items
-      (dotimes (i 2)
+      ;; Has eco-info - spawn up to 3 items
+      (dotimes (i 3)
         (let ((pickup-id (-> eco-array (* i 2)))
               (amount (-> eco-array (+ (* i 2) 1))))
-          (when (> pickup-id 0)  ;; Only spawn if valid ID
-            ;; Temporarily set the crate's fact to this pickup type
-            (set! (-> self fact pickup-type) (the-as pickup-type pickup-id))
-            (set! (-> self fact pickup-amount) (the float amount))
-            ;; Use the original drop-pickup which handles positioning correctly
-            (drop-pickup (-> self fact) #t *entity-pool* (the-as fact-info #f) arg1)
-            )
+          ;; STRICT validation: pickup IDs 1-40, amounts 1-100
+          (if (and (> pickup-id 0) 
+                   (< pickup-id 40)      ;; Stricter - most pickup types are under 40
+                   (> amount 0) 
+                   (< amount 100))       ;; Stricter - amounts usually under 100
+              ;; Valid entry - spawn it
+              (begin
+                (set! (-> self fact pickup-type) (the-as pickup-type pickup-id))
+                (set! (-> self fact pickup-amount) (the float amount))
+                (drop-pickup (-> self fact) #t *entity-pool* (the-as fact-info #f) arg1)
+                )
+              ;; Invalid - stop immediately
+              (set! i 3)
+              )
           )
         )
       ;; No eco-info - use default drop-pickup
@@ -700,20 +707,27 @@
            )
        )
       )
-    ;; MODIFIED: Spawn multiple pickups from eco-info
+   ;; MODIFIED: Spawn multiple pickups from eco-info (max 3 pairs, strict validation)
 (let ((eco-array (res-lump-data (-> self entity) 'eco-info (pointer int32))))
   (if eco-array
-      ;; Has eco-info - spawn multiple items
-      (dotimes (i 2)
+      ;; Has eco-info - spawn up to 3 items
+      (dotimes (i 3)
         (let ((pickup-id (-> eco-array (* i 2)))
               (amount (-> eco-array (+ (* i 2) 1))))
-          (when (> pickup-id 0)  ;; Only spawn if valid ID
-            ;; Temporarily set the crate's fact to this pickup type
-            (set! (-> self fact pickup-type) (the-as pickup-type pickup-id))
-            (set! (-> self fact pickup-amount) (the float amount))
-            ;; Use the original drop-pickup which handles positioning correctly
-            (drop-pickup (-> self fact) #t *entity-pool* (the-as fact-info #f) arg1)
-            )
+          ;; STRICT validation: pickup IDs 1-40, amounts 1-100
+          (if (and (> pickup-id 0) 
+                   (< pickup-id 40)      ;; Stricter - most pickup types are under 40
+                   (> amount 0) 
+                   (< amount 100))       ;; Stricter - amounts usually under 100
+              ;; Valid entry - spawn it
+              (begin
+                (set! (-> self fact pickup-type) (the-as pickup-type pickup-id))
+                (set! (-> self fact pickup-amount) (the float amount))
+                (drop-pickup (-> self fact) #t *entity-pool* (the-as fact-info #f) arg1)
+                )
+              ;; Invalid - stop immediately
+              (set! i 3)
+              )
           )
         )
       ;; No eco-info - use default drop-pickup
