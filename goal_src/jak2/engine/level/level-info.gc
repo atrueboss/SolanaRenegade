@@ -15760,7 +15760,7 @@
     :dbname 'test-zone
     :taskname 'default
     :packages '()
-    ;; :memory-mode (load-buffer-mode small-center)
+    :memory-mode (load-buffer-mode small-edge)
     :music-bank 'city1
     :ambient-sounds '()
     :mood-func 'update-mood-default
@@ -15784,7 +15784,7 @@
         :vis-nick #f
         :want (new 'static 'inline-array level-buffer-state 6
           (new 'static 'level-buffer-state :name 'test-zone :display? 'display :force-vis? #f :force-inside? #f)
-          (new 'static 'level-buffer-state :name 'ctywide :display? 'display :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
           (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
           (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
           (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
