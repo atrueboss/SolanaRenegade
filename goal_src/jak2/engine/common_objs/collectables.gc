@@ -2195,7 +2195,7 @@
           (the int (-> *game-info* bolt-total)))
   
   ;; Play pickup sound
-  (sound-play "skill-pickup")
+  (play-sound-file "bolt-1.mp3" (the int (* (-> *setting-control* user-current sfx-volume) 8.0)))
   
   (none)
   )
@@ -2321,7 +2321,7 @@
           (the int (-> *game-info* bolt-total)))
   
   ;; Play pickup sound
-  (sound-play "skill-pickup")
+  (play-sound-file "bolt-5-20.mp3" (the int (* (-> *setting-control* user-current sfx-volume) 8.0)))
   
   (none)
   )
@@ -2447,7 +2447,7 @@
           (the int (-> *game-info* bolt-total)))
   
   ;; Play pickup sound
-  (sound-play "skill-pickup")
+  (play-sound-file "bolt-5-20.mp3" (the int (* (-> *setting-control* user-current sfx-volume) 8.0)))
   
   (none)
   )
@@ -2573,7 +2573,7 @@
           (the int (-> *game-info* bolt-total)))
   
   ;; Play pickup sound
-  (sound-play "skill-pickup")
+  (play-sound-file "bolt-50.mp3" (the int (* (-> *setting-control* user-current sfx-volume) 8.0)))
   
   (none)
   )
@@ -2699,7 +2699,7 @@
           (the int (-> *game-info* goldbolt-total)))
   
   ;; Play pickup sound
-  (sound-play "skill-pickup")
+  (play-sound-file "goldbolt.wav" (the int (* (-> *setting-control* user-current sfx-volume) 50.0)))
   
   (none)
   )
