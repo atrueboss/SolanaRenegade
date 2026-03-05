@@ -270,10 +270,6 @@
    (gem-total               float)
    (skill                   float)
    (skill-total             float)
-   (bolt                    float)          ;; MOD: for bolts
-   (bolt-total              float)          ;; MOD: for bolts
-   (goldbolt                float)          ;; MOD: for gold bolts
-   (goldbolt-total          float)          ;; MOD: for gold bolts 
    (karma                   float)
    (eco-pill-dark           float)
    (eco-pill-dark-total     float)
@@ -356,6 +352,10 @@
    (homing-beacon           int32)
    (dark-eco-pickup         int32)
    (green-eco-pickup        int32)
+   (bolt                    float)          ;; MOD: for bolts
+   (bolt-total              float)          ;; MOD: for bolts
+   (goldbolt                float)          ;; MOD: for gold bolts
+   (goldbolt-total          float)          ;; MOD: for gold bolts 
    )
   (:methods
     (initialize! (_type_ symbol game-save string) _type_)
