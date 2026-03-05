@@ -8,13 +8,18 @@
   "water-anim.o" ;;water anim
   
   "solana-common-obs.o"
+  "test-actor-ag.go"
   "goldbolt-ag.go"
   "infobot-ag.go"
   "sol-crate-ag.go"
   "sol-crate-ammo-ag.go"
   "vendor-ag.go"
   "teleporter-ag.go"
-  "drill-part.o" ;; for goldbolt / infobot glow particle
+  "bolt-1-ag.go"
+  "bolt-5-ag.go"
+  "bolt-20-ag.go"
+  "bolt-50-ag.go"
+  "drill-part.o" ;; for goldbolt / infobot glow particle 
 
   "dig1-obs.o" ;;dig stuff (for the jump-pad)
   "dig-jump-pad-ag.go" ;;jump pad
