@@ -65,6 +65,7 @@
                     "infobot",
                     "sol-crate",
                     "sol-crate-ammo",
+                    "sol-crate-iron",
                     "vendor",
                     "teleporter",
                     "bolt-1",
@@ -106,7 +107,6 @@
         "name": "test-actor"
       }
     },
-
     {
       "trans": [-0.35, 3.5, 29.162], // translation
       "etype": "goldbolt", // actor type
@@ -135,7 +135,10 @@
       "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
       "lump": {
         "name": "sol-crate-test-1",
-        "eco-info": ["eco-info", "(pickup-type bolt-20)", 2]
+        "eco-info": ["int32",  // *max 3 pairs (6 items) or will crash. also bolt-20 or bolt-50 inside = crate doesn't respawn.
+// ammo-yellow 13, ammo-red 14, ammo-blue 15, ammo-dark 16, bolt-1 34, bolt-5 35, bolt-20 36, bolt-50 37
+                    34, 7  // bolt-1 x3
+                    ]  
       }
     },
     {
@@ -146,8 +149,9 @@
       "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
       "lump": {
         "name": "sol-crate-test-2",
-        "eco-info": ["int32", 
-                    34, 3, // bolt-1 x3
+        "eco-info": ["int32",  // *max 3 pairs (6 items) or will crash. also bolt-20 or bolt-50 inside = crate doesn't respawn.
+//ammo-yellow 13, ammo-red 14, ammo-blue 15, ammo-dark 16, health 18, eco-pill-dark 7, bolt-1 34, bolt-5 35, bolt-20 36, bolt-50 37
+                    34, 3,  // bolt-1 x3
                     35, 2  // bolt-5 x2
                     ]  
       }
@@ -160,7 +164,28 @@
       "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
       "lump": {
         "name": "sol-crate-test-3",
-        "eco-info": ["eco-info", "(pickup-type bolt-1)", 5]
+        "eco-info": ["int32",  // *max 3 pairs (6 items) or will crash. also bolt-20 or bolt-50 inside = crate doesn't respawn.
+//ammo-yellow 13, ammo-red 14, ammo-blue 15, ammo-dark 16, health 18, eco-pill-dark 7, bolt-1 34, bolt-5 35, bolt-20 36, bolt-50 37  
+                    34, 3,  // bolt-1 x3
+                    35, 2,  // bolt-5 x2
+                    7, 3   // eco-pill-dark x3
+                    ]  
+      }
+    },
+    {
+      "trans": [16.49, 1.04, 21.25], // for placing on top, crate height is +1.76
+      "etype": "sol-crate-iron", // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat": [0, 0, 0, 1], // quaternion
+      "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
+      "lump": {
+        "name": "sol-crate-iron-test",
+        "eco-info": ["int32",  // *max 3 pairs (6 items) or will crash. also bolt-20 or bolt-50 inside = crate doesn't respawn.
+//ammo-yellow 13, ammo-red 14, ammo-blue 15, ammo-dark 16, health 18, eco-pill-dark 7, bolt-1 34, bolt-5 35, bolt-20 36, bolt-50 37
+                    34, 3,  // bolt-1 x3
+                    35, 2,  // bolt-5 x2
+                    34, 1   // bolt-1 x1
+                    ]  
       }
     },
     {
@@ -171,9 +196,11 @@
       "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
       "lump": {
         "name": "sol-crate-ammo-test",
-        "eco-info": ["int32", 
-                    13, 21, // ammo-yellow x2
-                    14, 14  // ammo-red x2
+        "eco-info": ["int32",  // *max 3 pairs (6 items) or will crash. also bolt-20 or bolt-50 inside = crate doesn't respawn.
+//ammo-yellow 13, ammo-red 14, ammo-blue 15, ammo-dark 16, health 18, eco-pill-dark 7, bolt-1 34, bolt-5 35, bolt-20 36, bolt-50 37
+                    13, 21,   // ammo-yellow x21
+                    14, 14,   // ammo-red x14
+                    15, 5    // ammo-blue x5
                     ]  
       }
     },

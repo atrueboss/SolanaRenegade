@@ -746,6 +746,262 @@
     )
   )
 
+(deftype sol-crate-iron (crate)
+  ()
+  )
+
+(def-actor sol-crate-iron
+  :bounds (0 0 0 5))
+
+(defmethod skel-init! ((this sol-crate-iron))
+  "Initialize the sol-crate-iron's skeleton - uses sol-crate-iron model instead of krimson crate"
+  ;; Initialize skeleton - use sol-crate-iron model
+  (initialize-skeleton this *sol-crate-iron-sg* '())
+  (set! (-> this base quad) (-> this root trans quad))
+  (crate-post)
+  (nav-mesh-connect-from-ent this)
+  (none)
+  )
+
+(defmethod crate-init! ((this sol-crate-iron) (arg0 entity-actor))
+  "Initialize the [[crate]] with the specified [[entity-actor]]."
+  (stack-size-set! (-> this main-thread) 128)
+  (logior! (-> this mask) (process-mask crate))
+  (let ((s4-0 (new 'process 'collide-shape-moving this (collide-list-enum usually-hit-by-player))))
+    (set! (-> s4-0 dynam) (copy *standard-dynamics* 'process))
+    (set! (-> s4-0 reaction) cshape-reaction-default)
+    (set! (-> s4-0 no-reaction)
+          (the-as (function collide-shape-moving collide-query vector vector object) nothing)
+          )
+    (let ((v1-10 (new 'process 'collide-shape-prim-mesh s4-0 (the-as uint 0) (the-as uint 0))))
+      (set! (-> v1-10 prim-core collide-as) (collide-spec crate notice-blue-eco-powerup))
+      (set! (-> v1-10 prim-core collide-with) (collide-spec jak player-list tobot))
+      (set! (-> v1-10 prim-core action) (collide-action solid rideable))
+      (set! (-> v1-10 transform-index) 0) ;; set to 0 to use actual model collision of sol-crate-iron.glb
+      (set-vector! (-> v1-10 local-sphere) 0.0 2100.0 0.0 2024.0) ;; micro-adjustment of collision sphere 
+      (set! (-> s4-0 total-prims) (the-as uint 1))
+      (set! (-> s4-0 root-prim) v1-10)
+      )
+    (set! (-> s4-0 nav-radius) (* 0.75 (-> s4-0 root-prim local-sphere w)))
+    (let ((v1-13 (-> s4-0 root-prim)))
+      (set! (-> s4-0 backup-collide-as) (-> v1-13 prim-core collide-as))
+      (set! (-> s4-0 backup-collide-with) (-> v1-13 prim-core collide-with))
+      )
+    (set! (-> s4-0 penetrated-by)
+          (penetrate
+            jak-red-shot
+            jak-yellow-shot
+            jak-dark-shot
+            dark-bomb
+            dark-giant
+            )
+          )
+    (set! (-> this root) s4-0)
+    )
+  (set! (-> this fact)
+        (new 'process 'fact-info-crate this (pickup-type eco-pill-random) (-> *FACT-bank* default-eco-pill-green-inc))
+        )
+  (when (-> this entity)
+    (let ((v1-22 (-> this entity extra perm)))
+      (set! (-> this fact pickup-amount)
+            (fmax 0.0 (- (-> this fact pickup-amount) (the float (-> v1-22 user-int8 1))))
+            )
+      )
+    )
+  (when (and (-> this entity) (logtest? (-> this entity extra perm status) (entity-perm-status subtask-complete)))
+    (set! (-> this fact pickup-type) (pickup-type eco-pill-random))
+    (set! (-> this fact pickup-amount) 0.0)
+    )
+  (when arg0
+    (process-drawable-from-entity! this arg0)
+    (logclear! (-> this mask) (process-mask actor-pause))
+    )
+  (let ((v1-37
+          ((method-of-type res-lump get-property-struct)
+           (-> this entity)
+           'crate-type
+           'interp
+           -1000000000.0
+           (the-as structure 'wood)
+           (the-as (pointer res-tag) #f)
+           *res-static-buf*
+           )
+          )
+        )
+    (set! (-> this look) (the-as symbol v1-37))
+    (set! (-> this defense) (the-as symbol v1-37))
+    )
+  (set! (-> this carry)
+        (new 'process 'carry-info this 3 (new 'static 'vector :w 1.0) (new 'static 'vector :y 1.0 :w 1.0) 0.0)
+        )
+  (set! (-> this carry max-pull) 3686.4)
+  (set! (-> this carry carry-radius) 3276.8)
+  (set! (-> this target) (the-as handle #f))
+  (none)
+  )
+
+(defstate idle (sol-crate-iron)
+  :virtual #t
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+    (case message
+      (('attack)
+       (let ((penetrate-flags (get-penetrate-using-from-attack-event (the process-drawable proc) block)))
+         (when (logtest? (penetrate jak-red-shot jak-yellow-shot jak-dark-shot dark-punch dark-skin dark-bomb dark-giant) penetrate-flags)
+           (go-virtual die #f 0)
+           )
+         )
+       )
+      (else
+       ;; Pass other events to standard crate handler
+       (crate-standard-event-handler proc argc message block)
+       )
+      )
+    )
+  :code (behavior ()
+    (suspend)
+    (update-transforms (the-as collide-shape-moving (-> self root)))
+    (carry-info-method-9 (-> self carry))
+    (logior! (-> self mask) (process-mask sleep))
+    (until #f
+      (suspend)
+      )
+    #f
+    )
+  :post ja-post
+  )
+
+(defstate die (sol-crate-iron)
+  :virtual #t
+  :event (behavior ((proc process) (argc int) (message symbol) (block event-message-block))
+    (case message
+      (('touched)
+       (case (-> self defense)
+         (('darkeco)
+          (send-event proc 'attack (-> block param 0) (static-attack-info ((id (new-attack-id)) (mode 'darkeco))))
+          )
+         )
+       )
+      )
+    )
+  :code (behavior ((arg0 symbol) (arg1 int))
+    (logior! (-> self focus-status) (focus-status dead))
+    (let ((v1-3 (-> (the-as collide-shape (-> self root)) root-prim)))
+      (set! (-> v1-3 prim-core collide-as) (collide-spec))
+      (set! (-> v1-3 prim-core collide-with) (collide-spec))
+      )
+    0
+    (if (nonzero? (-> self sound))
+        (stop! (-> self sound))
+        )
+    (let ((v1-10 (handle->process (-> self target))))
+      (if (and (and v1-10 (= (-> v1-10 type) target) (focus-test? (the-as process-focusable v1-10) flut tube board pilot))
+               (and (!= (-> self fact pickup-type) 10) (not arg0))
+               )
+          (logior! (-> self fact options) (actor-option suck-in))
+          )
+      )
+    (when (not arg0)
+      (suspend-for (seconds 0.04)
+        )
+      (logior! (-> self draw status) (draw-control-status no-draw))
+      (case (-> self look)
+        (('iron)
+         (play-sound-file "sol-crate-iron-die.wav" (the int (* (-> *setting-control* user-current sfx-volume) 75.0)))
+         )
+        (('steel)
+         (play-sound-file "sol-crate-iron-die.wav" (the int (* (-> *setting-control* user-current sfx-volume) 75.0)))
+         )
+        (('darkeco)
+         (play-sound-file "sol-crate-iron-die.wav" (the int (* (-> *setting-control* user-current sfx-volume) 75.0)))
+         )
+        (else
+          (play-sound-file "sol-crate-iron-die.wav" (the int (* (-> *setting-control* user-current sfx-volume) 75.0)))
+          )
+        )
+      (case (-> self defense)
+        (('darkeco)
+         (let ((f0-0 (lerp-scale 1.0 0.0 (vector-vector-distance (-> self root trans) (target-pos 0)) 8192.0 40960.0)))
+           (cpad-set-buzz! (-> *cpad-list* cpads 0) 1 (the int (* 255.0 f0-0)) (seconds 0.3))
+           )
+         (process-spawn
+           touch-tracker
+           :init touch-tracker-init
+           (-> self root trans)
+           (-> *CRATE-bank* DARKECO_EXPLODE_RADIUS)
+           30
+           :to self
+           )
+         )
+        )
+      (case (-> self look)
+        (('darkeco)
+         (part-tracker-spawn :to self :group group-dark-eco-box-explosion :mat-joint (-> self root trans))
+         )
+        (('steel 'iron)
+         (part-tracker-spawn :to self :group group-crate-steel-explode :mat-joint (-> self root trans))
+         )
+        (else
+          (part-tracker-spawn :to self :group group-crate-explode :mat-joint (-> self root trans))
+          )
+        )
+      )
+    (case (-> self fact pickup-type)
+      (((pickup-type money)
+        (pickup-type buzzer)
+        (pickup-type eco-blue)
+        (pickup-type eco-yellow)
+        (pickup-type eco-red)
+        (pickup-type fuel-cell)
+        (pickup-type gem)
+        (pickup-type skill)
+        )
+       (go-virtual special-contents-die)
+       )
+      (((pickup-type health))
+       (if (not (demo?))
+           (talker-spawn-func (-> *talker-speech* 8) *entity-pool* (target-pos 0) (the-as region #f))
+           )
+       )
+      )
+   ;; MODIFIED: Spawn multiple pickups from eco-info (max 3 pairs, strict validation)
+(let ((eco-array (res-lump-data (-> self entity) 'eco-info (pointer int32))))
+  (if eco-array
+      ;; Has eco-info - spawn up to 3 items
+      (dotimes (i 3)
+        (let ((pickup-id (-> eco-array (* i 2)))
+              (amount (-> eco-array (+ (* i 2) 1))))
+          ;; STRICT validation: pickup IDs 1-40, amounts 1-100
+          (if (and (> pickup-id 0) 
+                   (< pickup-id 40)      ;; Stricter - most pickup types are under 40
+                   (> amount 0) 
+                   (< amount 100))       ;; Stricter - amounts usually under 100
+              ;; Valid entry - spawn it
+              (begin
+                (set! (-> self fact pickup-type) (the-as pickup-type pickup-id))
+                (set! (-> self fact pickup-amount) (the float amount))
+                (drop-pickup (-> self fact) #t *entity-pool* (the-as fact-info #f) arg1)
+                )
+              ;; Invalid - stop immediately
+              (set! i 3)
+              )
+          )
+        )
+      ;; No eco-info - use default drop-pickup
+      (drop-pickup (-> self fact) #t *entity-pool* (the-as fact-info #f) arg1)
+      )
+  )
+    (process-entity-status! self (entity-perm-status dead) #t)
+    (process-entity-status! self (entity-perm-status subtask-complete) #t)
+    (suspend-for (seconds 5)
+      )
+    (when (logtest? (actor-option cond-respawn) (-> self fact options))
+      (suspend-for (seconds 15)
+        )
+      (go-virtual hide)
+      )
+    )
+  )
+
 (defmethod crate-init! ((this pickup-spawner) (arg0 entity-actor))
   "Initialize the [[crate]] with the specified [[entity-actor]]."
   (let ((t9-0 (method-of-type crate crate-init!)))

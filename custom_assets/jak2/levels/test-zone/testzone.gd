@@ -14,6 +14,7 @@
   "infobot-ag.go"
   "sol-crate-ag.go"
   "sol-crate-ammo-ag.go"
+  "sol-crate-iron-ag.go"
   "vendor-ag.go"
   "teleporter-ag.go"
   "bolt-1-ag.go"

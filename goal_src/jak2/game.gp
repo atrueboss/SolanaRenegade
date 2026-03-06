@@ -409,6 +409,7 @@
 (build-actor "infobot" :force-run #t :gen-mesh #t)
 (build-actor "sol-crate" :force-run #t :gen-mesh #t)
 (build-actor "sol-crate-ammo" :force-run #t :gen-mesh #t)
+(build-actor "sol-crate-iron" :force-run #t :gen-mesh #t)
 (build-actor "vendor" :force-run #t :gen-mesh #t)
 (build-actor "teleporter" :force-run #t :gen-mesh #t)
 

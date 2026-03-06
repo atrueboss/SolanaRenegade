@@ -2,11 +2,11 @@ import bpy
 
 COLLECTION_NAME = "Crate Collection"
 
-# Default crate type if no match
 DEFAULT_ETYPE = "sol-crate"
 
-# Keyword -> etype mapping (case-insensitive substring match on object name)
+# Keyword -> etype mapping
 ETYPE_RULES = [
+    ("iron", "sol-crate-iron"),
     ("ammo", "sol-crate-ammo"),
 ]
 
@@ -33,24 +33,33 @@ def fmt(value, decimals):
 
 def get_etype_for_object(obj):
     name_l = obj.name.lower()
+
     for keyword, etype in ETYPE_RULES:
-        if keyword.lower() in name_l:
+        if keyword in name_l:
             return etype
+
     return DEFAULT_ETYPE
 
 
 def convert_quaternion(obj):
     q = obj.matrix_world.to_quaternion()
     q.normalize()
-    # Game format: X, Z, -Y, W
-    return [q.x, q.z, -q.y, q.w]
+
+    return [
+        q.x,
+        q.z,
+        -q.y,
+        q.w
+    ]
 
 
 def build_actor(obj, etype, count):
+
     pos = obj.matrix_world.translation
     quat = convert_quaternion(obj)
 
     s = ""
+
     s += "{\n"
     s += f'    "trans": [{fmt(pos.x, ROUND_POS)}, {fmt(pos.z, ROUND_POS)}, {fmt(-pos.y, ROUND_POS)}],\n'
     s += f'    "etype": "{etype}",\n'
@@ -63,10 +72,13 @@ def build_actor(obj, etype, count):
     s += '            "uint32",\n'
 
     numeric = [x for x in ECO_INFO if not isinstance(x, str)]
+
     for i in range(0, len(numeric), 2):
+
         a = numeric[i]
-        b = numeric[i + 1]
-        if i + 2 >= len(numeric):
+        b = numeric[i+1]
+
+        if i+2 >= len(numeric):
             s += f"            {a}, {b}\n"
         else:
             s += f"            {a}, {b},\n"
@@ -74,22 +86,28 @@ def build_actor(obj, etype, count):
     s += "        ]\n"
     s += "    }\n"
     s += "},\n"
+
     return s
 
 
 collection = bpy.data.collections.get(COLLECTION_NAME)
+
 output = ""
 
 if collection:
+
     objs = all_objects_recursive(collection)
     objs.sort(key=lambda o: o.name.lower())
 
-    # Separate counters per etype
     counters = {}
 
     for obj in objs:
+
         etype = get_etype_for_object(obj)
+
         counters[etype] = counters.get(etype, 0) + 1
+
         output += build_actor(obj, etype, counters[etype])
+
 
 bpy.context.window_manager.clipboard = output
