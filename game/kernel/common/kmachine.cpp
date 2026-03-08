@@ -152,7 +152,7 @@ std::mutex mainMusicMutex;
 // Function to stop all instances of specific sound by filepath
 void stopMP3(u32 filePathu32) {
   std::string filePath = Ptr<String>(filePathu32).c()->data();
-  std::cout << "Trying to stop file: " << filePath << std::endl;
+  std::cout << "Attempting to stop file: " << filePath << std::endl;
 
   std::lock_guard<std::mutex> lock(activeMusicsMutex);
   auto it = maSoundMap.find(filePath);
@@ -160,7 +160,7 @@ void stopMP3(u32 filePathu32) {
     std::cerr << "Couldn't find sound to stop: " << filePath << std::endl;
   } else {
     // stop all instances of this sound
-    for (auto sound : it->second) {
+    for (auto& sound : it->second) {  // ← CHANGED: Added & to make it a reference!
       if (MiniAudioLib::ma_sound_stop(&sound) != MiniAudioLib::MA_SUCCESS) {
         std::cerr << "Failed to stop sound: " << filePath << std::endl;
       }
