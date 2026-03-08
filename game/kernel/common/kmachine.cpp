@@ -76,7 +76,7 @@ u32 vblank_interrupt_handler = 0;
 Timer ee_clock_timer;
 
 MiniAudioLib::ma_engine maEngine;
-std::map<std::string, std::list<MiniAudioLib::ma_sound>> maSoundMap;
+std::map<std::string, std::list<MiniAudioLib::ma_sound*>> maSoundMap;  // Add * for pointers
 MiniAudioLib::ma_sound* mainMusicSound;
 
 void kmachine_init_globals_common() {
@@ -160,12 +160,11 @@ void stopMP3(u32 filePathu32) {
     std::cerr << "Couldn't find sound to stop: " << filePath << std::endl;
   } else {
     // stop all instances of this sound
-    for (auto& sound : it->second) {  // ← CHANGED: Added & to make it a reference!
-      if (MiniAudioLib::ma_sound_stop(&sound) != MiniAudioLib::MA_SUCCESS) {
-        std::cerr << "Failed to stop sound: " << filePath << std::endl;
-      }
-      // let the thread finish and handle ma_sound_uninit
+    for (auto* sound_ptr : it->second) {  // Now iterating over pointers
+  if (MiniAudioLib::ma_sound_stop(sound_ptr) != MiniAudioLib::MA_SUCCESS) {
+    std::cerr << "Failed to stop sound: " << filePath << std::endl;
     }
+  }
     // clear list of sounds for this filepath
     it->second.clear();
   }
@@ -207,16 +206,17 @@ u64 playMP3_internal(u32 filePathu32, u32 volume, bool isMainMusic) {
     std::cout << "Playing file: " << filePath << std::endl;
 
     MiniAudioLib::ma_result result;
-    MiniAudioLib::ma_sound sound;
+    MiniAudioLib::ma_sound* sound = new MiniAudioLib::ma_sound;  // Use new to allocate on heap
 
-    result = MiniAudioLib::ma_sound_init_from_file(&maEngine, fullFilePath.c_str(), 0, NULL, NULL,
-                                                    &sound);
-    if (result != MiniAudioLib::MA_SUCCESS) {
-      std::cout << "Failed to load: " << filePath << std::endl;
-      return;
-    }
+result = MiniAudioLib::ma_sound_init_from_file(&maEngine, fullFilePath.c_str(), 0, NULL, NULL,
+                                                sound);  // No & needed, already a pointer
+if (result != MiniAudioLib::MA_SUCCESS) {
+  std::cout << "Failed to load: " << filePath << std::endl;
+  delete sound;  // Clean up if failed
+  return;
+}
 
-    MiniAudioLib::ma_sound_set_volume(&sound, ((float)volume) / 100.0);
+MiniAudioLib::ma_sound_set_volume(sound, ((float)volume) / 100.0);
 
     if (isMainMusic) {
       MiniAudioLib::ma_sound_set_looping(&sound, MA_TRUE);
@@ -229,26 +229,28 @@ u64 playMP3_internal(u32 filePathu32, u32 volume, bool isMainMusic) {
 
     if (!isMainMusic) {
       std::lock_guard<std::mutex> lock(activeMusicsMutex);
-      if (maSoundMap.find(filePath) == maSoundMap.end()) {
-        maSoundMap.insert(std::make_pair(filePath, std::list<MiniAudioLib::ma_sound>()));
-      }
-      maSoundMap[filePath].push_back(sound);
+    if (maSoundMap.find(filePath) == maSoundMap.end()) {
+      maSoundMap.insert(std::make_pair(filePath, std::list<MiniAudioLib::ma_sound*>()));
+    }
+      maSoundMap[filePath].push_back(sound);  // Store the pointer
     }
 
     // sleep/loop until we're no longer main music, or non-looping sound is stopped/ends
-    while (mainMusicSound == &sound || MiniAudioLib::ma_sound_is_playing(&sound)) {
+    while (mainMusicSound == sound || MiniAudioLib::ma_sound_is_playing(sound)) {
       std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 
-    MiniAudioLib::ma_sound_stop(&sound);
-    MiniAudioLib::ma_sound_uninit(&sound);
+    // Cleanup - use pointer:
+    MiniAudioLib::ma_sound_stop(sound);
+    MiniAudioLib::ma_sound_uninit(sound);
+    delete sound;  // Free the memory
     std::cout << "Finished playing file: " << filePath << std::endl;
 
+    // Line 250 - Remove pointer from map:
     if (!isMainMusic) {
       std::lock_guard<std::mutex> lock(activeMusicsMutex);
       if (maSoundMap.find(filePath) != maSoundMap.end()) {
-        maSoundMap[filePath].remove_if(
-            [&](MiniAudioLib::ma_sound l_sound) { return &sound == &l_sound; });
+        maSoundMap[filePath].remove(sound);  // Remove the pointer
       }
     }
   });
