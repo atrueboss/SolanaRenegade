@@ -172,10 +172,10 @@ void stopMP3(u32 filePathu32) {
 
 // Function to stop all currently playing sounds.
 void stopAllSounds() {
-  for (auto& pair : maSoundMap) {
-    // stop all instances of this sound
-    for (auto sound : pair.second) {
-      MiniAudioLib::ma_sound_stop(&sound);
+  std::lock_guard<std::mutex> lock(activeMusicsMutex);  // Add lock here too
+  for (auto* pair : maSoundMap) {
+    for (auto* sound : pair.second) { 
+      MiniAudioLib::ma_sound_stop(sound);  
     }
     pair.second.clear();
   }
@@ -219,13 +219,13 @@ if (result != MiniAudioLib::MA_SUCCESS) {
 MiniAudioLib::ma_sound_set_volume(sound, ((float)volume) / 100.0);
 
     if (isMainMusic) {
-      MiniAudioLib::ma_sound_set_looping(&sound, MA_TRUE);
+      MiniAudioLib::ma_sound_set_looping(sound, MA_TRUE);
       mainMusicMutex.lock();
-      mainMusicSound = &sound;
+      mainMusicSound = sound;
       mainMusicMutex.unlock();
     }
 
-    MiniAudioLib::ma_sound_start(&sound);
+    MiniAudioLib::ma_sound_start(sound);
 
     if (!isMainMusic) {
       std::lock_guard<std::mutex> lock(activeMusicsMutex);
