@@ -1367,7 +1367,7 @@ void init_common_pc_port_functions(
   // Play sound file
   make_func_symbol_func("play-sound-file", (void*)playMP3);
 
-  // Check if sound file is playing
+  // Check if sound file is playing!
   make_func_symbol_func("is-sound-playing", (void*)is_sound_playing);
 
   // Stop sound file (all instances)
