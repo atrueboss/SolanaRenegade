@@ -37,8 +37,8 @@ namespace MiniAudioLib {
 #include "common/log/log.h"
 #include "common/symbols.h"
 #include "common/util/FileUtil.h"
+#include "common/util/FontUtils.h"
 #include "common/util/Timer.h"
-#include "common/util/font/font_utils.h"
 #include "common/util/string_util.h"
 
 #include "game/external/discord.h"
@@ -76,7 +76,7 @@ u32 vblank_interrupt_handler = 0;
 Timer ee_clock_timer;
 
 MiniAudioLib::ma_engine maEngine;
-std::map<std::string, std::list<MiniAudioLib::ma_sound*>> maSoundMap;  // Add * for pointers
+std::map<std::string, std::list<MiniAudioLib::ma_sound>> maSoundMap;
 MiniAudioLib::ma_sound* mainMusicSound;
 
 void kmachine_init_globals_common() {
@@ -152,19 +152,23 @@ std::mutex mainMusicMutex;
 // Function to stop all instances of specific sound by filepath
 void stopMP3(u32 filePathu32) {
   std::string filePath = Ptr<String>(filePathu32).c()->data();
-  std::cout << "Attempting to stop file: " << filePath << std::endl;
+  std::cout << "Trying to stop file: " << filePath << std::endl;
 
   std::lock_guard<std::mutex> lock(activeMusicsMutex);
   auto it = maSoundMap.find(filePath);
   if (it == maSoundMap.end()) {
-    std::cerr << "Couldn't find sound to stop: " << filePath << std::endl;
+    std::cerr << "  Couldn't find sound to stop: " << filePath << std::endl;
   } else {
     // stop all instances of this sound
-    for (auto* sound_ptr : it->second) {  // Now iterating over pointers
-  if (MiniAudioLib::ma_sound_stop(sound_ptr) != MiniAudioLib::MA_SUCCESS) {
-    std::cerr << "Failed to stop sound: " << filePath << std::endl;
+    for (auto sound : it->second) {
+      if (MiniAudioLib::ma_sound_stop(&sound) != MiniAudioLib::MA_SUCCESS) {
+        std::cerr << "  Failed to stop an instance of: " << filePath << std::endl;
+      } else {
+        MiniAudioLib::ma_sound_uninit(&sound);
+        std::cout << "  Stopped an instance of " << filePath << std::endl;
+      }
+      // let the thread finish and handle ma_sound_uninit
     }
-  }
     // clear list of sounds for this filepath
     it->second.clear();
   }
@@ -172,10 +176,16 @@ void stopMP3(u32 filePathu32) {
 
 // Function to stop all currently playing sounds.
 void stopAllSounds() {
-  std::lock_guard<std::mutex> lock(activeMusicsMutex);  // Add lock here too
-  for (auto* pair : maSoundMap) {
-    for (auto* sound : pair.second) { 
-      MiniAudioLib::ma_sound_stop(sound);  
+  for (auto& pair : maSoundMap) {
+    // stop all instances of this sound
+    std::cout << "Stopping instances of " << pair.first << std::endl;
+    for (auto sound : pair.second) {
+      if (MiniAudioLib::ma_sound_stop(&sound) != MiniAudioLib::MA_SUCCESS) {
+        std::cerr << "  Failed to stop an instance of: " << pair.first << std::endl;
+      } else {
+        MiniAudioLib::ma_sound_uninit(&sound);
+        std::cout << "  Stopped an instance of " << pair.first << std::endl;
+      }
     }
     pair.second.clear();
   }
@@ -189,6 +199,29 @@ std::vector<std::string> getPlayingFileNames() {
     playingFileNames.push_back(pair.first);
   }
   return playingFileNames;
+}
+
+u64 is_sound_playing(u32 filePathu32) {
+  std::string filePath = Ptr<String>(filePathu32).c()->data();
+
+  std::lock_guard<std::mutex> lock(activeMusicsMutex);
+  if (filePath.empty()) {
+    // empty str - check if ANY sound playing
+    for (auto& pair : maSoundMap) {
+      if (!(pair.second.empty())) {
+        return bool_to_symbol(true);
+      }
+    }
+  } else {
+    auto it = maSoundMap.find(filePath);
+    if (it != maSoundMap.end()) {
+      if (!(it->second.empty())) {
+        return bool_to_symbol(true);
+      }
+    }
+  }
+
+  return bool_to_symbol(false);
 }
 
 u64 playMP3_internal(u32 filePathu32, u32 volume, bool isMainMusic) {
@@ -206,51 +239,49 @@ u64 playMP3_internal(u32 filePathu32, u32 volume, bool isMainMusic) {
     std::cout << "Playing file: " << filePath << std::endl;
 
     MiniAudioLib::ma_result result;
-    MiniAudioLib::ma_sound* sound = new MiniAudioLib::ma_sound;  // Use new to allocate on heap
+    MiniAudioLib::ma_sound sound;
 
-result = MiniAudioLib::ma_sound_init_from_file(&maEngine, fullFilePath.c_str(), 0, NULL, NULL,
-                                                sound);  // No & needed, already a pointer
-if (result != MiniAudioLib::MA_SUCCESS) {
-  std::cout << "Failed to load: " << filePath << std::endl;
-  delete sound;  // Clean up if failed
-  return;
-}
+    result = MiniAudioLib::ma_sound_init_from_file(&maEngine, fullFilePath.c_str(), 0, NULL, NULL,
+                                                    &sound);
+    if (result != MiniAudioLib::MA_SUCCESS) {
+      std::cout << "  Failed to load: " << filePath << std::endl;
+      return;
+    }
 
-MiniAudioLib::ma_sound_set_volume(sound, ((float)volume) / 100.0);
+    MiniAudioLib::ma_sound_set_volume(&sound, ((float)volume) / 100.0);
 
     if (isMainMusic) {
-      MiniAudioLib::ma_sound_set_looping(sound, MA_TRUE);
+      MiniAudioLib::ma_sound_set_looping(&sound, MA_TRUE);
       mainMusicMutex.lock();
-      mainMusicSound = sound;
+      mainMusicSound = &sound;
       mainMusicMutex.unlock();
     }
 
-    MiniAudioLib::ma_sound_start(sound);
+    MiniAudioLib::ma_sound_start(&sound);
 
     if (!isMainMusic) {
       std::lock_guard<std::mutex> lock(activeMusicsMutex);
-    if (maSoundMap.find(filePath) == maSoundMap.end()) {
-      maSoundMap.insert(std::make_pair(filePath, std::list<MiniAudioLib::ma_sound*>()));
-    }
-      maSoundMap[filePath].push_back(sound);  // Store the pointer
+      if (maSoundMap.find(filePath) == maSoundMap.end()) {
+        maSoundMap.insert(std::make_pair(filePath, std::list<MiniAudioLib::ma_sound>()));
+      }
+      maSoundMap[filePath].push_back(sound);
+      std::cout << "  Added to maSoundMap instance of " << filePath << std::endl;
     }
 
     // sleep/loop until we're no longer main music, or non-looping sound is stopped/ends
-    while (mainMusicSound == sound || MiniAudioLib::ma_sound_is_playing(sound)) {
+    while (mainMusicSound == &sound || MiniAudioLib::ma_sound_is_playing(&sound)) {
       std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 
-    // Cleanup - use pointer:
-    MiniAudioLib::ma_sound_stop(sound);
-    MiniAudioLib::ma_sound_uninit(sound);
-    delete sound;  // Free the memory
+    MiniAudioLib::ma_sound_stop(&sound);
+    MiniAudioLib::ma_sound_uninit(&sound);
     std::cout << "Finished playing file: " << filePath << std::endl;
 
-    // Line 250 - Remove pointer from map:
     if (!isMainMusic) {
       std::lock_guard<std::mutex> lock(activeMusicsMutex);
       if (maSoundMap.find(filePath) != maSoundMap.end()) {
-        maSoundMap[filePath].remove(sound);  // Remove the pointer
+        maSoundMap[filePath].remove_if(
+            [&](MiniAudioLib::ma_sound l_sound) { return sound.pResourceManagerDataSource == l_sound.pResourceManagerDataSource; });
       }
     }
   });
@@ -1121,11 +1152,6 @@ void pc_set_letterbox(int w, int h) {
   Gfx::g_global_settings.lbox_h = h;
 }
 
-void pc_set_brightness_contrast(s32 color, s32 alpha) {
-  Gfx::g_global_settings.brightness_contrast_color = color;
-  Gfx::g_global_settings.brightness_contrast_alpha = alpha;
-}
-
 void pc_renderer_tree_set_lod(Gfx::RendererTreeType tree, int lod) {
   switch (tree) {
     case Gfx::RendererTreeType::TFRAG3:
@@ -1318,7 +1344,6 @@ void init_common_pc_port_functions(
   make_func_symbol_func("pc-set-msaa", (void*)pc_set_msaa);
   make_func_symbol_func("pc-set-frame-rate", (void*)pc_set_frame_rate);
   make_func_symbol_func("pc-set-game-resolution", (void*)pc_set_game_resolution);
-  make_func_symbol_func("pc-set-brightness-contrast", (void*)pc_set_brightness_contrast);
   make_func_symbol_func("pc-set-letterbox", (void*)pc_set_letterbox);
   make_func_symbol_func("pc-renderer-tree-set-lod", (void*)pc_renderer_tree_set_lod);
   make_func_symbol_func("pc-set-collision-mode", (void*)Gfx::CollisionRendererSetMode);
@@ -1341,6 +1366,9 @@ void init_common_pc_port_functions(
 
   // Play sound file
   make_func_symbol_func("play-sound-file", (void*)playMP3);
+
+  // Check if sound file is playing
+  make_func_symbol_func("is-sound-playing", (void*)is_sound_playing);
 
   // Stop sound file (all instances)
   make_func_symbol_func("stop-sound-file", (void*)stopMP3);
