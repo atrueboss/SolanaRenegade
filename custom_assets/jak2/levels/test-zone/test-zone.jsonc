@@ -63,6 +63,7 @@
                     "test-actor",
                     "goldbolt",
                     "infobot",
+                    "metalgrabber",
                     "sol-crate",
                     "sol-crate-ammo",
                     "sol-crate-iron",
@@ -212,6 +213,17 @@
       "bsphere": [5.41, 3.5, 28.42, 10], // ignore
       "lump": { 
         "name": "infobot-for-test", // given name to the actor
+        "close-task": "city-get-infobot-veldin1-resolution"
+      }
+    },
+    {
+      "trans": [-8.16, 3.5, 41.57], // location of actor 
+      "etype": "metalgrabber", // actor type
+      "game_task": 0, // ignore
+      "quat": [0, 1, 0, 0], // rotation of actor
+      "bsphere": [5.41, 3.5, 28.42, 10], // ignore
+      "lump": { 
+        "name": "metalgrabber-test", // given name to the actor
         "close-task": "city-get-infobot-veldin1-resolution"
       }
     },

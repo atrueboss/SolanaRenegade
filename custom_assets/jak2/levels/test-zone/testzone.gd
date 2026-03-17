@@ -12,6 +12,7 @@
   "test-actor-ag.go"
   "goldbolt-ag.go"
   "infobot-ag.go"
+  "metalgrabber-ag.go"
   "sol-crate-ag.go"
   "sol-crate-ammo-ag.go"
   "sol-crate-iron-ag.go"

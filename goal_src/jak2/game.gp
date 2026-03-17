@@ -415,6 +415,7 @@
 (build-actor "bolt-50" :force-run #t :gen-mesh #t)
 (build-actor "goldbolt" :force-run #t :gen-mesh #t)
 (build-actor "infobot" :force-run #t :gen-mesh #t)
+(build-actor "metalgrabber" :force-run #t :gen-mesh #t)
 (build-actor "sol-crate" :force-run #t :gen-mesh #t)
 (build-actor "sol-crate-ammo" :force-run #t :gen-mesh #t)
 (build-actor "sol-crate-iron" :force-run #t :gen-mesh #t)
