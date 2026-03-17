@@ -1626,7 +1626,15 @@
           )
       )
     )
-  :trans #f
+    :trans (behavior ()
+  ;; Suck-in effect when player gets close AND metalgrabber task is completed
+  (if (and *target*
+           (>= 32768.0 (vector-vector-distance (-> self root trans) (-> *target* control trans)))
+           (not (logtest? (focus-status teleporting) (-> *target* focus-status)))
+           (not (focus-test? *target* dead hit))
+           (task-node-closed? (game-task-node city-get-infobot-veldin1-resolution))) ;; placeholder task for now, replace later
+      (send-event self 'suck *target*))
+         )
   :code sleep-code
   :post (behavior ()
     (let ((gp-0 #t))
@@ -1714,6 +1722,19 @@
       )
     (seek! (-> self roty-speed) 0.0 (* 16384.0 (seconds-per-frame)))
     (common-post self)
+    )
+  )
+
+(defstate wait (gem)
+  :virtual #t
+  :trans (behavior ()
+    ;; Suck-in effect when player gets close
+    (if (and *target*
+             (>= 32768.0 (vector-vector-distance (-> self root trans) (-> *target* control trans)))
+             (not (logtest? (focus-status teleporting) (-> *target* focus-status)))
+             (not (focus-test? *target* dead hit))
+             (task-node-closed? (game-task-node city-get-infobot-veldin1-resolution))) ;; placeholder task for now, replace later
+        (send-event self 'suck *target*))
     )
   )
 
