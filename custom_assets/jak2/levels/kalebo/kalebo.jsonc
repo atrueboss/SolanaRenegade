@@ -69,7 +69,7 @@
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     {
-      "trans": [177.13, 94.98, 93.65], // translation
+      "trans": [177.13, 47.314, 93.65], // translation
       "etype": "warp-gate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
@@ -80,7 +80,7 @@
       }
     },
     {
-      "trans": [177.13, 95.98, 93.65], // translation
+      "trans": [177.13, 48.314, 93.65], // translation
       "etype": "forest-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0.5, 0, 1], // quaternion
@@ -91,7 +91,7 @@
       }
     },
     {
-      "trans": [241.05, 83.806, 46.27], // translation
+      "trans": [241.05, 36.140, 46.27], // translation
       "etype": "warp-gate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
@@ -102,7 +102,7 @@
       }
     },
     {
-      "trans": [241.05, 84.406, 46.27], // translation
+      "trans": [241.05, 36.740, 46.27], // translation
       "etype": "forest-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0.5, 0, 1], // quaternion
@@ -113,7 +113,7 @@
       }
     },
     {
-      "trans": [214.26, 83.25, -108.83], // translation
+      "trans": [214.26, 35.584, -108.83], // translation
       "etype": "warp-gate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
@@ -124,7 +124,7 @@
       }
     },
     {
-      "trans": [214.26, 84.25, -108.83], // translation
+      "trans": [214.26, 36.584, -108.83], // translation
       "etype": "forest-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0.5, 0, 1], // quaternion
@@ -135,7 +135,7 @@
       }
     },
     {
-      "trans": [-183.12, 87.04, -112.55], // translation
+      "trans": [-183.12, 39.374, -112.55], // translation
       "etype": "warp-gate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
@@ -146,7 +146,7 @@
       }
     },
     {
-      "trans": [-183.12, 87.64, -112.55], // translation
+      "trans": [-183.12, 39.974, -112.55], // translation
       "etype": "forest-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0.5, 0, 1], // quaternion
@@ -157,29 +157,7 @@
       }
     },
     {
-      "trans": [-146.78, 19.33, 385.72], // translation
-      "etype": "warp-gate",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [204.44, 16.67, 165.64, 10], // bounding sphere
-      "lump": {
-        "name":"kalebo-warp-gate-05", //race-track -> race-lobby
-        "distance": ["meters", 4.0]
-      }
-    },
-    {
-      "trans": [-146.78, 19.93, 385.72], // translation
-      "etype": "forest-part",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0.5, 0, 1], // quaternion
-      "bsphere": [9.8642, 74.39, -316.37, 10], // bounding sphere
-      "lump": {
-        "name":"warp-gate-part-5",
-        "art-name": "group-metalkor-shot-anticipate"
-      }
-    },
-    {
-      "trans": [-128.66, 105.07, 207.39], // translation
+      "trans": [-128.66, 57.404, 207.39], // translation
       "etype": "warp-gate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
@@ -190,7 +168,7 @@
       }
     },
     {
-      "trans": [-128.66, 106.47, 207.39], // translation
+      "trans": [-128.66, 58.804, 207.39], // translation
       "etype": "forest-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0.5, 0, 1], // quaternion
@@ -207,7 +185,7 @@
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     {
-      "trans": [-120.76, 123.80, 236.46], // translation
+      "trans": [-120.76, 76.134, 236.46], // translation
       "etype": "rift-ring-in-game",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0.00, -0.99, 0, 0.04], // quaternion (format is X, Z, Y(inverted), W - https://opengoal.dev/docs/developing/custom_levels/actors#quat)
@@ -217,7 +195,7 @@
       }
     },
     {
-      "trans": [-120.76, 123.80, 236.46], // translation
+      "trans": [-120.76, 76.134, 236.46], // translation
       "etype": "forest-part",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0.00, -0.99, 0, 0.04], // quaternion
@@ -228,7 +206,7 @@
       }
     },
     {
-      "trans": [-120.76, 122.30, 236.46], // translation
+      "trans": [-120.76, 74.634, 236.46], // translation
       "etype": "warp-gate",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0.00, -0.99, 0, 0.04], // quaternion
@@ -238,24 +216,13 @@
         "distance": ["meters", 18.0]
       }
     },
-    {
-      "trans": [-155.38, 20.52, 375.14], // translation
-      "etype": "burning-bush",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [-2.70, 3.50, 64, 10], // bounding sphere
-      "lump": {
-        "name":"burning-bush-kalebo",
-        "task-actor": ["int32", 42]
-      }
-    },
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////// GOLD BOLTS ///////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     {
-      "trans": [214.20, 87.12, -123.64], // translation
+      "trans": [214.20, 39.454, -123.64], // translation
       "etype": "goldbolt",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
@@ -265,7 +232,7 @@
       }
     },
     {
-      "trans": [169.48, 117.09, 331.71], // translation
+      "trans": [169.48, 69.424, 331.71], // translation
       "etype": "goldbolt",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
@@ -278,8 +245,9 @@
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////// GENERIC ITEMS /////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
     {
-      "trans": [164.51, 98.69, 53.70], // translation
+      "trans": [164.51, 51.024, 53.70], // translation
       "etype": "sol-crate-ammo",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
@@ -290,7 +258,7 @@
       }
     },
     {
-      "trans": [-179.37, 90.07, -121.34], // translation
+      "trans": [-179.37, 42.404, -121.34], // translation
       "etype": "sol-crate-ammo",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion

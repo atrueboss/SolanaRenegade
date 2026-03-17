@@ -333,6 +333,10 @@
 (goal-src "levels/rilgar/rilgar.gc" "process-focusable")
 (custom-level-cgo "RIL.DGO" "rilgar/rilgar.gd")
 
+(build-custom-level "rilgarrace")
+(goal-src "levels/rilgarrace/rilgarrace.gc" "process-focusable")
+(custom-level-cgo "RLR.DGO" "rilgarrace/rilgarrace.gd")
+
 (build-custom-level "umbris")
 (goal-src "levels/umbris/umbris.gc" "process-focusable")
 (custom-level-cgo "UMB.DGO" "umbris/umbris.gd")
@@ -376,6 +380,10 @@
 (build-custom-level "kalebo")
 (goal-src "levels/kalebo/kalebo.gc" "process-focusable")
 (custom-level-cgo "KAL.DGO" "kalebo/kalebo.gd")
+
+(build-custom-level "kaleborace")
+(goal-src "levels/kaleborace/kaleborace.gc" "process-focusable")
+(custom-level-cgo "KLR.DGO" "kaleborace/kaleborace.gd")
 
 (build-custom-level "drek")
 (goal-src "levels/drek/drek.gc" "process-focusable")

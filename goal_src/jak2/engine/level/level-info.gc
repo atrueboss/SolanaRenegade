@@ -35,6 +35,7 @@
                        'eudora
                        'blarg
                        'rilgar
+                       'rilgarrace
                        'umbris
                        'batalia
                        'gaspar
@@ -46,6 +47,7 @@
                        'oltanis
                        'quartu
                        'kalebo
+                       'kaleborace
                        'drek
                        'veldin2
                        )
@@ -16951,9 +16953,67 @@
           )
         :want-sound (new 'static 'array symbol 3 #f #f #f)
         )
+      )
+    :tasks '()
+    :priority 100
+    :load-commands '()
+    :alt-load-commands '()
+    :bsp-mask #xffffffffffffffff
+    :buttom-height (meters -117.0)
+    :run-packages '("common")
+    :wait-for-load #t
+    :login-func #f
+    :activate-func #f
+    :deactivate-func #f
+    :kill-func #f
+    :borrow-level (new 'static 'array symbol 2 #f #f)
+    :borrow-display? (new 'static 'array symbol 2 #f #f)
+    :base-task-mask (task-mask task0)
+    :texture-anim-tfrag #f
+    :texture-anim-pris #f
+    :texture-anim-shrub #f
+    :texture-anim-alpha #f
+    :texture-anim-water #f
+    :texture-anim-twarp #f
+    :texture-anim-pris2 #f
+    :texture-anim-sprite #f
+    :texture-anim-map #f
+    :texture-anim-sky #f
+    :draw-priority 10.0
+    :fog-height 327680.0
+    :bigmap-id (bigmap-id city)
+    :ocean-near-translucent? #t
+    :ocean-far? #t
+    :mood-range (new 'static 'mood-range :data (new 'static 'array float 4 0.0 1.0 0.0 1.0))
+    :max-rain 1.0
+    :fog-mult 1.0
+    :ocean-alpha 1.0
+    :extra-sound-bank #f
+    )
+  )
+
+(define rilgarrace
+  (new 'static 'level-load-info
+    :index #xb2
+    :name 'rilgarrace
+    :visname 'rilgarrace-vis
+    :nickname 'rlr
+    :dbname 'rilgarrace
+    :taskname 'rilgarrace
+    :packages '(hoverp nestb)
+    :memory-mode (load-buffer-mode large)
+    :music-bank 'race
+    :ambient-sounds '()
+    :mood-func 'update-mood-default
+    :mood-init #f
+    :ocean '*ocean-map-strip*
+    :sky #t
+    :use-camera-other #f
+    :part-engine-max 16
+    :continues '(
         (new 'static 'continue-point
         :name "rilgar-race-track"
-        :level 'rilgar
+        :level 'rilgarrace
         :trans (new 'static 'vector :x (meters 270.49) :y (meters 38.30) :z (meters 401.54) :w 1.0) 
         :quat (new 'static 'vector :y 0.261 :w 0.9981)
         :camera-trans (new 'static 'vector :x 100.0 :y (meters 60) :z 100.0 :w 1.0)
@@ -16965,7 +17025,7 @@
         :on-goto #f
         :vis-nick #f
         :want (new 'static 'inline-array level-buffer-state 6
-          (new 'static 'level-buffer-state :name 'rilgar :display? 'display :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name 'rilgarrace :display? 'display :force-vis? #f :force-inside? #f)
           (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
           (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
           (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
@@ -16976,7 +17036,7 @@
         )
         (new 'static 'continue-point
         :name "rilgar-race-track-warp"
-        :level 'rilgar
+        :level 'rilgarrace
         :flags (continue-flags warp-gate)
         :trans (new 'static 'vector :x (meters 266.03) :y (meters 38.30) :z (meters 404.07) :w 1.0) 
         :quat (new 'static 'vector :y 0.261 :w 0.9981)
@@ -16989,7 +17049,7 @@
         :on-goto #f
         :vis-nick #f
         :want (new 'static 'inline-array level-buffer-state 6
-          (new 'static 'level-buffer-state :name 'rilgar :display? 'display :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name 'rilgarrace :display? 'display :force-vis? #f :force-inside? #f)
           (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
           (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
           (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
@@ -17004,7 +17064,7 @@
     :load-commands '()
     :alt-load-commands '()
     :bsp-mask #xffffffffffffffff
-    :buttom-height (meters -117.0)
+    :buttom-height (meters 5.0)
     :run-packages '("common")
     :wait-for-load #t
     :login-func #f
@@ -19062,10 +19122,11 @@
     :sky #t
     :use-camera-other #f
     :part-engine-max 16
-    :continues '((new 'static 'continue-point
+    :continues '(
+         (new 'static 'continue-point 
         :name "kalebo-start"
         :level 'kalebo
-        :trans (new 'static 'vector :x (meters -121.31) :y (meters 106.51) :z (meters 202.92) :w 1.0)
+        :trans (new 'static 'vector :x (meters -121.31) :y (meters 58.844) :z (meters 202.92) :w 1.0)
         :quat (new 'static 'vector :y 0.761 :w 0.9981)
         :camera-trans (new 'static 'vector :x 100.0 :y (meters 60) :z 100.0 :w 1.0)
         :camera-rot (new 'static 'inline-array vector3s 3
@@ -19089,7 +19150,7 @@
         :name "kalebo-start-warp"
         :level 'kalebo
         :flags (continue-flags warp-gate)
-        :trans (new 'static 'vector :x (meters -122.81) :y (meters 106.14) :z (meters 207.92) :w 1.0)
+        :trans (new 'static 'vector :x (meters -122.81) :y (meters 58.474) :z (meters 207.92) :w 1.0)
         :quat (new 'static 'vector :y 0.261 :w 0.9981)
         :camera-trans (new 'static 'vector :x (meters -126.03) :y (meters 110.93) :z (meters 218.59) :w 1.0)
         :camera-rot (new 'static 'inline-array vector3s 3
@@ -19112,7 +19173,7 @@
         (new 'static 'continue-point
         :name "kalebo-main-start"
         :level 'kalebo
-        :trans (new 'static 'vector :x (meters -75.10) :y (meters 90.19) :z (meters -65.60) :w 1.0)
+        :trans (new 'static 'vector :x (meters -75.10) :y (meters 42.524) :z (meters -65.60) :w 1.0)
         :quat (new 'static 'vector :y 0.761 :w 0.9981)
         :camera-trans (new 'static 'vector :x 100.0 :y (meters 60) :z 100.0 :w 1.0)
         :camera-rot (new 'static 'inline-array vector3s 3
@@ -19135,7 +19196,7 @@
         (new 'static 'continue-point
         :name "kalebo-main-halfway"
         :level 'kalebo
-        :trans (new 'static 'vector :x (meters 102.31) :y (meters 101.71) :z (meters -5.86) :w 1.0)
+        :trans (new 'static 'vector :x (meters 102.31) :y (meters 54.044) :z (meters -5.86) :w 1.0)
         :quat (new 'static 'vector :y 0.761 :w 0.9981)
         :camera-trans (new 'static 'vector :x 100.0 :y (meters 60) :z 100.0 :w 1.0)
         :camera-rot (new 'static 'inline-array vector3s 3
@@ -19158,30 +19219,7 @@
         (new 'static 'continue-point
         :name "kalebo-racedude"
         :level 'kalebo
-        :trans (new 'static 'vector :x (meters -171.50) :y (meters 88.13) :z (meters -112.38) :w 1.0)
-        :quat (new 'static 'vector :y 0.761 :w 0.9981)
-        :camera-trans (new 'static 'vector :x 100.0 :y (meters 60) :z 100.0 :w 1.0)
-        :camera-rot (new 'static 'inline-array vector3s 3
-          (new 'static 'vector3s :data (new 'static 'array float 3 -0.7269 0.0 -0.6866))
-          (new 'static 'vector3s :data (new 'static 'array float 3 0.053 0.997 -0.0561))
-          (new 'static 'vector3s :data (new 'static 'array float 3 0.6846 -0.0772 -0.7248))
-          )
-        :on-goto #f
-        :vis-nick #f
-        :want (new 'static 'inline-array level-buffer-state 6
-          (new 'static 'level-buffer-state :name 'kalebo :display? 'display :force-vis? #f :force-inside? #f)
-          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
-          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
-          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
-          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
-          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
-          )
-        :want-sound (new 'static 'array symbol 3 #f #f #f)
-        )
-        (new 'static 'continue-point
-        :name "kalebo-race-track"
-        :level 'kalebo
-        :trans (new 'static 'vector :x (meters -147.71) :y (meters 20.53) :z (meters 377.86) :w 1.0)
+        :trans (new 'static 'vector :x (meters -171.50) :y (meters 40.464) :z (meters -112.38) :w 1.0)
         :quat (new 'static 'vector :y 0.761 :w 0.9981)
         :camera-trans (new 'static 'vector :x 100.0 :y (meters 60) :z 100.0 :w 1.0)
         :camera-rot (new 'static 'inline-array vector3s 3
@@ -19205,7 +19243,7 @@
         :name "kalebo-race-lobby-warp"
         :level 'kalebo
         :flags (continue-flags warp-gate)
-        :trans (new 'static 'vector :x (meters -175.92) :y (meters 88.13) :z (meters -111.09) :w 1.0)
+        :trans (new 'static 'vector :x (meters -175.92) :y (meters 40.464) :z (meters -111.09) :w 1.0)
         :quat (new 'static 'vector :y 0.261 :w 0.9981)
         :camera-trans (new 'static 'vector :x (meters -186.49) :y (meters 93.21) :z (meters -104.39) :w 1.0)
         :camera-rot (new 'static 'inline-array vector3s 3
@@ -19226,33 +19264,9 @@
         :want-sound (new 'static 'array symbol 3 #f #f #f)
         )
         (new 'static 'continue-point
-        :name "kalebo-race-track-warp"
-        :level 'kalebo
-        :flags (continue-flags warp-gate)
-        :trans (new 'static 'vector :x (meters -149.12) :y (meters 20.53) :z (meters 379.49) :w 1.0)
-        :quat (new 'static 'vector :y 0.261 :w 0.9981)
-        :camera-trans (new 'static 'vector :x (meters -157.13) :y (meters 25.68) :z (meters 389.08) :w 1.0)
-        :camera-rot (new 'static 'inline-array vector3s 3
-          (new 'static 'vector3s :data (new 'static 'array float 3 1.0 0.0 0.0))
-          (new 'static 'vector3s :data (new 'static 'array float 3 0.0 1.0 0.0))
-          (new 'static 'vector3s :data (new 'static 'array float 3 0.0 0.0 1.0))
-          )
-        :on-goto #f
-        :vis-nick #f
-        :want (new 'static 'inline-array level-buffer-state 6
-          (new 'static 'level-buffer-state :name 'kalebo :display? 'display :force-vis? #f :force-inside? #f)
-          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
-          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
-          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
-          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
-          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
-          )
-        :want-sound (new 'static 'array symbol 3 #f #f #f)
-        )
-        (new 'static 'continue-point
         :name "kalebo-rail-start"
         :level 'kalebo
-        :trans (new 'static 'vector :x (meters -181.80) :y (meters 115.82) :z (meters -65.42) :w 1.0)
+        :trans (new 'static 'vector :x (meters -181.80) :y (meters 68.154) :z (meters -65.42) :w 1.0)
         :quat (new 'static 'vector :y 0.261 :w 0.9981)
         :camera-trans (new 'static 'vector :x (meters -157.13) :y (meters 25.68) :z (meters 389.08) :w 1.0)
         :camera-rot (new 'static 'inline-array vector3s 3
@@ -19266,7 +19280,7 @@
           (new 'static 'level-buffer-state :name 'kalebo :display? 'display :force-vis? #f :force-inside? #f)
           (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
           (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
-          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name #f :display? 'display :force-vis? #f :force-inside? #f)
           (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
           (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
           )
@@ -19275,7 +19289,7 @@
         (new 'static 'continue-point
         :name "kalebo-rail-end"
         :level 'kalebo
-        :trans (new 'static 'vector :x (meters 202.40) :y (meters 95.31) :z (meters 53.38) :w 1.0)
+        :trans (new 'static 'vector :x (meters 202.40) :y (meters 47.644) :z (meters 53.38) :w 1.0)
         :quat (new 'static 'vector :y 0.261 :w 0.9981)
         :camera-trans (new 'static 'vector :x (meters -157.13) :y (meters 25.68) :z (meters 389.08) :w 1.0)
         :camera-rot (new 'static 'inline-array vector3s 3
@@ -19299,13 +19313,13 @@
         :name "kalebo-break-room-warp"
         :level 'kalebo
         :flags (continue-flags warp-gate)
-        :trans (new 'static 'vector :x (meters 208.76) :y (meters 84.75) :z (meters -113.37) :w 1.0)
+        :trans (new 'static 'vector :x (meters 208.76) :y (meters 37.084) :z (meters -113.37) :w 1.0)
         :quat (new 'static 'vector :y 0.261 :w 0.9981)
-        :camera-trans (new 'static 'vector :x (meters 200.69) :y (meters 89.88) :z (meters -103.90) :w 1.0)
+        :camera-trans (new 'static 'vector :x (meters 202.6334) :y (meters 42.0405) :z (meters -100.4018) :w 1.0)
         :camera-rot (new 'static 'inline-array vector3s 3
-          (new 'static 'vector3s :data (new 'static 'array float 3 1.0 0.0 0.0))
-          (new 'static 'vector3s :data (new 'static 'array float 3 0.0 1.0 0.0))
-          (new 'static 'vector3s :data (new 'static 'array float 3 0.0 0.0 1.0))
+          (new 'static 'vector3s :data (new 'static 'array float 3 -0.5965 -0.0000 -0.8025))
+          (new 'static 'vector3s :data (new 'static 'array float 3 0.0966 0.9927 -0.0718))
+          (new 'static 'vector3s :data (new 'static 'array float 3 0.7967 -0.1203 -0.5922))
           )
         :on-goto #f
         :vis-nick #f
@@ -19323,13 +19337,13 @@
         :name "kalebo-rail-end-warp"
         :level 'kalebo
         :flags (continue-flags warp-gate)
-        :trans (new 'static 'vector :x (meters 235.91) :y (meters 85.30) :z (meters 42.24) :w 1.0)
+        :trans (new 'static 'vector :x (meters 235.91) :y (meters 37.634) :z (meters 42.24) :w 1.0)
         :quat (new 'static 'vector :y 0.261 :w 0.9981)
-        :camera-trans (new 'static 'vector :x (meters 240.69) :y (meters 90.45) :z (meters 30.69) :w 1.0)
+        :camera-trans (new 'static 'vector :x (meters 236.2429) :y (meters 42.7723) :z (meters 31.7600) :w 1.0)
         :camera-rot (new 'static 'inline-array vector3s 3
-          (new 'static 'vector3s :data (new 'static 'array float 3 1.0 0.0 0.0))
-          (new 'static 'vector3s :data (new 'static 'array float 3 0.0 1.0 0.0))
-          (new 'static 'vector3s :data (new 'static 'array float 3 0.0 0.0 1.0))
+          (new 'static 'vector3s :data (new 'static 'array float 3 0.9978 0.0000 -0.0649))
+          (new 'static 'vector3s :data (new 'static 'array float 3 0.0092 0.9896 0.1429))
+          (new 'static 'vector3s :data (new 'static 'array float 3 0.0642 -0.1432 0.9875))
           )
         :on-goto #f
         :vis-nick #f
@@ -19350,6 +19364,111 @@
     :alt-load-commands '()
     :bsp-mask #xffffffffffffffff
     :buttom-height (meters -3)
+    :run-packages '()
+    :wait-for-load #t
+    :login-func #f
+    :activate-func #f
+    :deactivate-func #f
+    :kill-func #f
+    :borrow-level (new 'static 'array symbol 2 #f #f)
+    :borrow-display? (new 'static 'array symbol 2 #f #f)
+    :base-task-mask (task-mask task0)
+    :texture-anim-tfrag #f
+    :texture-anim-pris #f
+    :texture-anim-shrub #f
+    :texture-anim-alpha #f
+    :texture-anim-water #f
+    :texture-anim-twarp #f
+    :texture-anim-pris2 #f
+    :texture-anim-sprite #f
+    :texture-anim-map #f
+    :texture-anim-sky #f
+    :draw-priority 10.0
+    :fog-height 327680.0
+    :bigmap-id (bigmap-id city)
+    :ocean-near-translucent? #t
+    :ocean-far? #t
+    :mood-range (new 'static 'mood-range :data (new 'static 'array float 4 0.0 1.0 0.0 1.0))
+    :max-rain 1.0
+    :fog-mult 1.0
+    :ocean-alpha 1.0
+    :extra-sound-bank #f
+    )
+  )
+
+(define kaleborace
+  (new 'static 'level-load-info
+    :index #xb3
+    :name 'kaleborace
+    :visname 'kaleborace-vis
+    :nickname 'klr
+    :dbname 'kaleborace
+    :taskname 'kaleborace
+    :packages '()
+    :memory-mode (load-buffer-mode large)
+    :music-bank 'race
+    :ambient-sounds '()
+    :mood-func 'update-mood-default
+    :mood-init #f
+    :ocean '*ocean-map-strip*
+    :sky #t
+    :use-camera-other #f
+    :part-engine-max 16
+    :continues '(
+        (new 'static 'continue-point
+        :name "kalebo-race-track"
+        :level 'kaleborace
+        :trans (new 'static 'vector :x (meters -147.71) :y (meters 20.53) :z (meters 377.86) :w 1.0)
+        :quat (new 'static 'vector :y 0.761 :w 0.9981)
+        :camera-trans (new 'static 'vector :x 100.0 :y (meters 60) :z 100.0 :w 1.0)
+        :camera-rot (new 'static 'inline-array vector3s 3
+          (new 'static 'vector3s :data (new 'static 'array float 3 -0.7269 0.0 -0.6866))
+          (new 'static 'vector3s :data (new 'static 'array float 3 0.053 0.997 -0.0561))
+          (new 'static 'vector3s :data (new 'static 'array float 3 0.6846 -0.0772 -0.7248))
+          )
+        :on-goto #f
+        :vis-nick #f
+        :want (new 'static 'inline-array level-buffer-state 6
+          (new 'static 'level-buffer-state :name 'kaleborace :display? 'display :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+          )
+        :want-sound (new 'static 'array symbol 3 #f #f #f)
+        )
+        (new 'static 'continue-point
+        :name "kalebo-race-track-warp"
+        :level 'kaleborace
+        :flags (continue-flags warp-gate)
+        :trans (new 'static 'vector :x (meters -149.12) :y (meters 20.53) :z (meters 379.49) :w 1.0)
+        :quat (new 'static 'vector :y 0.261 :w 0.9981)
+        :camera-trans (new 'static 'vector :x (meters -152.2499) :y (meters 24.7245) :z (meters 391.4666) :w 1.0)
+        :camera-rot (new 'static 'inline-array vector3s 3
+          (new 'static 'vector3s :data (new 'static 'array float 3 -0.9433 0.0000 -0.3316))
+          (new 'static 'vector3s :data (new 'static 'array float 3 0.0372 0.9936 -0.1059))
+          (new 'static 'vector3s :data (new 'static 'array float 3 0.3295 -0.1123 -0.9374))
+          )
+        :on-goto #f
+        :vis-nick #f
+        :want (new 'static 'inline-array level-buffer-state 6
+          (new 'static 'level-buffer-state :name 'kaleborace :display? 'display :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+          (new 'static 'level-buffer-state :name #f :display? #f :force-vis? #f :force-inside? #f)
+          )
+        :want-sound (new 'static 'array symbol 3 #f #f #f)
+        )
+      )
+    :tasks '()
+    :priority 100
+    :load-commands '()
+    :alt-load-commands '()
+    :bsp-mask #xffffffffffffffff
+    :buttom-height (meters -2)
     :run-packages '()
     :wait-for-load #t
     :login-func #f
@@ -20135,6 +20254,7 @@
   (cons! *level-load-list* 'eudora)
   (cons! *level-load-list* 'blarg)
   (cons! *level-load-list* 'rilgar)
+  (cons! *level-load-list* 'rilgarrace)
   (cons! *level-load-list* 'umbris)
   (cons! *level-load-list* 'batalia)
   (cons! *level-load-list* 'gaspar)
@@ -20146,6 +20266,7 @@
   (cons! *level-load-list* 'oltanis)
   (cons! *level-load-list* 'quartu)
   (cons! *level-load-list* 'kalebo)
+  (cons! *level-load-list* 'kaleborace)
   (cons! *level-load-list* 'drek)
   (cons! *level-load-list* 'veldin2)
   (cons! *level-load-list* 'extras-atoll)  
