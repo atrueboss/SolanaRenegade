@@ -2274,6 +2274,15 @@
         )
       )
     )
+  :trans (behavior ()
+  ;; Suck-in effect when player gets close AND metalgrabber task is completed
+  (if (and *target*
+           (>= 32768.0 (vector-vector-distance (-> self root trans) (-> *target* control trans)))
+           (not (logtest? (focus-status teleporting) (-> *target* focus-status)))
+           (not (focus-test? *target* dead hit))
+           (task-node-closed? (game-task-node city-get-infobot-veldin1-resolution))) ;; placeholder task for now, replace later
+      (send-event self 'suck *target*))
+  )
   :code (behavior ()
     (loop
       ;; Rotate on X, Y or Z axes
@@ -2400,6 +2409,15 @@
         )
       )
     )
+  :trans (behavior ()
+  ;; Suck-in effect when player gets close AND metalgrabber task is completed
+  (if (and *target*
+           (>= 32768.0 (vector-vector-distance (-> self root trans) (-> *target* control trans)))
+           (not (logtest? (focus-status teleporting) (-> *target* focus-status)))
+           (not (focus-test? *target* dead hit))
+           (task-node-closed? (game-task-node city-get-infobot-veldin1-resolution))) ;; placeholder task for now, replace later
+      (send-event self 'suck *target*))
+         )
   :code (behavior ()
     (loop
       ;; Rotate on Y and Z axes
@@ -2526,6 +2544,15 @@
         )
       )
     )
+  :trans (behavior ()
+  ;; Suck-in effect when player gets close AND metalgrabber task is completed
+  (if (and *target*
+           (>= 32768.0 (vector-vector-distance (-> self root trans) (-> *target* control trans)))
+           (not (logtest? (focus-status teleporting) (-> *target* focus-status)))
+           (not (focus-test? *target* dead hit))
+           (task-node-closed? (game-task-node city-get-infobot-veldin1-resolution))) ;; placeholder task for now, replace later
+      (send-event self 'suck *target*))
+         )
   :code (behavior ()
     (loop
       ;; Rotate on X, Y or Z axes
@@ -2652,6 +2679,15 @@
         )
       )
     )
+  :trans (behavior ()
+  ;; Suck-in effect when player gets close AND metalgrabber task is completed
+  (if (and *target*
+           (>= 32768.0 (vector-vector-distance (-> self root trans) (-> *target* control trans)))
+           (not (logtest? (focus-status teleporting) (-> *target* focus-status)))
+           (not (focus-test? *target* dead hit))
+           (task-node-closed? (game-task-node city-get-infobot-veldin1-resolution))) ;; placeholder task for now, replace later
+      (send-event self 'suck *target*))
+         )
   :code (behavior ()
     (loop
       ;; Rotate on X, Y or Z axes
