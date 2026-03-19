@@ -67,6 +67,8 @@
   (hud-middle-left 89)
   (hud-upper-center 90)
   (hud-upper-center-2 91)
+  (hud-upper-left-1 92) ;; MOD: assigned to bolt hud
+  (hud-upper-left-2 93) ;; MOD: assigned to goldbolt hud 
   (hud 95)
   (max 96)
   )

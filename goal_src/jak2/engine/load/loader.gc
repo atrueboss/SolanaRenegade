@@ -2320,6 +2320,8 @@
     (set! (-> gp-0 cmd 89) '((64 . wait) (65 . wait) (89 . wait)))
     (set! (-> gp-0 cmd 90) '((64 . wait) (65 . wait) (90 . wait) (70 . wait)))
     (set! (-> gp-0 cmd 91) '((64 . wait) (65 . wait) (91 . wait) (70 . wait)))
+    (set! (-> gp-0 cmd 92) '((64 . wait) (65 . wait) (92 . wait))) ;; MOD: gui channel for bolt count 
+    (set! (-> gp-0 cmd 93) '((64 . wait) (65 . wait) (92 . wait))) ;; MOD: gui channel for goldbolt count
     (set! (-> gp-0 cmd 16) '((16 . wait)))
     (set! (-> gp-0 cmd 17) '((17 . wait)))
     (set! (-> gp-0 cmd 18) '((18 . wait)))

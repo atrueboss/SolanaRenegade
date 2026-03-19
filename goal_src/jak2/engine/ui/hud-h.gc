@@ -242,6 +242,16 @@
   )
 
 
+(deftype hud-bolt (hud) ;; MOD 
+  ()
+  )
+
+
+(deftype hud-goldbolt (hud) ;; MOD 
+  ()
+  )
+
+
 (deftype hud-skullgem (hud)
   ()
   )

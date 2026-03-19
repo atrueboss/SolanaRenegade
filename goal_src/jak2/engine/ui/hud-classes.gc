@@ -554,6 +554,112 @@
   (none)
   )
 
+;; ===== BOLT COUNTER HUD =====
+(defmethod draw ((this hud-bolt))
+  (set-hud-piece-position!
+    (the-as hud-sprite (-> this sprites))
+    40   ;; X position
+    40   ;; Y position
+    )
+  ;; Format the bolt count text
+  (format (clear (-> this strings 0 text)) "~D" (-> this values 0 current))
+  (set-as-offset-from! (the-as hud-sprite (-> this strings 0 pos)) (the-as vector4w (-> this sprites)) 20 0)
+  ;; Draw the parent hud
+  ((method-of-type hud draw) this)
+  0
+  (none)
+  )
+
+(defmethod update-values ((this hud-bolt))
+  (set! (-> this values 0 target) (the int (-> *game-info* bolt)))
+  ((method-of-type hud update-values) this)
+  0
+  (none)
+  )
+
+(defmethod init-callback ((this hud-bolt))
+  (set! (-> this gui-id)
+        (add-process *gui-control* this (gui-channel hud-upper-left-1) (gui-action playing) (-> this name) 81920.0 0)
+        )
+  ;; (set! (-> this sprites 0 tex) (get-texture hud-egg-glow level-default-minimap))
+  ;; (set! (-> this sprites 0 scale-x) 0.8)  
+  ;; (set! (-> this sprites 0 scale-y) 0.8)  
+  ;; (set! (-> this sprites 0 pos z) #xfff9ff)
+  ;; ;; Yellow/gold color - FULL ALPHA
+  ;; (set! (-> this sprites 0 color x) 255)  ;; Full red
+  ;; (set! (-> this sprites 0 color y) 200)  ;; Some Yellow
+  ;; (set! (-> this sprites 0 color z) 0)    ;; No blue
+  ;; (set! (-> this sprites 0 color w) 128)  ;; Full alpha
+  ;; Allocate string for the number
+  (alloc-string-if-needed this 0)
+  (set! (-> this strings 0 flags) (font-flags kerning middle large))
+  (set! (-> this strings 0 scale) 0.4)  ;; Made slightly smaller
+  (logior! (-> this values 0 flags) 1)
+  0
+  (none)
+  )
+
+(defmethod update-value-callback ((this hud-bolt) (arg0 int) (arg1 int))
+  (if (> arg1 0)
+      (play-sound-file "bolt-1.mp3" (the int (* (-> *setting-control* user-current sfx-volume) 8.0))) 
+      )
+  0
+  (none)
+  )
+
+;; ===== GOLDBOLT COUNTER HUD =====
+(defmethod draw ((this hud-goldbolt))
+  (set-hud-piece-position!
+    (the-as hud-sprite (-> this sprites))
+    40   ;; X position 
+    125   ;; Y position 
+    )
+  ;; Format the bolt count text
+  (format (clear (-> this strings 0 text)) "~D" (-> this values 0 current))
+  (set-as-offset-from! (the-as hud-sprite (-> this strings 0 pos)) (the-as vector4w (-> this sprites)) 20 0)
+  ;; Draw the parent hud
+  ((method-of-type hud draw) this)
+  0
+  (none)
+  )
+
+(defmethod update-values ((this hud-goldbolt))
+  (set! (-> this values 0 target) (the int (-> *game-info* goldbolt)))
+  ((method-of-type hud update-values) this)
+  0
+  (none)
+  )
+
+(defmethod init-callback ((this hud-goldbolt))
+  (set! (-> this gui-id)
+        (add-process *gui-control* this (gui-channel hud-upper-left-2) (gui-action playing) (-> this name) 81920.0 0)
+        )
+  ;; (set! (-> this sprites 0 tex) (get-texture hud-egg-glow level-default-minimap))
+  ;; (set! (-> this sprites 0 scale-x) 0.8)  ;; Made bigger
+  ;; (set! (-> this sprites 0 scale-y) 0.8)  ;; Made bigger
+  ;; (set! (-> this sprites 0 pos z) #xfff9ff)
+  ;; ;; Yellow/gold color - FULL ALPHA
+  ;; (set! (-> this sprites 0 color x) 255)  ;; Full red
+  ;; (set! (-> this sprites 0 color y) 200)  ;; Some Yellow
+  ;; (set! (-> this sprites 0 color z) 0)    ;; No blue
+  ;; (set! (-> this sprites 0 color w) 128)  ;; Full alpha
+  ;; Allocate string for the number
+  (alloc-string-if-needed this 0)
+  (set! (-> this strings 0 flags) (font-flags kerning middle large))
+  (set! (-> this strings 0 scale) 0.5)  ;; Same size as skill
+  (logior! (-> this values 0 flags) 1)
+  0
+  (none)
+  )
+
+(defmethod update-value-callback ((this hud-goldbolt) (arg0 int) (arg1 int))
+  (if (> arg1 0)
+      (sound-play "skill-pickup" :pitch 1.0)
+      )
+  0
+  (none)
+  )
+
 (defmethod draw ((this hud-score))
   (set-hud-piece-position!
     (the-as hud-sprite (-> this sprites))
@@ -1129,6 +1235,8 @@
   (process-spawn hud-map :init hud-init-by-other :to arg0)
   (set! *hud-skullgem* (process-spawn hud-skullgem :init hud-init-by-other :to arg0))
   (process-spawn hud-skill :init hud-init-by-other :to arg0)
+  (process-spawn hud-bolt :init hud-init-by-other :to arg0) ;; MOD: For bolt count hud 
+  (process-spawn hud-goldbolt :init hud-init-by-other :to arg0) ;; MOD: For bolt count hud  
   (process-spawn hud-gun :init hud-init-by-other :to arg0)
   0
   (none)
