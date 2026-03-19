@@ -852,6 +852,8 @@
   (none)
   )
 
+(defun-extern zero-volume? (symbol))
+
 (defun display-loop-main ((arg0 display))
   "Run the engine.
    This function is called after actors update."
@@ -867,6 +869,10 @@
         (load-continue (-> *level* loading-level))
         )
     (runs-every-frame) ;;mod-base-change
+    (if (and *target* (zero-volume?))  ;; MOD: pause custom music/sounds on start
+          (pause-main-music)   
+          (resume-main-music)
+        ) 
 
     ; ;; Run blerc to modify foreground models
     (with-profiler 'merc *profile-merc-color*

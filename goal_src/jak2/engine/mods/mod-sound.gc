@@ -12,6 +12,12 @@
     ;; (sound-volume (the int (* 100.0 (-> *setting-control* user-current sfx-volume))))
 )
 
+(defun zero-volume? ()
+  "Returns true if the volume of main music should be set to 0. This is a hack."
+  (or (not (= *master-mode* 'game))
+      (= (-> (level-get-target-inside *level*) name) 'title)
+  )
+)
 
 (define *current-playing-custom-music-str* (new 'global 'string 2048 (the-as string #f)))
 (defun custom-music-on-spawn ()
