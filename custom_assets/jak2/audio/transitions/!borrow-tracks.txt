@@ -1,0 +1,24 @@
+------track-----------------------------------------shared with------------------
+
+novalis-enter-main                     kalebo-enter-main, drek-fleet-enter-jet
+
+kerwan-enter-fitness                   quartu-enter-main
+
+aridia-enter-sandshark                 batalia-enter-main, oltanis-enter-frozen
+
+aridia-enter-main                      quartu-enter-gclank
+
+aridia-enter-swingshot                 batalia-enter-rail, kalebo-enter-rail
+
+eudora-enter-main                      poki-sewer-enter
+
+eudora-enter-cliffs                    pokitaru-enter-main
+
+blarg-enter-main                       blarg-enter-clank
+
+rilgar-enter-sewer                     hoven-enter-main, kalebo-enter-race
+
+rilgar-enter-race                      gemlik-enter-boss, veldin-2-enter-boss
+
+oltanis-enter-main                     gemlik-enter-main, veldin-2-enter-main
+

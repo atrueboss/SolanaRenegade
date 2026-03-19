@@ -474,6 +474,7 @@
   "mod-settings.o" ;; added ;;mod-base-change
   "mod-common-functions.o" ;; added
   "orb-placer.o"  ;; added
+  "mod-sound.o" ;; added in solana renegade mod
   "mod-custom-code.o" ;; added
   "mod-debug.o" ;; added
  ))

@@ -247,6 +247,8 @@
       (move-nest-riftring)
       (event-trigger)
       (print-goldbolt-count-on-L3)
+      (custom-talker-on-trigger)
+      (custom-music-and-sound-volume-manager)
 
       (if *show-input-display* 
         (input-display-on)
@@ -306,6 +308,7 @@
         
       (wider-view)
       (custom-mood-on-spawn)
+      (custom-music-on-spawn)
 
       (none)
       )

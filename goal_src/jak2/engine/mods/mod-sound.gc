@@ -1,0 +1,256 @@
+    ;;-*-Lisp-*-
+    (in-package goal)
+
+    ;; name: mod-sound.gc
+    ;; name in dgo: mod-sound
+    ;; dgos: TODO
+
+(defun-extern stop-main-music (none))
+
+(defun custom-music-and-sound-volume-manager () ;; run on every frame in mod-custom-code to constantly update music and sfx volume
+    (main-music-volume (the int (* 100.0 (-> *setting-control* user-current music-volume)))) 
+    ;; (sound-volume (the int (* 100.0 (-> *setting-control* user-current sfx-volume))))
+)
+
+
+(define *current-playing-custom-music-str* (new 'global 'string 2048 (the-as string #f)))
+(defun custom-music-on-spawn ()
+    (stop-main-music)
+        (cond   
+                ;;;;; VELDIN1 SPAWN MUSIC ;;;;;
+            ((= (level-status *level* 'veldin1) 'active)
+             (and (play-main-music "veldin1/veldin1-main.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "veldin1/veldin1-main.wav" (+ 68 1)))
+            )
+
+                ;;;;; NOVALIS SPAWN MUSIC ;;;;;
+            ((string= (current-checkpoint-name) "novalis-start")       
+             (and (play-main-music "novalis/novalis-main.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "novalis/novalis-main.wav" (+ 68 1)))
+            )
+            ((string= (current-checkpoint-name) "novalis-observatory")       
+             (and (play-main-music "novalis/novalis-sewers.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "novalis/novalis-sewers.wav" (+ 68 1)))
+            )
+            ((or (string= (current-checkpoint-name) "novalis-caves-1")
+                 (string= (current-checkpoint-name) "novalis-caves-2"))
+             (and (play-main-music "novalis/novalis-caves.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "novalis/novalis-caves.wav" (+ 68 1)))
+            )
+
+                ;;;;; ARIDIA SPAWN MUSIC ;;;;;
+            ((or (string= (current-checkpoint-name) "aridia-start")
+                 (string= (current-checkpoint-name) "aridia-swingshot-start")
+                 (string= (current-checkpoint-name) "aridia-agent"))  
+             (and (play-main-music "aridia/aridia-main.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "aridia/aridia-main.wav" (+ 68 1)))
+            )
+            ((string= (current-checkpoint-name) "aridia-sandsharks")       
+             (and (play-main-music "aridia/aridia-sandsharks.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "aridia/aridia-sandsharks.wav" (+ 68 1)))
+            )
+            ((string= (current-checkpoint-name) "aridia-swingshot-end")
+             (and (play-main-music "aridia/aridia-swingshot.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "aridia/aridia-swingshot.wav" (+ 68 1)))
+            )
+
+                ;;;;; KERWAN SPAWN MUSIC ;;;;;
+            ((or (string= (current-checkpoint-name) "kerwan-start")
+                 (string= (current-checkpoint-name) "kerwan-roboshack"))  
+             (and (play-main-music "kerwan/kerwan-main.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "kerwan/kerwan-main.wav" (+ 68 1)))
+            )
+            ((or (string= (current-checkpoint-name) "kerwan-fitness-start")
+                 (string= (current-checkpoint-name) "kerwan-fitness-end"))  
+             (and (play-main-music "kerwan/kerwan-fitness.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "kerwan/kerwan-fitness.wav" (+ 68 1)))
+            )
+
+                ;;;;; EUDORA SPAWN MUSIC ;;;;;
+            ((or (string= (current-checkpoint-name) "eudora-start")
+                 (string= (current-checkpoint-name) "eudora-halfway")
+                 (string= (current-checkpoint-name) "eudora-end"))  
+             (and (play-main-music "eudora/eudora-main.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "eudora/eudora-main.wav" (+ 68 1)))
+            )
+            ((or (string= (current-checkpoint-name) "eudora-cliffs-start")
+                 (string= (current-checkpoint-name) "eudora-cliffs-end"))  
+             (and (play-main-music "eudora/eudora-cliffs.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "eudora/eudora-cliffs.wav" (+ 68 1)))
+            )
+
+                ;;;;; BLARG SPAWN MUSIC ;;;;;
+            ((or (string= (current-checkpoint-name) "blarg-start")
+                 (string= (current-checkpoint-name) "blarg-halfway")
+                 (string= (current-checkpoint-name) "blarg-end"))  
+             (and (play-main-music "blarg/blarg-main.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "blarg/blarg-main.wav" (+ 68 1)))
+            )
+            ((or (string= (current-checkpoint-name) "blarg-clank-start")
+                 (string= (current-checkpoint-name) "blarg-clank-end"))  
+             (and (play-main-music "blarg/blarg-clank.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "blarg/blarg-clank.wav" (+ 68 1)))
+            )
+
+                ;;;;; RILGAR SPAWN MUSIC ;;;;;
+            ((= (level-status *level* 'rilgar) 'active)
+             (and (play-main-music "rilgar/rilgar-main.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "rilgar/rilgar-main.wav" (+ 68 1)))
+            )
+
+                ;;;;; UMBRIS SPAWN MUSIC ;;;;;
+            ((or (string= (current-checkpoint-name) "umbris-start")
+                 (string= (current-checkpoint-name) "umbris-bridge")
+                 (string= (current-checkpoint-name) "umbris-pools"))  
+             (and (play-main-music "umbris/umbris-main.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "umbris/umbris-main.wav" (+ 68 1)))
+            )
+            ((string= (current-checkpoint-name) "umbris-boss")  
+             (and (play-main-music "umbris/umbris-boss.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "umbris/umbris-boss.wav" (+ 68 1)))
+            )
+
+                ;;;;; BATALIA SPAWN MUSIC ;;;;;
+            ((= (level-status *level* 'batalia) 'active)
+             (and (play-main-music "batalia/batalia-main.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "batalia/batalia-main.wav" (+ 68 1)))
+            )
+
+                ;;;;; GASPAR SPAWN MUSIC ;;;;;
+            ((= (level-status *level* 'gaspar) 'active)
+             (and (play-main-music "gaspar/gaspar-main.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "gaspar/gaspar-main.wav" (+ 68 1)))
+            )
+
+                ;;;;; ORXON SPAWN MUSIC ;;;;;
+            ((= (level-status *level* 'orxon) 'active)
+             (and (play-main-music "orxon/orxon-main.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "orxon/orxon-main.wav" (+ 68 1)))
+            )
+
+                ;;;;; POKITARU SPAWN MUSIC ;;;;;
+            ((= (level-status *level* 'pokitaru) 'active)
+             (and (play-main-music "pokitaru/pokitaru-main.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "pokitaru/pokitaru-main.wav" (+ 68 1)))
+            )
+
+                ;;;;; POKISEWER SPAWN MUSIC ;;;;;
+            ((= (level-status *level* 'pokisewer) 'active)
+             (and (play-main-music "pokisewer/pokisewer-main.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "pokisewer/pokisewer-main.wav" (+ 68 1)))
+            )
+
+                ;;;;; HOVEN SPAWN MUSIC ;;;;;
+            ((= (level-status *level* 'hoven) 'active)
+             (and (play-main-music "hoven/hoven-main.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "hoven/hoven-main.wav" (+ 68 1)))
+            )
+
+                ;;;;; GEMLIK SPAWN MUSIC ;;;;;
+            ((= (level-status *level* 'gemlik) 'active)
+             (and (play-main-music "gemlik/gemlik-main.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "gemlik/gemlik-main.wav" (+ 68 1)))
+            )
+
+                ;;;;; OLTANIS SPAWN MUSIC ;;;;;
+            ((or (string= (current-checkpoint-name) "oltanis-start")
+                 (string= (current-checkpoint-name) "oltanis-main-start")
+                 (string= (current-checkpoint-name) "oltanis-main-halfway")
+                 (string= (current-checkpoint-name) "oltanis-main-end")
+                 (string= (current-checkpoint-name) "oltanis-hightown-start")
+                 (string= (current-checkpoint-name) "oltanis-hightown-halfway")
+                 (string= (current-checkpoint-name) "oltanis-hightown-end"))
+             (and (play-main-music "oltanis/oltanis-main.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "oltanis/oltanis-main.wav" (+ 68 1)))
+            )
+            ((or (string= (current-checkpoint-name) "oltanis-electric-start")
+                 (string= (current-checkpoint-name) "oltanis-electric-end"))
+             (and (play-main-music "oltanis/oltanis-frozen.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "oltanis/oltanis-frozen.wav" (+ 68 1)))
+            )
+
+                ;;;;; QUARTU SPAWN MUSIC ;;;;;
+            ((= (level-status *level* 'quartu) 'active)
+             (and (play-main-music "quartu/quartu-main.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "quartu/quartu-main.wav" (+ 68 1)))
+            )
+
+                ;;;;; KALEBO SPAWN MUSIC ;;;;;
+            ((= (level-status *level* 'kalebo) 'active)
+             (and (play-main-music "kalebo/kalebo-main.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "kalebo/kalebo-main.wav" (+ 68 1)))
+            )
+
+                ;;;;; DREK SPAWN MUSIC ;;;;;
+            ((= (level-status *level* 'drek) 'active)
+             (and (play-main-music "drek/drek-main.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "drek/drek-main.wav" (+ 68 1)))
+            )
+
+                ;;;;; VELDIN2 SPAWN MUSIC ;;;;;
+            ((or (string= (current-checkpoint-name) "veldin2-start")
+                 (string= (current-checkpoint-name) "veldin2-start-warp")
+                 (string= (current-checkpoint-name) "veldin2-water")
+                 (string= (current-checkpoint-name) "veldin2-alotofdudes")
+                 (string= (current-checkpoint-name) "veldin2-burning-bush-ring"))
+             (and (play-main-music "veldin2/veldin2-main.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "veldin2/veldin2-main.wav" (+ 68 1)))
+            )
+            ((or (string= (current-checkpoint-name) "veldin2-boss")
+                 (string= (current-checkpoint-name) "veldin2-boss-warp"))
+             (and (play-main-music "veldin2/veldin2-boss.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "veldin2/veldin2-boss.wav" (+ 68 1)))
+            )
+        )
+(none)
+)
+
+(define *custom-music-transition-played-time* (the time-frame #f))
+
+(defun custom-music-on-trigger ()
+      (cond
+       (  
+        (and (pause-allowed?) (= (level-status *level* 'novalis) 'active) ;; if in this level
+             (in-bubble-m? -24.89 70.72 16.59 25.0) ;; trigger location in level
+             (not (string= *current-playing-custom-music-str* "novalis/novalis-sewers.wav")) ;; if not currently playing then allow to play
+        )      
+        (and (stop-main-music) ;; stops the old music with fade-out
+             (format (clear *current-playing-custom-music-str*) "novalis/novalis-sewers.wav" (+ 68 1)) ;; set current-playing-custom-music to new trac
+             (play-sound-file "transitions/novalis-enter-sewers.wav" (the int (* 100.0(-> *setting-control* user-current sfx-volume)))) ;; play transition sound
+             ;; (let ((some-time (current-time))) (when (time-elapsed? some-time (seconds 3))(suspend)))
+             (play-main-music "novalis/novalis-sewers.wav" (the int (* 100.0(-> *setting-control* user-current music-volume)))) ;; play new music
+             (format (clear *current-playing-custom-music-str*) "novalis/novalis-sewers.wav" (+ 68 1)) ;; set current playing music to new music
+        )     
+       )
+       (
+        (and (pause-allowed?) (= (level-status *level* 'batalia) 'active) ;; if in this level
+             (in-bubble-m? -122.60 50.17 -169.69 20.0) ;; trigger location in level
+             (not (string= *current-playing-custom-music-str* "batalia/batalia-rail.wav")) ;; if not currently playing then allow to play
+        )      
+        (and 
+             (stop-main-music) ;; stops the old music with fade-out
+             (format (clear *current-playing-custom-music-str*) "batalia/batalia-rail.wav" (+ 68 1)) ;; set current-playing-custom-music to new track
+             (play-sound-file "transitions/aridia-enter-swingshot.wav" (the int (* 100.0(-> *setting-control* user-current sfx-volume)))) ;; play transition sound
+             ;; add delay here ;; 
+             (play-main-music "batalia/batalia-rail.wav" (the int (* 100.0(-> *setting-control* user-current music-volume)))) ;; play new music
+             (format (clear *current-playing-custom-music-str*) "batalia/batalia-rail.wav" (+ 68 1)) ;; set current playing music to new music
+        )     
+       )
+      )
+(none)  
+)    
+
+
+(defun custom-talker-on-trigger ()
+    (cond  
+        ((and (pause-allowed?) (= (level-status *level* 'novalis) 'active) ;; if in this level and unpaused
+              (in-bubble-m? -24.89 70.72 16.59 25.0)) ;; entrance to novalis-sewers
+         (script-eval '(talker-spawn "ds151")) ;; "use your jetboard!"
+        )
+        ((and (pause-allowed?) (= (level-status *level* 'batalia) 'active) ;; if in this level and unpaused
+              (in-bubble-m? -131.59 52.00 -206.71 20.0))  ;; infront of batalia grind rail
+         (script-eval '(talker-spawn "ds372")) ;; "gotta ride jetboard on this one jak!"
+        )    
+    )
+(none)
+)
