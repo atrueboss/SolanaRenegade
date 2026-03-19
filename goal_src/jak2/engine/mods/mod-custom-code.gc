@@ -25,7 +25,7 @@
     ;; git add custom_assets/jak2/levels/veldin1/veldin1.glb 
     ;; git commit -m "veldin1.glb"
     
-;; Attempt at adding extra enemies to vanilla levels  
+;; Attempt at adding extra enemies to vanilla levels 
 ;; Fix compiler error just in case I move this somewhere else
 (declare-type metalmonk nav-enemy)
 ;; Hack to force enemies to spawn
@@ -46,7 +46,7 @@
   )
 )
 
-    ;; Custom Moods for different levels
+    ;; Custom Moods for solana levels
     (defun custom-mood-on-spawn ()
       (case (-> (level-get-target-inside *level*) name)
         (('veldin1)
@@ -189,7 +189,7 @@
       (set-setting-by-param *setting-control* 'fov #f (* 182.04445 94) 0) 
     )
 
-    (defun move-nest-riftring () ;; move rift ring in metal head nest down to accessible location   
+    (defun move-nest-riftring () ;; move rift ring in metal head nest down to accessible location 
       (let ((ring (the process-drawable (process-by-ename "rift-ring-ingame-1"))))
         (when (and ring (task-closed? "nest-boss-resolution"))
           (cond
@@ -231,11 +231,64 @@
       )
     )
 
+;; Dark Jak music flava for solana levels
+(define *dark-jak-music-playing* 0)
+(define *dark-jak-music-start-time* 0)
+
+(defun dynamic-dark-jak-flava ()
+  (let ((in-dark-jak? (and *target* 
+                           (focus-test? *target* dark)
+                           (nonzero? (-> *target* darkjak))
+                           (logtest? (-> *target* darkjak stage) (darkjak-stage active))
+                           (or (= (level-status *level* 'veldin1) 'active)
+                               (= (level-status *level* 'novalis) 'active)
+                               (= (level-status *level* 'aridia) 'active)
+                               (= (level-status *level* 'kerwan) 'active)
+                               (= (level-status *level* 'eudora) 'active)
+                               (= (level-status *level* 'blarg) 'active)
+                               (= (level-status *level* 'rilgar) 'active)
+                               (= (level-status *level* 'umbris) 'active)
+                               (= (level-status *level* 'batalia) 'active)
+                               (= (level-status *level* 'gaspar) 'active)
+                               (= (level-status *level* 'orxon) 'active)
+                               (= (level-status *level* 'pokitaru) 'active)
+                               (= (level-status *level* 'pokisewer) 'active)
+                               (= (level-status *level* 'hoven) 'active)
+                               (= (level-status *level* 'gemlik) 'active)
+                               (= (level-status *level* 'oltanis) 'active)
+                               (= (level-status *level* 'quartu) 'active)
+                               (= (level-status *level* 'kalebo) 'active)
+                               (= (level-status *level* 'drek) 'active)
+                               (= (level-status *level* 'veldin2) 'active))))
+        (sound-duration (seconds 34.25)))
+    (cond
+      ;; If in dark-jak and sound not playing, start it
+      ((and in-dark-jak? (= *dark-jak-music-playing* 0))
+       (set! *dark-jak-music-playing* 1)
+       (set! *dark-jak-music-start-time* (current-time))
+       (play-sound-file "darkjak-flava.wav" (the int (* (-> *setting-control* user-current sfx-volume) 100.0)))
+       )
+      ;; If in dark-jak and sound has finished, restart it (LOOP)
+      ((and in-dark-jak? 
+            (= *dark-jak-music-playing* 1)
+            (time-elapsed? *dark-jak-music-start-time* sound-duration))
+       (set! *dark-jak-music-start-time* (current-time))
+       (play-sound-file "darkjak-flava.wav" (the int (* (-> *setting-control* user-current sfx-volume) 100.0)))
+       )
+      ;; If NOT in dark-jak but sound was playing, stop and marked as stopped
+      ((and (not in-dark-jak?) (!= *dark-jak-music-playing* 0))
+       (stop-sound-file "darkjak-flava.wav")
+       (set! *dark-jak-music-playing* 0)
+       )
+      )
+    )
+  (none)
+  )
 
     (defun event-trigger ()
       (cond 
         ( (in-bubble? (meters 192.82) (meters  17.28) (meters 1737.85) (meters 25.0))
-          (draw-pink *target*)
+          (task-close! "nest-boss-resolution")
         )
       )
     )
@@ -247,6 +300,8 @@
       (move-nest-riftring)
       (event-trigger)
       (print-goldbolt-count-on-L3)
+      (dynamic-dark-jak-flava)
+
       (custom-talker-on-trigger)
       (custom-music-and-sound-volume-manager)
 
