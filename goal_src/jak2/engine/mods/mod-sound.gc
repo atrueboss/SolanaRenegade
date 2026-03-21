@@ -5,11 +5,9 @@
     ;; name in dgo: mod-sound
     ;; dgos: TODO
 
-(defun-extern stop-main-music (none))
-
-(defun custom-music-and-sound-volume-manager () ;; run on every frame in mod-custom-code to constantly update music and sfx volume
+(defun custom-music-volume-manager ()
+  "Run on every frame in mod-custom-code to constantly update music volume."
     (main-music-volume (the int (* 100.0 (-> *setting-control* user-current music-volume)))) 
-    ;; (sound-volume (the int (* 100.0 (-> *setting-control* user-current sfx-volume))))
 )
 
 (defun zero-volume? ()

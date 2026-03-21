@@ -266,14 +266,14 @@
       ((and in-dark-jak? (= *dark-jak-music-playing* 0))
        (set! *dark-jak-music-playing* 1)
        (set! *dark-jak-music-start-time* (current-time))
-       (play-sound-file "darkjak-flava.wav" (the int (* (-> *setting-control* user-current sfx-volume) 100.0)))
+       (play-sound-file "darkjak-flava.wav" (the int (* (-> *setting-control* user-current music-volume) 100.0)))
        )
       ;; If in dark-jak and sound has finished, restart it (LOOP)
       ((and in-dark-jak? 
             (= *dark-jak-music-playing* 1)
             (time-elapsed? *dark-jak-music-start-time* sound-duration))
        (set! *dark-jak-music-start-time* (current-time))
-       (play-sound-file "darkjak-flava.wav" (the int (* (-> *setting-control* user-current sfx-volume) 100.0)))
+       (play-sound-file "darkjak-flava.wav" (the int (* (-> *setting-control* user-current music-volume) 100.0)))
        )
       ;; If NOT in dark-jak but sound was playing, stop and marked as stopped
       ((and (not in-dark-jak?) (!= *dark-jak-music-playing* 0))
@@ -303,7 +303,7 @@
       (dynamic-dark-jak-flava)
 
       (custom-talker-on-trigger)
-      (custom-music-and-sound-volume-manager)
+      (custom-music-volume-manager)
 
       (if *show-input-display* 
         (input-display-on)

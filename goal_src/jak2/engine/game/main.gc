@@ -869,9 +869,13 @@
         (load-continue (-> *level* loading-level))
         )
     (runs-every-frame) ;;mod-base-change
-    (if (and *target* (zero-volume?))  ;; MOD: pause custom music/sounds on start
-          (pause-main-music)   
-          (resume-main-music)
+    (if (and *target* (zero-volume?))  ;; MOD: pause custom music/sounds on pause game
+          (and (pause-main-music)
+               (pause-sound-files)
+          )
+          (and (resume-main-music)
+               (resume-sound-files)
+          )
         ) 
 
     ; ;; Run blerc to modify foreground models
