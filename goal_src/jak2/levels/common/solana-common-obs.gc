@@ -411,16 +411,40 @@
       (logior! (-> self draw status) (draw-control-status no-draw))
       (case (-> self look)
         (('iron)
-         (play-sound-file "sol-crate-die.mp3" (the int (* (-> *setting-control* user-current sfx-volume) 75.0)))
+           ;; Vary volume of sol-crate-die based on distance from jak 
+        (let ((distance-volume (calculate-distance-volume 
+                                (-> self root trans)     ;; Crate position
+                                75.0                     ;; Max volume (75%)
+                                (meters 50))))                ;; Max distance
+          (when (> distance-volume 0.0)
+            (play-sound-file "sol-crate-die.mp3" (the int (* (-> *setting-control* user-current sfx-volume) distance-volume)))))
          )
         (('steel)
-         (play-sound-file "sol-crate-die.mp3" (the int (* (-> *setting-control* user-current sfx-volume) 75.0)))
+           ;; Vary volume of sol-crate-die based on distance from jak 
+        (let ((distance-volume (calculate-distance-volume 
+                                (-> self root trans)     ;; Crate position
+                                75.0                     ;; Max volume (75%)
+                                (meters 50))))                ;; Max distance
+          (when (> distance-volume 0.0)
+            (play-sound-file "sol-crate-die.mp3" (the int (* (-> *setting-control* user-current sfx-volume) distance-volume)))))
          )
         (('darkeco)
-         (play-sound-file "sol-crate-die.mp3" (the int (* (-> *setting-control* user-current sfx-volume) 75.0)))
+           ;; Vary volume of sol-crate-die based on distance from jak 
+        (let ((distance-volume (calculate-distance-volume 
+                                (-> self root trans)     ;; Crate position
+                                75.0                     ;; Max volume (75%)
+                                (meters 50))))                ;; Max distance
+          (when (> distance-volume 0.0)
+            (play-sound-file "sol-crate-die.mp3" (the int (* (-> *setting-control* user-current sfx-volume) distance-volume)))))
          )
         (else
-          (play-sound-file "sol-crate-die.mp3" (the int (* (-> *setting-control* user-current sfx-volume) 75.0)))
+          ;; Vary volume of sol-crate-die based on distance from jak 
+        (let ((distance-volume (calculate-distance-volume 
+                                (-> self root trans)     ;; Crate position
+                                75.0                     ;; Max volume (75%)
+                                (meters 50))))                ;; Max distance
+          (when (> distance-volume 0.0)
+            (play-sound-file "sol-crate-die.mp3" (the int (* (-> *setting-control* user-current sfx-volume) distance-volume)))))
           )
         )
       (case (-> self defense)
@@ -650,16 +674,40 @@
       (logior! (-> self draw status) (draw-control-status no-draw))
       (case (-> self look)
         (('iron)
-         (play-sound-file "sol-crate-die.mp3" (the int (* (-> *setting-control* user-current sfx-volume) 75.0)))
+           ;; Vary volume of sol-crate-die based on distance from jak 
+        (let ((distance-volume (calculate-distance-volume 
+                                (-> self root trans)     ;; Crate position
+                                75.0                     ;; Max volume (75%)
+                                (meters 50))))                ;; Max distance
+          (when (> distance-volume 0.0)
+            (play-sound-file "sol-crate-die.mp3" (the int (* (-> *setting-control* user-current sfx-volume) distance-volume)))))
          )
         (('steel)
-         (play-sound-file "sol-crate-die.mp3" (the int (* (-> *setting-control* user-current sfx-volume) 75.0)))
+         ;; Vary volume of sol-crate-die based on distance from jak 
+        (let ((distance-volume (calculate-distance-volume 
+                                (-> self root trans)     ;; Crate position
+                                75.0                     ;; Max volume (75%)
+                                (meters 50))))                ;; Max distance
+          (when (> distance-volume 0.0)
+            (play-sound-file "sol-crate-die.mp3" (the int (* (-> *setting-control* user-current sfx-volume) distance-volume)))))
          )
         (('darkeco)
-         (play-sound-file "sol-crate-die.mp3" (the int (* (-> *setting-control* user-current sfx-volume) 75.0)))
+         ;; Vary volume of sol-crate-die based on distance from jak 
+        (let ((distance-volume (calculate-distance-volume 
+                                (-> self root trans)     ;; Crate position
+                                75.0                     ;; Max volume (75%)
+                                (meters 50))))                ;; Max distance
+          (when (> distance-volume 0.0)
+            (play-sound-file "sol-crate-die.mp3" (the int (* (-> *setting-control* user-current sfx-volume) distance-volume)))))
          )
         (else
-          (play-sound-file "sol-crate-die.mp3" (the int (* (-> *setting-control* user-current sfx-volume) 75.0)))
+          ;; Vary volume of sol-crate-die based on distance from jak 
+        (let ((distance-volume (calculate-distance-volume 
+                                (-> self root trans)     ;; Crate position
+                                75.0                     ;; Max volume (75%)
+                                (meters 50))))                ;; Max distance
+          (when (> distance-volume 0.0)
+            (play-sound-file "sol-crate-die.mp3" (the int (* (-> *setting-control* user-current sfx-volume) distance-volume)))))
           )
         )
       (case (-> self defense)
@@ -906,16 +954,40 @@
       (logior! (-> self draw status) (draw-control-status no-draw))
       (case (-> self look)
         (('iron)
-         (play-sound-file "sol-crate-iron-die.wav" (the int (* (-> *setting-control* user-current sfx-volume) 75.0)))
+           ;; Vary volume of sol-crate-die based on distance from jak 
+        (let ((distance-volume (calculate-distance-volume 
+                                (-> self root trans)     ;; Crate position
+                                75.0                     ;; Max volume (75%)
+                                (meters 50))))                ;; Max distance
+          (when (> distance-volume 0.0)
+            (play-sound-file "sol-crate-iron-die.wav" (the int (* (-> *setting-control* user-current sfx-volume) distance-volume)))))
          )
         (('steel)
-         (play-sound-file "sol-crate-iron-die.wav" (the int (* (-> *setting-control* user-current sfx-volume) 75.0)))
+           ;; Vary volume of sol-crate-die based on distance from jak 
+        (let ((distance-volume (calculate-distance-volume 
+                                (-> self root trans)     ;; Crate position
+                                75.0                     ;; Max volume (75%)
+                                (meters 50))))                ;; Max distance
+          (when (> distance-volume 0.0)
+            (play-sound-file "sol-crate-iron-die.wav" (the int (* (-> *setting-control* user-current sfx-volume) distance-volume)))))
          )
         (('darkeco)
-         (play-sound-file "sol-crate-iron-die.wav" (the int (* (-> *setting-control* user-current sfx-volume) 75.0)))
+           ;; Vary volume of sol-crate-die based on distance from jak 
+        (let ((distance-volume (calculate-distance-volume 
+                                (-> self root trans)     ;; Crate position
+                                75.0                     ;; Max volume (75%)
+                                (meters 50))))                ;; Max distance
+          (when (> distance-volume 0.0)
+            (play-sound-file "sol-crate-iron-die.wav" (the int (* (-> *setting-control* user-current sfx-volume) distance-volume)))))
          )
         (else
-          (play-sound-file "sol-crate-iron-die.wav" (the int (* (-> *setting-control* user-current sfx-volume) 75.0)))
+            ;; Vary volume of sol-crate-die based on distance from jak 
+        (let ((distance-volume (calculate-distance-volume 
+                                (-> self root trans)     ;; Crate position
+                                75.0                     ;; Max volume (75%)
+                                (meters 50))))                ;; Max distance
+          (when (> distance-volume 0.0)
+            (play-sound-file "sol-crate-iron-die.wav" (the int (* (-> *setting-control* user-current sfx-volume) distance-volume)))))
           )
         )
       (case (-> self defense)

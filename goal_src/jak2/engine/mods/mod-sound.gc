@@ -19,6 +19,15 @@
   )
 )
 
+(defun calculate-distance-volume ((source-pos vector) (max-volume float) (max-distance float))
+  "Calculate volume based on distance from player. Returns 0-100."
+  (if (not *target*)
+      0.0
+      (let ((distance (vector-vector-distance source-pos (-> *target* control trans))))
+        (if (>= distance max-distance)
+            0.0
+            (* max-volume (- 1.0 (/ distance max-distance)))))))
+
 (define *current-playing-custom-music-str* (new 'global 'string 2048 (the-as string #f)))
 (defun custom-music-on-spawn ()
     (stop-main-music)
