@@ -183,6 +183,30 @@ void stopAllSounds() {
   maSoundMap.clear();
 }
 
+// Function to pause all currently playing sounds.
+void pauseSoundFiles() {
+  std::lock_guard<std::mutex> lock(activeMusicsMutex);
+  for (auto& pair : maSoundMap) {
+    for (auto* sound : pair.second) {
+      if (sound && MiniAudioLib::ma_sound_is_playing(sound)) {
+        MiniAudioLib::ma_sound_stop(sound);
+      }
+    }
+  }
+}
+
+// Function to resume all paused sounds.
+void resumeSoundFiles() {
+  std::lock_guard<std::mutex> lock(activeMusicsMutex);
+  for (auto& pair : maSoundMap) {
+    for (auto* sound : pair.second) {
+      if (sound && !MiniAudioLib::ma_sound_is_playing(sound)) {
+        MiniAudioLib::ma_sound_start(sound);
+      }
+    }
+  }
+}
+
 // Function to get the names of currently playing files.
 std::vector<std::string> getPlayingFileNames() {
   std::vector<std::string> playingFileNames;
@@ -1347,6 +1371,10 @@ void init_common_pc_port_functions(
 
   // Stop all sounds
   make_func_symbol_func("stop-all-sounds", (void*)stopAllSounds);
+
+  // Pause and resume all sounds
+  make_func_symbol_func("pause-sound-files", (void*)pauseSoundFiles);
+  make_func_symbol_func("resume-sound-files", (void*)resumeSoundFiles);
 
   // Main music stuff
   make_func_symbol_func("play-main-music", (void*)playMainMusic);
