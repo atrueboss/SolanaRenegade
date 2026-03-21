@@ -6,6 +6,7 @@
 #include <random>
 #include <thread>
 #include <list>
+#include <set>
 
 #define MINIAUDIO_IMPLEMENTATION
 // NOTE - this is needed, because on macOS, there is a file called `MacTypes.h`
@@ -191,29 +192,21 @@ void pauseSoundFiles() {
     for (auto* sound : pair.second) {
       if (sound && MiniAudioLib::ma_sound_is_playing(sound)) {
         MiniAudioLib::ma_sound_stop(sound);
-        pausedSounds.insert(sound);  // Track that it's paused
+        pausedSounds.insert(sound);
       }
     }
   }
 }
 
-void resumeMainMusic() {
-  mainMusicMutex.lock();
-  if (mainMusicSound && !MiniAudioLib::ma_sound_is_playing(mainMusicSound)) {
-    MiniAudioLib::ma_sound_start(mainMusicSound);
-  }
-  mainMusicMutex.unlock();
-}
-
 // Function to resume all paused sounds.
 void resumeSoundFiles() {
   std::lock_guard<std::mutex> lock(activeMusicsMutex);
-  for (auto* sound : pausedSounds) {  // Iterate paused sounds
+  for (auto* sound : pausedSounds) {
     if (sound && !MiniAudioLib::ma_sound_is_playing(sound)) {
       MiniAudioLib::ma_sound_start(sound);
     }
   }
-  pausedSounds.clear();  // Clear the paused list
+  pausedSounds.clear();
 }
 
 // Function to get the names of currently playing files.
@@ -274,7 +267,6 @@ u64 playMP3_internal(u32 filePathu32, u32 volume, bool isMainMusic) {
       std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 
-
     MiniAudioLib::ma_sound_stop(sound);
     MiniAudioLib::ma_sound_uninit(sound);
     std::cout << "Finished playing file: " << filePath << std::endl;
@@ -284,6 +276,7 @@ u64 playMP3_internal(u32 filePathu32, u32 volume, bool isMainMusic) {
       if (maSoundMap.find(filePath) != maSoundMap.end()) {
         maSoundMap[filePath].remove(sound);
       }
+      pausedSounds.erase(sound);
     }
     
     delete sound;
