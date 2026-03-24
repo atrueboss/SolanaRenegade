@@ -1377,3 +1377,37 @@
     (:rotate-y (degrees 0))
     )
   )
+
+(defpartgroup group-bolt-bling
+  :id 1295
+  :flags (use-local-clock)
+  :bounds (static-bspherem 0 0 0 5)
+  :parts ((sp-item 5488 :period (seconds 4) :length (seconds 0.0085)))
+  )
+
+(defpart 5488
+  :init-specs ((:texture (glow effects))
+    (:num 1.0)
+    (:x (meters -0.2) (meters 0.2))    ;; Random X between -0.2 and 0.2 meters
+    (:y (meters 0.2) (meters 0.65))     ;; Random Y between 0.2 and 0.65 meters
+    (:scale-x (meters 0))
+    (:rot-x (degrees 2.25))
+    (:scale-y :copy scale-x)
+    (:r 255.0)
+    (:g 196.0)
+    (:b 196.0)
+    (:a 96.0)
+    (:scalevel-x (meters 0.004))
+    (:rotvel-z (degrees -0.6923077))
+    (:scalevel-y :copy scalevel-x)
+    (:timer (seconds 0.335))
+    (:flags (sp-cpuinfo-flag-2 glow left-multiply-quat))
+    (:userdata 409.6)
+    (:next-time (seconds 0.167))
+    (:next-launcher 5489)
+    )
+  )
+
+(defpart 5489
+  :init-specs ((:scalevel-x (meters -0.002)) (:scalevel-y :copy scalevel-x) (:fade-a -1.92))
+  )
