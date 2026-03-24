@@ -1,0 +1,36 @@
+;;-*-Lisp-*-
+(in-package goal)
+
+;; name: solana-part.gc
+;; name in dgo: solana-part
+;; dgos: SOP
+
+;; DECOMP BEGINS
+
+(defpartgroup group-solana-item-glow
+  :id 1295
+  :flags (use-local-clock unk-4)
+  :bounds (static-bspherem 0 0 0 4)
+  :parts ((sp-item 5488 :fade-after (meters 200) :flags (bit6)))
+  )
+
+(defpart 5488
+  :init-specs ((:texture (glow effects))
+    (:num 1.0)
+    (:y (meters 0))
+    (:scale-x (meters 8))
+    (:rot-x (degrees 2.25))
+    (:rot-z (degrees -17) (degrees 2))
+    (:scale-y :copy scale-x)
+    (:r 255.0)
+    (:g 128.0 64.0)
+    (:b 0.0)
+    (:a 20.0 2.0)
+    (:omega (degrees 4515.75))
+    (:scalevel-x (meters -0.0016666667))
+    (:scalevel-y :copy scalevel-x)
+    (:timer (seconds 0.017))
+    (:flags (sp-cpuinfo-flag-2 sp-cpuinfo-flag-3 glow))
+    (:userdata 4096.0)
+    )
+  )
