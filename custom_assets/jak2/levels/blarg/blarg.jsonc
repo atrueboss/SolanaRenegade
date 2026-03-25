@@ -48,10 +48,16 @@
                     "test-actor",
                     "goldbolt",
                     "infobot",
+                    "metalgrabber",
                     "sol-crate",
                     "sol-crate-ammo",
+                    "sol-crate-iron",
                     "vendor",
-                    "teleporter"
+                    "teleporter",
+                    "bolt-1",
+                    "bolt-5",
+                    "bolt-20",
+                    "bolt-50",
                    ],
 
    // Any textures you want to include in your custom level.

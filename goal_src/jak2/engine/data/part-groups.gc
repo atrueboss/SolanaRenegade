@@ -1291,5 +1291,7 @@
 (defconstant group-ctygenc-sign-8x4 (-> *part-group-id-table* 853))
 (defconstant group-ctygenc-sign-4x8 (-> *part-group-id-table* 854))
 ;; custom entries 
-(defconstant group-bolt-bling (-> *part-group-id-table* 1295))
+(defconstant group-solana-item-glow (-> *part-group-id-table* 1295))
+(defconstant group-goldbolt-glow (-> *part-group-id-table* 1296))
+(defconstant group-bolt-bling (-> *part-group-id-table* 1297))
 

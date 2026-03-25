@@ -10,13 +10,20 @@
   "sew-gunturret-ag.go" ;;sewer blue gun turret 
 
   "solana-common-obs.o"
+  "solana-part.o" ;; for infobot / metalgrabber glow particle 
+  "test-actor-ag.go"
   "goldbolt-ag.go"
   "infobot-ag.go"
+  "metalgrabber-ag.go"
   "sol-crate-ag.go"
   "sol-crate-ammo-ag.go"
+  "sol-crate-iron-ag.go"
   "vendor-ag.go"
   "teleporter-ag.go"
-  "drill-part.o" ;; for goldbolt / infobot glow particle
+  "bolt-1-ag.go"
+  "bolt-5-ag.go"
+  "bolt-20-ag.go"
+  "bolt-50-ag.go"
 
 
   "dig1-obs.o" ;;dig stuff (for the jump-pad)

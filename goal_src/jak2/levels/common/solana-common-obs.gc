@@ -73,7 +73,7 @@
 ;;     (initialize-skeleton this *goldbolt-sg* '())
   
 ;;   ;; Add particle effect
-;;   (set! (-> this part) (create-launch-control group-drill-orange-light this))
+;;   (set! (-> this part) (create-launch-control group-goldbolt-glow this))
   
 ;;   (set! (-> this draw shadow-ctrl) *collectable-dummy-shadow-control*)
 ;;   (if (-> this entity)
@@ -197,7 +197,7 @@
     (initialize-skeleton this *infobot-sg* '())
   
   ;; Add particle effect
-  (set! (-> this part) (create-launch-control group-drill-orange-light this))
+  (set! (-> this part) (create-launch-control group-solana-item-glow this))
   
   (set! (-> this draw shadow-ctrl) *collectable-dummy-shadow-control*)
   (if (-> this entity)
@@ -1358,7 +1358,7 @@
     (initialize-skeleton this *metalgrabber-sg* '())
   
   ;; Add particle effect
-  (set! (-> this part) (create-launch-control group-drill-orange-light this))
+  (set! (-> this part) (create-launch-control group-solana-item-glow this))
   
   (set! (-> this draw shadow-ctrl) *collectable-dummy-shadow-control*)
   (if (-> this entity)

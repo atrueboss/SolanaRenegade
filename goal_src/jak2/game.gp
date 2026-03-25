@@ -302,6 +302,7 @@
 ;; file with all the assets
 (goal-src "levels/test-zone/test-zone-obs.gc" "process-focusable")
 (goal-src "levels/common/solana-common-obs.gc" "process-focusable")
+(goal-src "levels/common/solana-part.gc" "process-focusable")
 ;; the DGO file
 (custom-level-cgo "TSZ.DGO" "test-zone/testzone.gd")
 

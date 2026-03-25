@@ -2266,7 +2266,7 @@
     (initialize-skeleton this *bolt-1-sg* '())
   
   ;; Add particle effect
-  (set! (-> this part) (create-launch-control group-drill-orange-light this))
+  (set! (-> this part) (create-launch-control group-bolt-bling this))
   
   (set! (-> this draw shadow-ctrl) *collectable-dummy-shadow-control*)
   (if (-> this entity)
@@ -2401,7 +2401,7 @@
     (initialize-skeleton this *bolt-5-sg* '())
   
   ;; Add particle effect
-  (set! (-> this part) (create-launch-control group-drill-orange-light this))
+  (set! (-> this part) (create-launch-control group-bolt-bling this))
   
   (set! (-> this draw shadow-ctrl) *collectable-dummy-shadow-control*)
   (if (-> this entity)
@@ -2460,9 +2460,9 @@
     )
   :post (behavior ()
     ;; Spawn particles every frame
-    ;; (spawn (-> self part) (-> self root trans))
+    (spawn (-> self part) (-> self root trans))
     (transform-post)
-    )
+        )
   )
 
 (deftype bolt-20 (money)
@@ -2536,7 +2536,7 @@
     (initialize-skeleton this *bolt-20-sg* '())
   
   ;; Add particle effect
-  (set! (-> this part) (create-launch-control group-drill-orange-light this))
+  (set! (-> this part) (create-launch-control group-bolt-bling this))
   
   (set! (-> this draw shadow-ctrl) *collectable-dummy-shadow-control*)
   (if (-> this entity)
@@ -2595,7 +2595,7 @@
     )
   :post (behavior ()
     ;; Spawn particles every frame
-    ;; (spawn (-> self part) (-> self root trans))
+    (spawn (-> self part) (-> self root trans))
     (transform-post)
     )
   )
@@ -2671,7 +2671,7 @@
     (initialize-skeleton this *bolt-50-sg* '())
   
   ;; Add particle effect
-  (set! (-> this part) (create-launch-control group-drill-orange-light this))
+  (set! (-> this part) (create-launch-control group-bolt-bling this))
   
   (set! (-> this draw shadow-ctrl) *collectable-dummy-shadow-control*)
   (if (-> this entity)
@@ -2730,7 +2730,7 @@
     )
   :post (behavior ()
     ;; Spawn particles every frame
-    ;; (spawn (-> self part) (-> self root trans))
+    (spawn (-> self part) (-> self root trans))
     (transform-post)
     )
   )
@@ -2806,7 +2806,7 @@
     (initialize-skeleton this *goldbolt-sg* '())
   
   ;; Add particle effect
-  (set! (-> this part) (create-launch-control group-drill-orange-light this))
+  (set! (-> this part) (create-launch-control group-goldbolt-glow this))
   
   (set! (-> this draw shadow-ctrl) *collectable-dummy-shadow-control*)
   (if (-> this entity)

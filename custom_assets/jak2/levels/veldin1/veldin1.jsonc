@@ -52,10 +52,20 @@
                     "test-actor",
                     "goldbolt",
                     "infobot",
+                    "metalgrabber",
                     "sol-crate",
                     "sol-crate-ammo",
+                    "sol-crate-iron",
                     "vendor",
-                    "teleporter"
+                    "teleporter",
+                    "bolt-1",
+                    "bolt-5",
+                    "bolt-20",
+                    "bolt-50",
+                    "bolt-1",
+                    "bolt-5",
+                    "bolt-20",
+                    "bolt-50"
                    ],
 
    // Any textures you want to include in your custom level.
@@ -83,14 +93,35 @@
     ///////////////////////////////////////////////////////////////////////PICKUPS/////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     {
-      "trans": [2.6986, 19.14, 133.54], // translation
-      "etype": "sol-crate",  // actor type
+      "trans": [2.6986, 19.14, 133.54], // for placing on top, crate height is +1.76
+      "etype": "sol-crate", // actor type
       "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0, 0, 1], // quaternion
-      "bsphere": [0,0,0, 10], // bounding sphere
+      "quat": [0, 0, 0, 1], // quaternion
+      "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
       "lump": {
-        "name":"sol-crate-1",
-        "eco-info": ["eco-info", "(pickup-type ammo-red)", 3]
+        "name": "sol-crate-1",
+        "eco-info": ["int32",  // *max 3 pairs (6 items) or will crash. also bolt-20 or bolt-50 inside = crate doesn't respawn.
+//ammo-yellow 13, ammo-red 14, ammo-blue 15, ammo-dark 16, health 18, eco-pill-dark 7, bolt-1 34, bolt-5 35, bolt-20 36, bolt-50 37
+                    34, 3,  // bolt-1 x3
+                    35, 2,  // bolt-5 x2
+                    36, 1   // bolt-20 x1
+                    ]  
+      }
+    },
+    {
+      "trans": [2.6986, 20.90, 133.54], // for placing on top, crate height is +1.76
+      "etype": "sol-crate", // actor type
+      "game_task": 0, // associated game task (for powercells, etc)
+      "quat": [0, 0, 0, 1], // quaternion
+      "bsphere": [5.41, 3.5, 28.42, 10], // bounding sphere
+      "lump": {
+        "name": "sol-crate-2",
+        "eco-info": ["int32",  // *max 3 pairs (6 items) or will crash. also bolt-20 or bolt-50 inside = crate doesn't respawn.
+//ammo-yellow 13, ammo-red 14, ammo-blue 15, ammo-dark 16, health 18, eco-pill-dark 7, bolt-1 34, bolt-5 35, bolt-20 36, bolt-50 37
+                    34, 4,  // bolt-1 x4
+                    35, 3,  // bolt-5 x3
+                    36, 2   // bolt-20 x2
+                    ]  
       }
     },
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
