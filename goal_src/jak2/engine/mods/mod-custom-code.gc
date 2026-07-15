@@ -176,14 +176,60 @@
     (none)
     )
 
-    (defun better-hover-cam ()    ;; cam follows jak as he hovers on board
-      (when *target* 
-        (if (board-hovering?)
-          (set-setting-by-param *setting-control* 'slave-options 'clear 0 16)
-          (remove-setting-by-arg0 *setting-control* 'slave-options)
+    (define *hover-cam-hint-start* (the-as time-frame -1))
+    (defun better-hover-cam () ;; hover + square brings camera with you
+      (when *target*
+        (if (and (board-hovering?) (cpad-hold? 0 square))
+            (set-setting-by-param *setting-control* 'slave-options 'clear 0 16)
+            (remove-setting-by-arg0 *setting-control* 'slave-options)
+            )
         )
+      ;; Start timer on first hover
+      (when (and *target*
+                (board-hovering?)
+                (not (task-node-closed? (game-task-node hover-cam-training-done)))
+                (= *hover-cam-hint-start* -1)
+                )
+        (set! *hover-cam-hint-start* (-> *display* game-clock frame-counter))
+        )
+      ;; Draw text while timer active
+      (when (and (not (= *hover-cam-hint-start* -1))
+                (not (task-node-closed? (game-task-node hover-cam-training-done)))
+                )
+        (when (not (time-elapsed? *hover-cam-hint-start* (seconds 10)))
+          ;; Tell HUD system we're showing a hint
+          (set-setting! 'play-hints #f 0.0 0)
+          (hide-hud-quick (the-as symbol 'hud-health))
+          (hide-hud-quick (the-as symbol 'hud-dark-eco-symbol))
+          (hide-hud-quick (the-as symbol 'hud-map))
+          (with-dma-buffer-add-bucket ((buf (-> (current-frame) global-buf)) (bucket-id progress))
+            (dma-buffer-add-gs-set-flusha buf
+              (alpha-1 (new 'static 'gs-alpha :b #x1 :d #x1))
+              (tex1-1 (new 'static 'gs-tex1 :mmag #x1 :mmin #x1))
+              )
+            (let ((font-ctx (new 'stack 'font-context *font-default-matrix* 270 310 0.0 (font-color default) (font-flags shadow kerning middle large))))
+              (set! (-> font-ctx scale) 0.7)
+              (format (clear *temp-string*) "While hovering, hold ~S to"
+                (lookup-text! *common-text* (text-id pad-square) #f))
+              (pc-encode-utf8-string *temp-string* *pc-encoded-temp-string*)
+              (draw-string-adv *pc-encoded-temp-string* buf font-ctx)
+              )
+            (let ((font-ctx (new 'stack 'font-context *font-default-matrix* 270 340 0.0 (font-color default) (font-flags shadow kerning middle large))))
+              (set! (-> font-ctx scale) 0.7)
+              (pc-encode-utf8-string (string-format "bring the camera with you") *pc-encoded-temp-string*)
+              (draw-string-adv *pc-encoded-temp-string* buf font-ctx)
+              )
+            )
+          )
+        (when (time-elapsed? *hover-cam-hint-start* (seconds 8))
+          (remove-setting! 'play-hints)
+          (hide-hud-quick #f)
+          (task-node-close! (game-task-node hover-cam-training-done))
+          (set! *hover-cam-hint-start* -1)
+          )
+        )
+      (none)
       )
-    )
 
     (defun wider-view () ;; Set camera fov to 94.0 (way better imo)
       (set-setting-by-param *setting-control* 'fov #f (* 182.04445 94) 0) 

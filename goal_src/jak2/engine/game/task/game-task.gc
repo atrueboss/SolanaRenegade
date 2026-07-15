@@ -1038,6 +1038,16 @@
           ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; CUSTOM TASKS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
           ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
           
+          ;; non-missions
+          (new 'static 'game-task-info
+            :name "hover-cam-training"
+            ;; :pre-play-node #f
+            ;; :kiosk-play-node #f
+            ;; :pre-play-continue #f
+            ;; :play-node #f
+            ;; :play-continue #f
+            ;; :kiosk-play-continue #f
+            )
           ;; get infobots 
           (new 'static 'game-task-info
             :name "city-get-infobot-veldin1"
@@ -12533,6 +12543,25 @@
             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; CUSTOM TASKS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
           
+          ;; non-missions
+          (new 'static 'game-task-node-info
+            :level 'city
+            :task (game-task hover-cam-training)
+            :name "hover-cam-training-done"
+            :when-open #f
+            :flags (game-task-node-flag save-on-life)
+            :parent-node (new 'static 'array game-task-node 4
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              (game-task-node none)
+              )
+            :on-open #f
+            :info #f
+            :borrow '()
+            :open? #f
+            :on-close #f
+            )
           ;;;;;;;;;;;;;;;;; INFOBOT PICKUPS ;;;;;;;;;;;;;;;;;; 
           (new 'static 'game-task-node-info
             :level 'city

@@ -125,37 +125,39 @@
   ;; custom tasks ;;
   ;;;;;;;;;;;;;;;;;;
 
+  ;; non-missions
+  (hover-cam-training 110)
   ;; infobots 
-  (city-get-infobot-veldin1 110)
-  (veldin1-get-infobot-novalis 111)
-  (novalis-get-infobot-aridia 112)
-  (novalis-get-infobot-kerwan 113)
-  (kerwan-get-infobot-eudora 114)
-  (eudora-get-infobot-blarg 115)
-  (blarg-get-infobot-rilgar 116)
-  (rilgar-get-infobot-umbris 117)
-  (umbris-get-infobot-batalia 118)
-  (batalia-get-infobot-gaspar 119)
-  (batalia-get-infobot-orxon 120)
-  (orxon-get-infobot-pokitaru 121)
-  (orxon-get-infobot-hoven 122)
-  (hoven-get-infobot-gemlik 123)
-  (gemlik-get-infobot-oltanis 124)
-  (oltanis-get-infobot-quartu 125)
-  (quartu-get-infobot-kalebo 126)
-  (quartu-get-infobot-drek 127)
-  (drek-get-infobot-veldin2 128)
+  (city-get-infobot-veldin1 111)
+  (veldin1-get-infobot-novalis 112)
+  (novalis-get-infobot-aridia 113)
+  (novalis-get-infobot-kerwan 114)
+  (kerwan-get-infobot-eudora 115)
+  (eudora-get-infobot-blarg 116)
+  (blarg-get-infobot-rilgar 117)
+  (rilgar-get-infobot-umbris 118)
+  (umbris-get-infobot-batalia 119)
+  (batalia-get-infobot-gaspar 120)
+  (batalia-get-infobot-orxon 121)
+  (orxon-get-infobot-pokitaru 122)
+  (orxon-get-infobot-hoven 123)
+  (hoven-get-infobot-gemlik 124)
+  (gemlik-get-infobot-oltanis 125)
+  (oltanis-get-infobot-quartu 126)
+  (quartu-get-infobot-kalebo 127)
+  (quartu-get-infobot-drek 128)
+  (drek-get-infobot-veldin2 129)
 
   ;; test burning bush
-  (testzone-burning-bush-get-to 129)
+  (testzone-burning-bush-get-to 130)
 
   ;; custom burning bush
-  (veldin1-burning-bush-get-to 130)
-  (orxon-burning-bush-get-to 131)
-  (orxon-burning-bush-collection 132)
-  (veldin2-burning-bush-ring 133)
+  (veldin1-burning-bush-get-to 131)
+  (orxon-burning-bush-get-to 132)
+  (orxon-burning-bush-collection 133)
+  (veldin2-burning-bush-ring 134)
 
-  (max 134)) ;; vanilla was 110
+  (max 135)) ;; vanilla was 110
 ;; ---game-task
 
 ;; +++game-task-node
@@ -526,11 +528,11 @@
   (quartu-get-infobot-drek-resolution)
   (drek-get-infobot-veldin2-introduction)
   (drek-get-infobot-veldin2-resolution)
-
   ;; test burning bush 
   (testzone-burning-bush-get-to-introduction)
   (testzone-burning-bush-get-to-resolution)
-
+  ;; non-missions 
+  (hover-cam-training-done)
   ;; actual burning bush
   (veldin1-burning-bush-get-to-introduction)
   (veldin1-burning-bush-get-to-resolution)
