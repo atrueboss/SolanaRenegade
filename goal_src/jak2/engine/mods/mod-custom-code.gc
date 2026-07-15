@@ -333,7 +333,11 @@
 
     (defun event-trigger ()
       (cond 
-        ( (in-bubble? (meters 192.82) (meters  17.28) (meters 1737.85) (meters 25.0))
+        ( (and (pause-allowed?) (= (level-status *level* 'ctyport) 'active) ;; in this level 
+               (in-bubble? (meters 192.82) (meters  17.28) (meters 1737.85) ;; location
+                           (meters 25.0)                                    ;; bubble size
+               )     
+          )
           (task-close! "nest-boss-resolution")
         )
       )
