@@ -2749,15 +2749,13 @@
   ;; Increment goldbolt counter
   (+! (-> *game-info* goldbolt) 1.0)
   (+! (-> *game-info* goldbolt-total) 1.0)
-  
   ;; Print to console
   (format #t "Goldbolts: ~D/~D~%" 
           (the int (-> *game-info* goldbolt)) 
           (the int (-> *game-info* goldbolt-total)))
-  
   ;; Play pickup sound
   (play-sound-file "goldbolt.wav" (the int (* (-> *setting-control* user-current sfx-volume) 50.0)))
-  
+  ((method-of-type money do-pickup) this arg0)
   (none)
   )
 
