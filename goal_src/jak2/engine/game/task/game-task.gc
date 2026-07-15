@@ -13603,7 +13603,7 @@
               :resolution-scene #f
               :resolution-scene-continue #f
               :retry-continue "veldin2-burning-bush-ring"
-              :fail-continue #f
+              :fail-continue "veldin2-burning-bush-ring"
               :init-hook #f
               :cleanup-hook #f
               :update-hook #f
