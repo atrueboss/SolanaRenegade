@@ -60,6 +60,7 @@
                     "bolt-5",
                     "bolt-20",
                     "bolt-50",
+                    "goldchal"
                    ],
 
    // Any textures you want to include in your custom level.
@@ -144,23 +145,23 @@
     },
     {
       "trans": [-41.45, 51.67, -167.41], // translation
-      "etype": "burning-bush",  // actor type
+      "etype": "goldchal",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0.00, -0.95, -0.00, -0.30], // quaternion provided by Print Quat
       "bsphere": [-2.70, 3.50, 64, 10], // bounding sphere
       "lump": {
-        "name":"burning-bush-orxon-get-to",
+        "name":"orxon-goldchal-get-to",
         "task-actor": ["int32", 70]
       }
     },
     {
       "trans": [-53.47, 74.72, 193.58], // translation
-      "etype": "burning-bush",  // actor type
+      "etype": "goldchal",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0.0000, -0.9923, 0.0000, -0.0166], // quaternion provided by Print Quat
       "bsphere": [-2.70, 3.50, 64, 10], // bounding sphere
       "lump": {
-        "name":"burning-bush-orxon-collection",
+        "name":"orxon-goldchal-collection",
         "task-actor": ["int32", 71]
       }
     },

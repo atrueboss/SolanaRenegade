@@ -1422,3 +1422,301 @@
       (transform-post)
     )
 )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; goldchal - mission kiosk
+;;
+;; A clone of the vanilla burning-bush behavior, but using the goldchal
+;; model/skeleton and goldchal's own collision, with all particle effects
+;; removed. It waits for the player to approach, shows the "press triangle
+;; to talk" prompt when its game-task event action is `show`, and when
+;; triangle is pressed it grabs the player, plays the scene attached to the
+;; task event (gui-channel bbush), closes the current task node, and returns
+;; to idle.
+;;
+;; Differences from vanilla burning-bush:
+;;  - No particle launchers (on/off/alert holos) - they require the ctywide
+;;    particle groups, which crash in levels that don't load ctywide.
+;;  - The stadium race-selection `menu` state was not cloned; it is hardcoded
+;;    to the stadium race task nodes and doesn't apply to a generic kiosk.
+;;    A task event with action `menu` is treated like `show` -> talking.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(deftype goldchal (process-focusable)
+  ((task   game-task-control)
+   (angle  degrees)
+   (time   float)
+   )
+  (:state-methods
+    idle
+    talking
+    )
+  (:methods
+    (init-collision! (_type_) object)
+    (player-in-range? (_type_) object)
+    (look-at-player! (_type_) none)
+    )
+  )
+
+(def-actor goldchal
+  :bounds (0 0 0 5))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; helpers
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; equivalent of burning-bush-method-32: is the player standing in front of
+;; the kiosk, on foot, close enough to interact?
+(defmethod player-in-range? ((this goldchal))
+  (let* ((to-target (vector-! (new 'stack-no-clear 'vector) (target-pos 0) (-> this root trans)))
+         (side-dist (vector-dot (vector-x-quaternion! (new 'stack-no-clear 'vector) (-> this root quat)) to-target))
+         (fwd-dist (vector-dot (vector-z-quaternion! (new 'stack-no-clear 'vector) (-> this root quat)) to-target))
+         )
+    (and *target*
+         (not (focus-test? *target* pilot))
+         (< (fabs side-dist) (meters 2.5))
+         (< 0.0 fwd-dist)
+         (< (fabs fwd-dist) (meters 5))
+         )
+    )
+  )
+
+;; equivalent of the rlet blocks in the bush's :post behaviors - make Jak's
+;; neck look at a point 5m above the kiosk root.
+(defmethod look-at-player! ((this goldchal))
+  (when *target*
+    (let ((look-pos (new 'stack-no-clear 'vector)))
+      (vector+float*! look-pos (-> this root trans) *up-vector* (meters 5))
+      (look-at! (-> *target* neck) look-pos #f this)
+      )
+    )
+  (none)
+  )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; states
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defstate idle (goldchal)
+  :virtual #t
+  :trans (behavior ()
+    (let ((task-event (get-current-task-event (-> self task))))
+      ;; interaction prompt + triangle press
+      (when (and (or (= (-> task-event action) (game-task-action show))
+                     (= (-> task-event action) (game-task-action menu))
+                     )
+                 (and (player-in-range? self) (can-display-query? self (the-as string #f) -99.0))
+                 )
+        (let ((ctx (new 'stack 'font-context *font-default-matrix* 32 280 0.0 (font-color default) (font-flags shadow kerning))))
+          (set! (-> ctx flags) (font-flags shadow kerning large))
+          (set-width! ctx 340)
+          (set-height! ctx 80)
+          (set-scale! ctx 0.9)
+          (let ((print-fn print-game-text))
+            (format (clear *temp-string*) (lookup-text! *common-text* (text-id press-triangle-to-talk) #f))
+            (print-fn *temp-string* ctx #f 44 (bucket-id progress))
+            )
+          )
+        (when (cpad-pressed? 0 triangle)
+          (logclear! (-> *cpad-list* cpads 0 button0-abs 0) (pad-buttons triangle))
+          (logclear! (-> *cpad-list* cpads 0 button0-rel 0) (pad-buttons triangle))
+          (go-virtual talking)
+          )
+        )
+      )
+    )
+  :code sleep-code
+  :post (behavior ()
+    (look-at-player! self)
+    )
+  )
+
+(defstate talking (goldchal)
+  :virtual #t
+  :enter (behavior ()
+    (set-setting! 'minimap 'clear 0.0 (minimap-flag minimap))
+    (set! (-> self time) -1.0)
+    (process-entity-status! self (entity-perm-status no-kill) #t)
+    )
+  :exit (behavior ()
+    (remove-setting! 'music-volume)
+    (remove-setting! 'sfx-volume)
+    (remove-setting! 'dialog-volume)
+    (remove-setting! 'minimap)
+    (send-event *camera* 'change-target *target*)
+    (remove-setting! 'interp-time)
+    (remove-setting! 'mode-name)
+    )
+  :trans (behavior ()
+    ;; sway the fixed camera gently around the kiosk while the scene plays,
+    ;; same motion as the bush (30 degree sine sweep on local y).
+    (when (!= (-> self time) -1.0)
+      (let ((cam-pos (new 'stack-no-clear 'vector))
+            (cam-offset (new 'stack-no-clear 'vector))
+            (swayed-quat (new 'stack-no-clear 'quaternion))
+            )
+        (let ((sway-angle (* 182.04445 (* 30.0 (sin (* 7281.778 (-> self time)))))))
+          (quaternion-rotate-local-y! swayed-quat (-> self root quat) sway-angle)
+          )
+        (vector-orient-by-quat! cam-offset (new 'static 'vector :y 16384.0 :z 40960.0 :w 1.0) swayed-quat)
+        (vector+! cam-pos (-> self root trans) cam-offset)
+        (set! (-> *camera* slave 0 trans quad) (-> cam-pos quad))
+        ;; aim the camera at a point 5m above the kiosk
+        (let ((look-target (new 'stack-no-clear 'vector)))
+          (vector+float*! look-target (-> self root trans) *up-vector* (meters 5))
+          (forward-down->inv-matrix
+            (-> *camera* slave 0 tracking inv-mat)
+            (vector-! (new 'stack-no-clear 'vector) look-target cam-pos)
+            (-> *camera* local-down)
+            )
+          )
+        )
+      )
+    )
+  :code (behavior ()
+    (set-setting! 'mode-name 'cam-really-fixed 0.0 0)
+    (suspend)
+    (until (process-grab? *target* #f)
+      (suspend)
+      )
+    (suspend)
+    (if *target*
+        (set! (-> *target* neck flex-blend) 1.0)
+        )
+    (add-setting! 'music-volume 'rel (-> *setting-control* user-current music-volume-movie) 0)
+    (add-setting! 'sfx-volume 'rel (-> *setting-control* user-current sfx-movie-volume) 0)
+    (add-setting! 'dialog-volume 'rel (-> *setting-control* user-current dialog-volume-hint) 0)
+    (set-time! (-> self state-time))
+    ;; play the scene attached to the current task event
+    (let* ((task-event (get-current-task-event (-> self task)))
+           (gui-id (add-process
+                     *gui-control*
+                     self
+                     (gui-channel bbush)
+                     (gui-action play)
+                     (the-as string (-> task-event scene))
+                     -99.0
+                     0
+                     )
+                   )
+           )
+      (while (nonzero? (get-status *gui-control* gui-id))
+        (set! (-> self time) (* 0.0033333334 (the float (- (current-time) (-> self state-time)))))
+        (suspend)
+        ;; allow the player to skip out with triangle
+        (when (cpad-pressed? 0 triangle)
+          (set-action!
+            *gui-control*
+            (gui-action stop)
+            gui-id
+            (gui-channel none)
+            (gui-action none)
+            (the-as string #f)
+            (the-as (function gui-connection symbol) #f)
+            (the-as process #f)
+            )
+          (logclear! (-> *cpad-list* cpads 0 button0-abs 0) (pad-buttons triangle))
+          (logclear! (-> *cpad-list* cpads 0 button0-rel 0) (pad-buttons triangle))
+          (sound-play "inter-burn-bush")
+          )
+        )
+      )
+    (until (process-release? *target*)
+      (suspend)
+      )
+    ;; advance the task chain - this is what actually kicks off the mission
+    (task-node-close! (-> self task current-node))
+    (go-virtual idle)
+    )
+  :post (behavior ()
+    (look-at-player! self)
+    )
+  )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; setup
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; goldchal's original collision, unchanged
+(defmethod init-collision! ((this goldchal))
+  (let ((cshape (new 'process 'collide-shape-moving this (collide-list-enum hit-by-player))))
+    (set! (-> cshape dynam) (copy *standard-dynamics* 'process))
+    (set! (-> cshape reaction) cshape-reaction-default)
+    (set! (-> cshape no-reaction) (the (function collide-shape-moving collide-query vector vector object) nothing))
+    (let ((mesh (new 'process 'collide-shape-prim-mesh cshape (the uint 0) (the uint 0))))
+      (set! (-> mesh prim-core collide-as) (collide-spec pusher))
+      (set! (-> mesh collide-with) (collide-spec jak player-list))
+      (set! (-> mesh prim-core action) (collide-action solid rideable))
+      (set! (-> mesh transform-index) 0)
+      (set! (-> cshape total-prims) (the uint 1))
+      (set! (-> cshape root-prim) mesh)
+      (set-vector! (-> mesh local-sphere) 0.0 (meters 0) 0.0 (meters 5)))
+    (pusher-init cshape)
+    (set! (-> cshape nav-radius) (* 0.75 (-> cshape root-prim local-sphere w)))
+    (let ((prim (-> cshape root-prim)))
+      (set! (-> cshape backup-collide-as) (-> prim prim-core collide-as))
+      (set! (-> cshape backup-collide-with) (-> prim prim-core collide-with))
+      )
+    (set! (-> this root) cshape)))
+
+(defmethod relocate ((this goldchal) (offset int))
+  (if (nonzero? (-> this task))
+      (&+! (-> this task) offset)
+      )
+  (the-as goldchal ((method-of-type process-focusable relocate) this offset))
+  )
+
+(defmethod run-logic? ((this goldchal))
+  "Should this process be run? Checked by execute-process-tree."
+  (or (not (logtest? (-> this mask) (process-mask actor-pause)))
+      (or (and (nonzero? (-> this draw))
+               (logtest? (-> this draw status) (draw-control-status on-screen))
+               (>= (+ (-> *ACTOR-bank* pause-dist) (-> this root pause-adjust-distance))
+                   (vector-vector-distance (-> this root trans) (math-camera-pos))
+                   )
+               )
+          (and (nonzero? (-> this skel)) (!= (-> this skel root-channel 0) (-> this skel channel)))
+          (and (nonzero? (-> this draw)) (logtest? (-> this draw status) (draw-control-status uninited)))
+          )
+      )
+  )
+
+(defmethod init-from-entity! ((this goldchal) (e entity-actor))
+  (init-collision! this)
+  (process-drawable-from-entity! this e)
+  (initialize-skeleton this *goldchal-sg* '())
+  ;; optional yaw offset from the entity, same as the bush
+  (let ((rot-offset (res-lump-float (-> this entity) 'rotoffset)))
+    (if (!= rot-offset 0.0)
+        (quaternion-rotate-local-y! (-> this root quat) (-> this root quat) rot-offset)
+        )
+    )
+  ;; which task actor this kiosk represents - set 'task-actor on the entity
+  ;; in your level json, and reference the same actor in the task node's
+  ;; when-open event list in game-task.gc
+  (set! (-> this task)
+        (new 'process 'game-task-control (res-lump-value e 'task-actor game-task-actor :time -1000000000.0))
+        )
+  (set! (-> this angle) 0.0)
+  (set! (-> this root pause-adjust-distance) 819200.0)
+  (transform-post)
+  (go (method-of-object this idle))
+  (none)
+  )
+
+;; spawn by code instead of from an entity. Pass the position and the
+;; game-task-actor this kiosk should respond to, e.g.
+;;   (process-spawn goldchal (target-pos 0) (game-task-actor burning-bush-forest)
+;;                  :name "goldchal" :to *entity-pool*)
+(defbehavior goldchal-init-by-other goldchal ((pos vector) (task-actor game-task-actor))
+  (init-collision! self)
+  (initialize-skeleton self *goldchal-sg* '())
+  (vector-copy! (-> self root trans) pos)
+  (quaternion-identity! (-> self root quat))
+  (vector-identity! (-> self root scale))
+  (set! (-> self task) (new 'process 'game-task-control task-actor))
+  (set! (-> self angle) 0.0)
+  (set! (-> self root pause-adjust-distance) 819200.0)
+  (transform-post)
+  (go-virtual idle)
+  )

@@ -422,6 +422,7 @@
 (build-actor "sol-crate-iron" :force-run #t :gen-mesh #t)
 (build-actor "vendor" :force-run #t :gen-mesh #t)
 (build-actor "teleporter" :force-run #t :gen-mesh #t)
+(build-actor "goldchal" :force-run #t :gen-mesh #t)
 
 ;;;;;;;;;;;;;;;;;;;;;
 ;; ANIMATIONS

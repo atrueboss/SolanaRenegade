@@ -57,6 +57,7 @@
                     "bolt-5",
                     "bolt-20",
                     "bolt-50",
+                    "goldchal"
                    ],
 
    // Any textures you want to include in your custom level.
@@ -101,12 +102,12 @@
     
     {
       "trans": [-155.38, 20.52, 375.14], // translation
-      "etype": "burning-bush",  // actor type
+      "etype": "goldchal",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0, 0, 1], // quaternion
       "bsphere": [-2.70, 3.50, 64, 10], // bounding sphere
       "lump": {
-        "name":"burning-bush-kalebo",
+        "name":"kaleborace-goldchal-race",
         "task-actor": ["int32", 42]
       }
     }

@@ -12,6 +12,7 @@
   "solana-common-obs.o"
   "solana-part.o" ;; for infobot / metalgrabber glow particle 
   "test-actor-ag.go"
+  "goldchal-ag.go"
   "goldbolt-ag.go"
   "infobot-ag.go"
   "metalgrabber-ag.go"

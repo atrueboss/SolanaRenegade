@@ -42,12 +42,7 @@
     "rift-ring-in-game-ag",
     "dig-jump-pad-ag", 
     "sew-gunturret-ag",
-    "pal-gun-turret-ag",
-
-    // trying to get burning bush to spawn but failed so far
-    // "ctywide-part-ag"
-    "burning-bush-ag"
-    // "ctywide-obs-ag"
+    "pal-gun-turret-ag"
                 ],
 
   // If you have any custom models in the "custom_assets/jak2/models/custom_levels" folder that you want to use in your level, add them to this list.
@@ -66,6 +61,7 @@
                     "bolt-5",
                     "bolt-20",
                     "bolt-50",
+                    "goldchal"
                    ],
 
    // Any textures you want to include in your custom level.
@@ -212,12 +208,12 @@
     },
     {
       "trans": [-268.16, 42.85, 107.65], // translation
-      "etype": "burning-bush",  // actor type
+      "etype": "goldchal",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0.9904, 0, 0.1380], // quaternion provided by chatgpt 
       "bsphere": [-2.70, 3.50, 64, 10], // bounding sphere
       "lump": {
-        "name":"burning-bush-69",
+        "name":"veldin2-goldchal-ring",
         "task-actor": ["int32", 72]
       }
     }

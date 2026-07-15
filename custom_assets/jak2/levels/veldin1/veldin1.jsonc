@@ -62,6 +62,7 @@
                     "bolt-5",
                     "bolt-20",
                     "bolt-50",
+                    "goldchal",
                     "bolt-1",
                     "bolt-5",
                     "bolt-20",
@@ -161,13 +162,13 @@
       }
     },
     {
-      "trans": [-69.15, 31.68, -116.23], // translation
-      "etype": "burning-bush",  // actor type
+      "trans": [-69.15, 31.68, -116.230002], // translation
+      "etype": "goldchal",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0.602, 0, 0.798], // quaternion provided by chatgpt 
       "bsphere": [-2.70, 3.50, 64, 10], // bounding sphere
       "lump": {
-        "name":"veldin1-burning-bush-get-to",
+        "name":"veldin1-goldchal-get-to",
         "task-actor": ["int32", 69]
       }
     }
