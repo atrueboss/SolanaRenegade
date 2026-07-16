@@ -1483,18 +1483,26 @@
 ;; to idle.
 ;;
 ;; PAYWALL: if the entity lump defines a 'price (int32), the kiosk charges
-;; that many orbs (skill) to start - but only ONCE. The first successful
+;; that many bolts to start - but only ONCE. The first successful
 ;; payment is remembered in the entity perm (subtask-complete bit), so
 ;; failing the mission and coming back later starts it for free, and the
 ;; price line stops being shown. A price of 0 (or no 'price in the lump)
 ;; means the kiosk is free and behaves exactly as before.
+;;
+;; DISPLAY BOLT: while the kiosk is active (task event action show/menu,
+;; before or after paying), a display-only goldbolt is spawned inside the
+;; machine as bait. It has no collision so it can't be collected, and it is
+;; removed as soon as the challenge is no longer available (mission running
+;; or completed). If the mission is failed and the node reopens, it comes
+;; back.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (deftype goldchal (process-focusable)
-  ((task   game-task-control)
-   (price  int32)
-   (angle  degrees)
-   (time   float)
+  ((task          game-task-control)
+   (price         int32)
+   (angle         degrees)
+   (time          float)
+   (bolt-display  handle)
    )
   (:state-methods
     idle
@@ -1511,6 +1519,51 @@
 
 (def-actor goldchal
   :bounds (0 0 0 5))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; goldbolt-viewer - display-only goldbolt shown inside the kiosk.
+;; No collision root (plain trsqv), so it can be seen but never collected.
+;; NOTE: references *goldbolt-sg*, so goldbolt.gc must compile before this
+;; file.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(deftype goldbolt-viewer (process-drawable)
+  ()
+  (:state-methods
+    idle
+    )
+  )
+
+(defbehavior goldbolt-viewer-init-by-other goldbolt-viewer ((pos vector) (quat quaternion))
+  (set! (-> self root) (new 'process 'trsqv))
+  (vector-copy! (-> self root trans) pos)
+  (quaternion-copy! (-> self root quat) quat)
+  (vector-identity! (-> self root scale))
+  (initialize-skeleton self *goldbolt-sg* '())
+  ;; same gold tint as the real goldbolt
+  (set-vector! (-> self draw color-mult) 1.0 0.8 0.0 1.0)
+  (set-vector! (-> self draw color-emissive) 0.3 0.2 0.0 1.0)
+  ;; same glow particles as the real goldbolt
+  (set! (-> self part) (create-launch-control group-goldbolt-glow self))
+  (logclear! (-> self mask) (process-mask actor-pause))
+  (go-virtual idle)
+  )
+
+(defstate idle (goldbolt-viewer)
+  :virtual #t
+  :code (behavior ()
+    (loop
+      ;; slow display spin
+      (quaternion-rotate-y! (-> self root quat) (-> self root quat) (* (degrees 45) (seconds-per-frame)))
+      (suspend)
+      )
+    )
+  :post (behavior ()
+    ;; spawn glow particles every frame, same as the real goldbolt
+    (spawn (-> self part) (-> self root trans))
+    (ja-post)
+    )
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; helpers
@@ -1532,14 +1585,13 @@
     )
   )
 
-;; does the player have enough orbs to pay this kiosk's price?
-;; NOTE: 'skill' is the internal name for Precursor orbs in jak 2.
+;; does the player have enough bolts to pay this kiosk's price?
 (defmethod can-afford? ((this goldchal))
   (>= (-> *game-info* bolt) (the float (-> this price)))
   )
 
 ;; has this kiosk already been paid for? The flag lives in the entity perm
-;; (same persistent per-actor record your goldbolt uses for its task status),
+;; (same persistent per-actor record goldbolt uses for its task status),
 ;; so it survives walking away, level reloads, and rides in the save-game
 ;; perm list. Code-spawned goldchals have no entity and are never "paid".
 (defmethod paid? ((this goldchal))
@@ -1567,11 +1619,40 @@
 (defstate idle (goldchal)
   :virtual #t
   :trans (behavior ()
-    (let ((task-event (get-current-task-event (-> self task))))
+    (let* ((task-event (get-current-task-event (-> self task)))
+           (active? (or (= (-> task-event action) (game-task-action show))
+                        (= (-> task-event action) (game-task-action menu))
+                        )
+                    )
+           )
+      ;; display goldbolt inside the machine while the challenge is available
+      (cond
+        ((and active? (not (handle->process (-> self bolt-display))))
+         ;; unlocked and no display bolt yet -> spawn one inside the machine
+        (let ((spawn-pos (new 'stack-no-clear 'vector)))
+          ;; height above the kiosk root
+          (vector+float*! spawn-pos (-> self root trans) *up-vector* (meters 5.1))
+          ;; TUNE ME: push toward the front glass along the kiosk's facing.
+          ;; positive = toward the player side, negative = deeper into the cabinet
+          (vector+float*! spawn-pos spawn-pos
+                          (vector-z-quaternion! (new 'stack-no-clear 'vector) (-> self root quat))
+                          (meters 0.2))
+          (set! (-> self bolt-display)
+                (ppointer->handle
+                  (process-spawn goldbolt-viewer spawn-pos (-> self root quat)
+                                :name "goldbolt-viewer" :to self)
+                  )
+                )
+          )
+         )
+        ((and (not active?) (handle->process (-> self bolt-display)))
+         ;; challenge no longer available (completed / running) -> remove it
+         (deactivate (handle->process (-> self bolt-display)))
+         (set! (-> self bolt-display) (the-as handle #f))
+         )
+        )
       ;; interaction prompt + triangle press
-      (when (and (or (= (-> task-event action) (game-task-action show))
-                     (= (-> task-event action) (game-task-action menu))
-                     )
+      (when (and active?
                  (and (player-in-range? self) (can-display-query? self (the-as string #f) -99.0))
                  )
         ;; main prompt
@@ -1642,7 +1723,7 @@
              (go-virtual talking)
              )
             (else
-              ;; not enough orbs - deny
+              ;; not enough bolts - deny
               (play-sound-file "menu-deny.wav" (the int (* (-> *setting-control* user-current sfx-volume) 130.0)))
               )
             )
@@ -1841,6 +1922,7 @@
         (set! (-> this entity extra perm task) (game-task complete))
         )
     )
+  (set! (-> this bolt-display) (the-as handle #f))
   (set! (-> this angle) 0.0)
   (set! (-> this root pause-adjust-distance) 819200.0)
   (transform-post)
@@ -1861,6 +1943,7 @@
   (vector-identity! (-> self root scale))
   (set! (-> self task) (new 'process 'game-task-control task-actor))
   (set! (-> self price) price)
+  (set! (-> self bolt-display) (the-as handle #f))
   (set! (-> self angle) 0.0)
   (set! (-> self root pause-adjust-distance) 819200.0)
   (transform-post)

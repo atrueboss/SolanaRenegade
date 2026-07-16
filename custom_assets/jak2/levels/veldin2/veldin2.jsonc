@@ -207,7 +207,7 @@
       }
     },
     {
-      "trans": [-268.16, 42.85, 107.65], // translation
+      "trans": [-268.16, 42.85, 107.6500001], // translation
       "etype": "goldchal",  // actor type
       "game_task": 0, // associated game task (for powercells, etc)
       "quat" : [0, 0.9904, 0, 0.1380], // quaternion provided by chatgpt 
