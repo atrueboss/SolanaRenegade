@@ -150,7 +150,8 @@
       "bsphere": [212.19, 16.67, 168.19, 10], // bounding sphere
       "lump": {
         "name":"rilgar-goldchal-race",
-        "task-actor": ["int32", 69]
+        "task-actor": ["int32", 69],
+        "price": ["int32", 1500]
       }
     }
 

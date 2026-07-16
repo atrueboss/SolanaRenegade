@@ -214,7 +214,8 @@
       "bsphere": [-2.70, 3.50, 64, 10], // bounding sphere
       "lump": {
         "name":"veldin2-goldchal-ring",
-        "task-actor": ["int32", 72]
+        "task-actor": ["int32", 72],
+        "price": ["int32", 1000]
       }
     }
   ]

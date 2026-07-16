@@ -108,7 +108,8 @@
       "bsphere": [-2.70, 3.50, 64, 10], // bounding sphere
       "lump": {
         "name":"kaleborace-goldchal-race",
-        "task-actor": ["int32", 42]
+        "task-actor": ["int32", 42],
+        "price": ["int32", 1500]
       }
     }
   ]

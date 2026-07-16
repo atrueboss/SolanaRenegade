@@ -151,7 +151,8 @@
       "bsphere": [-2.70, 3.50, 64, 10], // bounding sphere
       "lump": {
         "name":"orxon-goldchal-get-to",
-        "task-actor": ["int32", 70]
+        "task-actor": ["int32", 70],
+        "price": ["int32", 500]
       }
     },
     {
@@ -162,7 +163,8 @@
       "bsphere": [-2.70, 3.50, 64, 10], // bounding sphere
       "lump": {
         "name":"orxon-goldchal-collection",
-        "task-actor": ["int32", 71]
+        "task-actor": ["int32", 71],
+        "price": ["int32", 1000]
       }
     },
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

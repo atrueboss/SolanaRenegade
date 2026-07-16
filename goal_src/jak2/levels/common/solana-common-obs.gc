@@ -492,28 +492,44 @@
            )
        )
       )
-   ;; MODIFIED: Spawn multiple pickups from eco-info (max 3 pairs, strict validation)
+   ;; MODIFIED: Spawn multiple pickups with random spread using drop-pickup
 (let ((eco-array (res-lump-data (-> self entity) 'eco-info (pointer int32))))
   (if eco-array
-      ;; Has eco-info - spawn up to 3 items
-      (dotimes (i 3)
-        (let ((pickup-id (-> eco-array (* i 2)))
-              (amount (-> eco-array (+ (* i 2) 1))))
-          ;; STRICT validation: pickup IDs 1-40, amounts 1-100
-          (if (and (> pickup-id 0) 
-                   (< pickup-id 40)      ;; Stricter - most pickup types are under 40
-                   (> amount 0) 
-                   (< amount 100))       ;; Stricter - amounts usually under 100
-              ;; Valid entry - spawn it
-              (begin
-                (set! (-> self fact pickup-type) (the-as pickup-type pickup-id))
-                (set! (-> self fact pickup-amount) (the float amount))
-                (drop-pickup (-> self fact) #t *entity-pool* (the-as fact-info #f) arg1)
+      ;; Has eco-info - spawn up to 3 items with spread
+      (let ((original-pos (new 'stack-no-clear 'vector)))
+        ;; Save original crate position
+        (set! (-> original-pos quad) (-> self root trans quad))
+
+        (dotimes (i 3)
+          (let ((pickup-id (-> eco-array (* i 2)))
+                (amount (-> eco-array (+ (* i 2) 1))))
+            ;; STRICT validation: pickup IDs 1-40, amounts 1-100
+            (if (and (> pickup-id 0) 
+                     (< pickup-id 40)
+                     (> amount 0) 
+                     (< amount 100))
+                ;; Valid entry - modify position, spawn, restore
+                (begin
+                  ;; Set pickup type and amount
+                  (set! (-> self fact pickup-type) (the-as pickup-type pickup-id))
+                  (set! (-> self fact pickup-amount) (the float amount))
+
+                  ;; Restore base position then add random offset
+                  (set! (-> self root trans quad) (-> original-pos quad))
+                  (+! (-> self root trans x) (* (rand-vu-float-range -1.0 1.0) (meters 5)))  ;; distance of x scatter
+                  (+! (-> self root trans z) (* (rand-vu-float-range -1.0 1.0) (meters 5)))  ;; distance of z scatter
+                  
+                  ;; Spawn using the proven drop-pickup function
+                  (drop-pickup (-> self fact) #t *entity-pool* (the-as fact-info #f) arg1)
+                  )
+                ;; Invalid - stop immediately
+                (set! i 3)
                 )
-              ;; Invalid - stop immediately
-              (set! i 3)
-              )
+            )
           )
+        
+        ;; Restore original position
+        (set! (-> self root trans quad) (-> original-pos quad))
         )
       ;; No eco-info - use default drop-pickup
       (drop-pickup (-> self fact) #t *entity-pool* (the-as fact-info #f) arg1)
@@ -755,28 +771,44 @@
            )
        )
       )
-   ;; MODIFIED: Spawn multiple pickups from eco-info (max 3 pairs, strict validation)
+   ;; MODIFIED: Spawn multiple pickups with random spread using drop-pickup
 (let ((eco-array (res-lump-data (-> self entity) 'eco-info (pointer int32))))
   (if eco-array
-      ;; Has eco-info - spawn up to 3 items
-      (dotimes (i 3)
-        (let ((pickup-id (-> eco-array (* i 2)))
-              (amount (-> eco-array (+ (* i 2) 1))))
-          ;; STRICT validation: pickup IDs 1-40, amounts 1-100
-          (if (and (> pickup-id 0) 
-                   (< pickup-id 40)      ;; Stricter - most pickup types are under 40
-                   (> amount 0) 
-                   (< amount 100))       ;; Stricter - amounts usually under 100
-              ;; Valid entry - spawn it
-              (begin
-                (set! (-> self fact pickup-type) (the-as pickup-type pickup-id))
-                (set! (-> self fact pickup-amount) (the float amount))
-                (drop-pickup (-> self fact) #t *entity-pool* (the-as fact-info #f) arg1)
+      ;; Has eco-info - spawn up to 3 items with spread
+      (let ((original-pos (new 'stack-no-clear 'vector)))
+        ;; Save original crate position
+        (set! (-> original-pos quad) (-> self root trans quad))
+
+        (dotimes (i 3)
+          (let ((pickup-id (-> eco-array (* i 2)))
+                (amount (-> eco-array (+ (* i 2) 1))))
+            ;; STRICT validation: pickup IDs 1-40, amounts 1-100
+            (if (and (> pickup-id 0) 
+                     (< pickup-id 40)
+                     (> amount 0) 
+                     (< amount 100))
+                ;; Valid entry - modify position, spawn, restore
+                (begin
+                  ;; Set pickup type and amount
+                  (set! (-> self fact pickup-type) (the-as pickup-type pickup-id))
+                  (set! (-> self fact pickup-amount) (the float amount))
+
+                  ;; Restore base position then add random offset
+                  (set! (-> self root trans quad) (-> original-pos quad))
+                  (+! (-> self root trans x) (* (rand-vu-float-range -1.0 1.0) (meters 4)))  ;; distance of x scatter
+                  (+! (-> self root trans z) (* (rand-vu-float-range -1.0 1.0) (meters 4)))  ;; distance of z scatter
+                  
+                  ;; Spawn using the proven drop-pickup function
+                  (drop-pickup (-> self fact) #t *entity-pool* (the-as fact-info #f) arg1)
+                  )
+                ;; Invalid - stop immediately
+                (set! i 3)
                 )
-              ;; Invalid - stop immediately
-              (set! i 3)
-              )
+            )
           )
+        
+        ;; Restore original position
+        (set! (-> self root trans quad) (-> original-pos quad))
         )
       ;; No eco-info - use default drop-pickup
       (drop-pickup (-> self fact) #t *entity-pool* (the-as fact-info #f) arg1)
@@ -1035,28 +1067,44 @@
            )
        )
       )
-   ;; MODIFIED: Spawn multiple pickups from eco-info (max 3 pairs, strict validation)
+   ;; MODIFIED: Spawn multiple pickups with random spread using drop-pickup
 (let ((eco-array (res-lump-data (-> self entity) 'eco-info (pointer int32))))
   (if eco-array
-      ;; Has eco-info - spawn up to 3 items
-      (dotimes (i 3)
-        (let ((pickup-id (-> eco-array (* i 2)))
-              (amount (-> eco-array (+ (* i 2) 1))))
-          ;; STRICT validation: pickup IDs 1-40, amounts 1-100
-          (if (and (> pickup-id 0) 
-                   (< pickup-id 40)      ;; Stricter - most pickup types are under 40
-                   (> amount 0) 
-                   (< amount 100))       ;; Stricter - amounts usually under 100
-              ;; Valid entry - spawn it
-              (begin
-                (set! (-> self fact pickup-type) (the-as pickup-type pickup-id))
-                (set! (-> self fact pickup-amount) (the float amount))
-                (drop-pickup (-> self fact) #t *entity-pool* (the-as fact-info #f) arg1)
+      ;; Has eco-info - spawn up to 3 items with spread
+      (let ((original-pos (new 'stack-no-clear 'vector)))
+        ;; Save original crate position
+        (set! (-> original-pos quad) (-> self root trans quad))
+
+        (dotimes (i 3)
+          (let ((pickup-id (-> eco-array (* i 2)))
+                (amount (-> eco-array (+ (* i 2) 1))))
+            ;; STRICT validation: pickup IDs 1-40, amounts 1-100
+            (if (and (> pickup-id 0) 
+                     (< pickup-id 40)
+                     (> amount 0) 
+                     (< amount 100))
+                ;; Valid entry - modify position, spawn, restore
+                (begin
+                  ;; Set pickup type and amount
+                  (set! (-> self fact pickup-type) (the-as pickup-type pickup-id))
+                  (set! (-> self fact pickup-amount) (the float amount))
+
+                  ;; Restore base position then add random offset
+                  (set! (-> self root trans quad) (-> original-pos quad))
+                  (+! (-> self root trans x) (* (rand-vu-float-range -1.0 1.0) (meters 5)))  ;; distance of x scatter
+                  (+! (-> self root trans z) (* (rand-vu-float-range -1.0 1.0) (meters 5)))  ;; distance of z scatter
+                  
+                  ;; Spawn using the proven drop-pickup function
+                  (drop-pickup (-> self fact) #t *entity-pool* (the-as fact-info #f) arg1)
+                  )
+                ;; Invalid - stop immediately
+                (set! i 3)
                 )
-              ;; Invalid - stop immediately
-              (set! i 3)
-              )
+            )
           )
+        
+        ;; Restore original position
+        (set! (-> self root trans quad) (-> original-pos quad))
         )
       ;; No eco-info - use default drop-pickup
       (drop-pickup (-> self fact) #t *entity-pool* (the-as fact-info #f) arg1)
@@ -1434,16 +1482,17 @@
 ;; task event (gui-channel bbush), closes the current task node, and returns
 ;; to idle.
 ;;
-;; Differences from vanilla burning-bush:
-;;  - No particle launchers (on/off/alert holos) - they require the ctywide
-;;    particle groups, which crash in levels that don't load ctywide.
-;;  - The stadium race-selection `menu` state was not cloned; it is hardcoded
-;;    to the stadium race task nodes and doesn't apply to a generic kiosk.
-;;    A task event with action `menu` is treated like `show` -> talking.
+;; PAYWALL: if the entity lump defines a 'price (int32), the kiosk charges
+;; that many orbs (skill) to start - but only ONCE. The first successful
+;; payment is remembered in the entity perm (subtask-complete bit), so
+;; failing the mission and coming back later starts it for free, and the
+;; price line stops being shown. A price of 0 (or no 'price in the lump)
+;; means the kiosk is free and behaves exactly as before.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (deftype goldchal (process-focusable)
   ((task   game-task-control)
+   (price  int32)
    (angle  degrees)
    (time   float)
    )
@@ -1455,6 +1504,8 @@
     (init-collision! (_type_) object)
     (player-in-range? (_type_) object)
     (look-at-player! (_type_) none)
+    (can-afford? (_type_) symbol)
+    (paid? (_type_) object)
     )
   )
 
@@ -1479,6 +1530,22 @@
          (< (fabs fwd-dist) (meters 5))
          )
     )
+  )
+
+;; does the player have enough orbs to pay this kiosk's price?
+;; NOTE: 'skill' is the internal name for Precursor orbs in jak 2.
+(defmethod can-afford? ((this goldchal))
+  (>= (-> *game-info* bolt) (the float (-> this price)))
+  )
+
+;; has this kiosk already been paid for? The flag lives in the entity perm
+;; (same persistent per-actor record your goldbolt uses for its task status),
+;; so it survives walking away, level reloads, and rides in the save-game
+;; perm list. Code-spawned goldchals have no entity and are never "paid".
+(defmethod paid? ((this goldchal))
+  (and (-> this entity)
+       (logtest? (-> this entity extra perm status) (entity-perm-status subtask-complete))
+       )
   )
 
 ;; equivalent of the rlet blocks in the bush's :post behaviors - make Jak's
@@ -1507,6 +1574,7 @@
                      )
                  (and (player-in-range? self) (can-display-query? self (the-as string #f) -99.0))
                  )
+        ;; main prompt
         (let ((ctx (new 'stack 'font-context *font-default-matrix* 32 280 0.0 (font-color default) (font-flags shadow kerning))))
           (set! (-> ctx flags) (font-flags shadow kerning large))
           (set-width! ctx 340)
@@ -1517,10 +1585,67 @@
             (print-fn *temp-string* ctx #f 44 (bucket-id progress))
             )
           )
+        ;; price line, only when this kiosk charges and hasn't been paid yet
+        (when (and (> (-> self price) 0) (not (paid? self)))
+          (let ((ctx (new 'stack 'font-context *font-default-matrix* 32 310 0.0 (font-color default) (font-flags shadow kerning))))
+            (set! (-> ctx flags) (font-flags shadow kerning large))
+            (set-width! ctx 340)
+            (set-height! ctx 80)
+            (set-scale! ctx 0.7)
+            ;; red when the player can't afford it
+            (if (not (can-afford? self))
+                (set! (-> ctx color) (font-color red))
+                )
+            (let ((print-fn print-game-text))
+              (format (clear *temp-string*) "~D bolts" (-> self price))
+              (print-fn *temp-string* ctx #f 44 (bucket-id progress))
+              )
+            )
+          )
         (when (cpad-pressed? 0 triangle)
           (logclear! (-> *cpad-list* cpads 0 button0-abs 0) (pad-buttons triangle))
           (logclear! (-> *cpad-list* cpads 0 button0-rel 0) (pad-buttons triangle))
-          (go-virtual talking)
+          (cond
+            ((or (paid? self) (can-afford? self))
+             ;; charge the player on the first purchase only, then remember
+             ;; it in the entity perm so retries are free
+             (when (and (> (-> self price) 0) (not (paid? self)))
+               (-! (-> *game-info* bolt) (the float (-> self price)))
+               (process-entity-status! self (entity-perm-status subtask-complete) #t)
+                ;; payment sfx: cascade of random bolt sounds, one every
+                ;; 2 frames, 16 times. Runs in its own process so it keeps
+                ;; playing while the kiosk transitions into the talking state.
+                (process-spawn-function process
+                  (lambda :behavior process ()
+                    (dotimes (i 20)
+                      (let ((pick (rand-vu-int-count 4)))
+                        (cond
+                          ((= pick 0)
+                          (play-sound-file "bolt-5-20.mp3" (the int (* (-> *setting-control* user-current sfx-volume) 8.0)))
+                          )
+                          (else
+                            (play-sound-file "bolt-1.mp3" (the int (* (-> *setting-control* user-current sfx-volume) 8.0)))
+                            )
+                          )
+                        )
+                      ;; wait 5 frames before the next chink
+                      (dotimes (j 3)
+                        (suspend)
+                        )
+                      )
+                    (none)
+                    )
+                  :name "goldchal-pay-sfx"
+                  :to *entity-pool*
+                  )
+               )
+             (go-virtual talking)
+             )
+            (else
+              ;; not enough orbs - deny
+              (play-sound-file "menu-deny.wav" (the int (* (-> *setting-control* user-current sfx-volume) 130.0)))
+              )
+            )
           )
         )
       )
@@ -1697,6 +1822,25 @@
   (set! (-> this task)
         (new 'process 'game-task-control (res-lump-value e 'task-actor game-task-actor :time -1000000000.0))
         )
+  ;; the paywall price in bolts, from the 'price int32 in the entity lump.
+  ;; missing lump -> 0 -> free kiosk.
+  (set! (-> this price)
+        (the-as int (res-lump-value e 'price int :default (the-as uint128 0) :time -1000000000.0))
+        )
+  ;; same trick goldbolt uses: point the entity perm's task at the always-
+  ;; complete sentinel so the death/continue perm reset skips this entity.
+  ;; Without this, dying clears the perm status bits and wipes our paid flag.
+  (let ((entity (-> this entity)))
+    (if (when entity
+          (let ((task (-> entity extra perm task)))
+            (if task
+                (= task (game-task none))
+                )
+            )
+          )
+        (set! (-> this entity extra perm task) (game-task complete))
+        )
+    )
   (set! (-> this angle) 0.0)
   (set! (-> this root pause-adjust-distance) 819200.0)
   (transform-post)
@@ -1704,17 +1848,19 @@
   (none)
   )
 
-;; spawn by code instead of from an entity. Pass the position and the
-;; game-task-actor this kiosk should respond to, e.g.
-;;   (process-spawn goldchal (target-pos 0) (game-task-actor burning-bush-forest)
+;; spawn by code instead of from an entity. Pass the position, the
+;; game-task-actor this kiosk should respond to, and the price in bolts
+;; (0 = free), e.g.
+;;   (process-spawn goldchal (target-pos 0) (game-task-actor burning-bush-forest) 500
 ;;                  :name "goldchal" :to *entity-pool*)
-(defbehavior goldchal-init-by-other goldchal ((pos vector) (task-actor game-task-actor))
+(defbehavior goldchal-init-by-other goldchal ((pos vector) (task-actor game-task-actor) (price int))
   (init-collision! self)
   (initialize-skeleton self *goldchal-sg* '())
   (vector-copy! (-> self root trans) pos)
   (quaternion-identity! (-> self root quat))
   (vector-identity! (-> self root scale))
   (set! (-> self task) (new 'process 'game-task-control task-actor))
+  (set! (-> self price) price)
   (set! (-> self angle) 0.0)
   (set! (-> self root pause-adjust-distance) 819200.0)
   (transform-post)

@@ -162,14 +162,14 @@
       }
     },
     {
-      "trans": [-69.15, 31.68, -116.230002], // translation
-      "etype": "goldchal",  // actor type
-      "game_task": 0, // associated game task (for powercells, etc)
-      "quat" : [0, 0.602, 0, 0.798], // quaternion provided by chatgpt 
-      "bsphere": [-2.70, 3.50, 64, 10], // bounding sphere
+      "trans": [-69.15, 31.68, -116.230002],
+      "etype": "goldchal",
+      "quat" : [0, 0.602, 0, 0.798],
+      "bsphere": [-2.70, 3.50, 64, 10],
       "lump": {
         "name":"veldin1-goldchal-get-to",
-        "task-actor": ["int32", 69]
+        "task-actor": ["int32", 69],
+        "price": ["int32", 500]
       }
     }
   ]
