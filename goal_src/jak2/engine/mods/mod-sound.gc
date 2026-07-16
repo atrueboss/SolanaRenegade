@@ -32,8 +32,8 @@
         (cond   
                 ;;;;; VELDIN1 SPAWN MUSIC ;;;;;
             ((= (level-status *level* 'veldin1) 'active)
-             (and (play-main-music "veldin1/veldin1-main.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
-                  (format (clear *current-playing-custom-music-str*) "veldin1/veldin1-main.wav" (+ 68 1)))
+             (and (play-main-music "veldin1/veldin1-boss.wav" (the int (* 100.0(-> *setting-control* user-current music-volume))))
+                  (format (clear *current-playing-custom-music-str*) "veldin1/veldin1-boss.wav" (+ 68 1)))
             )
 
                 ;;;;; NOVALIS SPAWN MUSIC ;;;;;
